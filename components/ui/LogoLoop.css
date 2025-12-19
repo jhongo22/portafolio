@@ -1,0 +1,153 @@
+.logoloop {
+  --logoloop-gap: 32px;
+  --logoloop-logoHeight: 28px;
+  --logoloop-fadeColor: transparent;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.logoloop--vertical {
+  height: 100%;
+}
+
+.logoloop--horizontal {
+  height: calc(var(--logoloop-logoHeight) * 1.5);
+  display: flex;
+  align-items: center;
+}
+
+.logoloop--fade::after,
+.logoloop--fade::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logoloop--horizontal.logoloop--fade::after,
+.logoloop--horizontal.logoloop--fade::before {
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 32px;
+}
+
+.logoloop--horizontal.logoloop--fade::before {
+  left: 0;
+  background: linear-gradient(to right, var(--logoloop-fadeColor), transparent);
+  width: 120px;
+}
+
+.logoloop--horizontal.logoloop--fade::after {
+  right: 0;
+  background: linear-gradient(to left, var(--logoloop-fadeColor), transparent);
+  width: 120px;
+}
+
+.logoloop--vertical.logoloop--fade::before {
+  top: 0;
+  height: 32px;
+  width: 100%;
+  background: linear-gradient(to bottom, var(--logoloop-fadeColor), transparent);
+}
+
+.logoloop--vertical.logoloop--fade::after {
+  bottom: 0;
+  height: 32px;
+  width: 100%;
+  background: linear-gradient(to top, var(--logoloop-fadeColor), transparent);
+}
+
+.logoloop__track {
+  position: absolute;
+  display: flex;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.logoloop--horizontal .logoloop__track {
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.logoloop--vertical .logoloop__track {
+  width: 100%;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+}
+
+.logoloop__list {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.logoloop--vertical .logoloop__list {
+  flex-direction: column;
+}
+
+.logoloop__item {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.logoloop--horizontal .logoloop__item {
+  margin-right: var(--logoloop-gap);
+}
+
+.logoloop--vertical .logoloop__item {
+  margin-bottom: var(--logoloop-gap);
+}
+
+/* Removed last-child margin override to maintain gap at loop point */
+
+.logoloop__link {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.logoloop__link:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.logoloop__node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--logoloop-logoHeight);
+}
+
+.logoloop img {
+  height: var(--logoloop-logoHeight);
+  width: auto;
+  object-fit: contain;
+  max-width: none;
+  filter: grayscale(1) opacity(0.7);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logoloop--scale-hover .logoloop__item:hover img {
+  transform: scale(1.2);
+  filter: grayscale(0) opacity(1);
+}
+
+.logoloop__item {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoloop__track {
+    animation: none;
+  }
+}
