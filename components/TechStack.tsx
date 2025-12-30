@@ -70,20 +70,6 @@ export default function TechStack() {
   return (
     <section className="relative w-full py-24">
       <div className="container mx-auto px-4 md:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Tecnologías que domino
-          </h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Herramientas y tecnologías que utilizo para crear experiencias web excepcionales
-          </p>
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}

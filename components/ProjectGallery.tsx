@@ -21,21 +21,32 @@ interface Project {
 }
 
 const projects: Project[] = [
-    // Web Projects
     {
         id: 1,
-        title: "E-Commerce Premium",
+        title: "Alquiler de Ecógrafos",
         category: "web",
-        image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=1964&auto=format&fit=crop",
-        description: "🚀 Acabo de lanzar esta plataforma de comercio electrónico. Incluye carrito en tiempo real, pasarela de pagos segura y un panel de administración completo. \n\n#NextJS #eCommerce #WebDev",
-        stack: ["Next.js", "Stripe", "Zustand"],
-        link: "https://example.com",
-        likes: 124,
-        comments: 18,
-        shares: 45
+        image: "/projects/ecografos.png",
+        description: "🩺 Plataforma SaaS robusta para el alquiler de equipos médicos de alta gama. \n\n✅ Full Stack: TypeScript, Node.js y Supabase para gestión de datos en tiempo real. \n✅ Panel Administrativo: Control de stock y disponibilidad mediante calendario interactivo. \n✅ Wizard de Reservas: Formulario inteligente con validación de disponibilidad y registro automatizado. \n✅ SEO & Analytics: Optimización total para motores de búsqueda y rastreo de conversiones avanzado. \n\n#Salud #TypeScript #SaaS #MedicalTech",
+        stack: ["TypeScript", "Node.js", "Supabase"],
+        link: "https://alquilerdeecografos.com/",
+        likes: 184,
+        comments: 32,
+        shares: 76
     },
     {
         id: 2,
+        title: "Vive Feliz Sin Dolor",
+        category: "web",
+        image: "/projects/vivefeliz.png",
+        description: "🏥 Sitio web integral para consultorio de medicina regenerativa. \n\n✅ Desarrollado en WordPress con enfoque en conversión. \n✅ SEO local avanzado y Analytics para rastreo de pacientes. \n✅ Integración de Agente IA de texto y Voz (vía ElevenLabs) para atención 24/7. \n✅ Optimizado en Google Search Console para máxima visibilidad. \n\n#Salud #AI #SEO #WordPress",
+        stack: ["WordPress", "ElevenLabs AI", "SEO / Analytics"],
+        link: "https://vivefelizsindolor.com/",
+        likes: 145,
+        comments: 24,
+        shares: 56
+    },
+    {
+        id: 3,
         title: "SaaS Dashboard AI",
         category: "web",
         image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
@@ -47,7 +58,7 @@ const projects: Project[] = [
         shares: 32
     },
     {
-        id: 3,
+        id: 4,
         title: "Booking System",
         category: "web",
         image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop",
@@ -58,19 +69,6 @@ const projects: Project[] = [
         comments: 45,
         shares: 89
     },
-    {
-        id: 4,
-        title: "Landing Corporativa 3D",
-        category: "web",
-        image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=2069&auto=format&fit=crop",
-        description: "🎨 Explorando nuevas dimensiones con Three.js. Una experiencia inmersiva para una firma de arquitectura. El rendimiento fue clave aquí.",
-        stack: ["Astro", "Three.js", "GSAP"],
-        link: "https://example.com",
-        likes: 156,
-        comments: 23,
-        shares: 67
-    },
-    // Automation Projects
     {
         id: 5,
         title: "Auto-CRM Sync Bot",
@@ -122,13 +120,34 @@ export default function ProjectGallery() {
         <section className="w-full py-24 relative z-10">
             <div className="container mx-auto px-4 md:px-8">
 
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-                    <div>
-                        <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-widest mb-2">Portfolio Feed</h2>
-                        <h3 className="text-3xl md:text-5xl font-medium text-white tracking-tight">
-                            Últimas Actualizaciones
-                        </h3>
-                    </div>
+                <div className="flex flex-col items-center text-center mb-16 space-y-4">
+                    <motion.span
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-zinc-400"
+                    >
+                        Mi Trabajo
+                    </motion.span>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-3xl md:text-5xl font-medium text-white tracking-tight"
+                    >
+                        Proyectos Recientes
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="text-zinc-400 max-w-2xl text-lg"
+                    >
+                        Una selección de mis últimos trabajos, desde aplicaciones web completas
+                        hasta automatizaciones avanzadas.
+                    </motion.p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -151,7 +170,7 @@ function ProjectPostCard({ project }: { project: Project }) {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="w-full h-full flex flex-col rounded-3xl bg-[#0c0c0c]/80 backdrop-blur-md border border-white/10 p-5 hover:border-white/20 transition-colors"
+                className="w-full h-full flex flex-col rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-5 hover:border-white/20 transition-colors"
             >
                 {/* Header */}
                 <div className="flex items-center justify-between gap-3 mb-4">

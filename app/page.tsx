@@ -4,6 +4,8 @@ import TechStack from "@/components/TechStack";
 import LightPillar from "@/components/ui/light-pillar";
 import FeaturedWork from "@/components/FeaturedWork";
 import ProjectGallery from "@/components/ProjectGallery";
+import Services from "@/components/Services";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -29,9 +31,15 @@ export default function Home() {
       <div className="relative z-10">
         <Navbar />
         <Hero />
-        <FeaturedWork />
         <TechStack />
-        <ProjectGallery />
+        <Services />
+        <div id="sobre-mi">
+          <FeaturedWork />
+        </div>
+        <div id="proyectos">
+          <ProjectGallery />
+        </div>
+        <Footer />
       </div>
     </main>
   );

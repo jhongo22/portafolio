@@ -86,7 +86,7 @@ const TypewriterBlock = () => {
     };
 
     return (
-        <div className="min-h-[140px] font-mono text-xs md:text-sm leading-relaxed">
+        <div className="min-h-[120px] font-mono text-xs md:text-sm leading-relaxed">
             {renderContent()}
             <motion.span
                 animate={{ opacity: [1, 0] }}
@@ -98,7 +98,7 @@ const TypewriterBlock = () => {
 };
 
 const VisualMockup = () => (
-    <div className="relative w-full aspect-square max-w-[500px] lg:max-w-none">
+    <div className="relative w-full max-w-[500px] lg:max-w-none">
         {/* Background Glow */}
         <div className="absolute inset-0 bg-gradient-to-tr from-red-500/20 to-purple-500/20 blur-[100px] rounded-full" />
 
@@ -107,7 +107,7 @@ const VisualMockup = () => (
             initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="relative z-10 w-full h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col pt-4 px-6 gap-6"
+            className="relative z-10 w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col pt-4 px-6 pb-20 gap-6"
         >
             {/* Window Controls */}
             <div className="flex gap-2">
@@ -172,7 +172,7 @@ const VisualMockup = () => (
 
 export default function Hero() {
     return (
-        <section className="relative w-full min-h-screen text-white flex items-center overflow-hidden pt-24 lg:pt-0">
+        <section id="inicio" className="relative w-full min-h-screen text-white flex items-center overflow-hidden pt-24 lg:pt-0">
             <div className="container mx-auto px-4 md:px-8 relative z-10 w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -209,14 +209,14 @@ export default function Hero() {
                                 className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start items-center"
                             >
                                 <Link
-                                    href="#"
+                                    href="#proyectos"
                                     className="inline-flex items-center justify-center px-8 py-3.5 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 text-lg min-w-[180px]"
                                 >
                                     Ver Proyectos
                                 </Link>
 
                                 <Link
-                                    href="#"
+                                    href="#contacto"
                                     className="inline-flex items-center justify-center px-8 py-3.5 bg-transparent text-white font-bold rounded-full hover:bg-white/10 transition-all hover:scale-105 active:scale-95 text-lg border-2 border-white/20 min-w-[180px]"
                                 >
                                     Hablemos
