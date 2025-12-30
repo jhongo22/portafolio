@@ -44,14 +44,23 @@ const LightPillar: React.FC<LightPillarProps> = ({
     const timeRef = useRef<number>(0);
     const [webGLSupported, setWebGLSupported] = useState<boolean>(true);
 
-    // Check WebGL support
+    // Check WebGL support and screen size
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+
     useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
         const canvas = document.createElement('canvas');
         const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
         if (!gl) {
             setWebGLSupported(false);
             console.warn('WebGL is not supported in this browser');
         }
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     useEffect(() => {
@@ -84,7 +93,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
         }
 
         renderer.setSize(width, height);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
         container.appendChild(renderer.domElement);
         rendererRef.current = renderer;
 
@@ -116,6 +125,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
       uniform float uPillarHeight;
       uniform float uNoiseIntensity;
       uniform float uPillarRotation;
+      uniform float uMaxIterations;
       varying vec2 vUv;
 
       const float PI = 3.141592653589793;
@@ -186,6 +196,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
         vec3 color = vec3(0.0);
         
         for(float i = 0.0; i < 100.0; i++) {
+          if (i >= uMaxIterations) break;
           vec3 pos = origin + direction * depth;
           pos.xz *= rotX;
 
@@ -237,7 +248,8 @@ const LightPillar: React.FC<LightPillarProps> = ({
                 uPillarWidth: { value: pillarWidth },
                 uPillarHeight: { value: pillarHeight },
                 uNoiseIntensity: { value: noiseIntensity },
-                uPillarRotation: { value: pillarRotation }
+                uPillarRotation: { value: pillarRotation },
+                uMaxIterations: { value: isMobile ? 35.0 : 100.0 }
             },
             transparent: true,
             depthWrite: false,
@@ -273,7 +285,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
 
         // Animation loop with fixed timestep
         let lastTime = performance.now();
-        const targetFPS = 60;
+        const targetFPS = isMobile ? 30 : 60;
         const frameTime = 1000 / targetFPS;
 
         const animate = (currentTime: number) => {
@@ -350,18 +362,31 @@ const LightPillar: React.FC<LightPillarProps> = ({
         pillarHeight,
         noiseIntensity,
         pillarRotation,
-        webGLSupported
+        webGLSupported,
+        isMobile
     ]);
 
-    if (!webGLSupported) {
-        return (
-            <div className={`light-pillar-fallback w-full h-full flex items-center justify-center ${className}`} style={{ mixBlendMode }}>
+    const fallbackStyles: React.CSSProperties = {
+        background: `linear-gradient(${pillarRotation}deg, ${bottomColor}, ${topColor})`,
+        opacity: 0.15,
+        mixBlendMode: mixBlendMode
+    };
 
-            </div>
-        );
-    }
-
-    return <div ref={containerRef} className={`light-pillar-container w-full h-full ${className}`} style={{ mixBlendMode }} />;
+    return (
+        <div
+            ref={containerRef}
+            className={`light-pillar-container w-full h-full relative ${className}`}
+            style={{ mixBlendMode }}
+        >
+            {/* Fallback gradient to avoid black flash */}
+            {!rendererRef.current && (
+                <div
+                    className="absolute inset-0 w-full h-full transition-opacity duration-1000"
+                    style={fallbackStyles}
+                />
+            )}
+        </div>
+    );
 };
 
 export default LightPillar;

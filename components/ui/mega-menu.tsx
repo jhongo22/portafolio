@@ -45,7 +45,8 @@ const MegaMenu = React.forwardRef<HTMLUListElement, MegaMenuProps>(
                         onMouseEnter={() => handleHover(navItem.label)}
                         onMouseLeave={() => handleHover(null)}
                     >
-                        <button
+                        <a
+                            href={navItem.link || "#"}
                             className="relative flex cursor-pointer items-center justify-center gap-1 py-2.5 px-6 text-base text-white/50 transition-colors duration-300 hover:text-white group"
                             onMouseEnter={() => setIsHover(navItem.id)}
                             onMouseLeave={() => setIsHover(null)}
@@ -66,7 +67,7 @@ const MegaMenu = React.forwardRef<HTMLUListElement, MegaMenuProps>(
                                     }}
                                 />
                             )}
-                        </button>
+                        </a>
 
                         <AnimatePresence>
                             {openMenu === navItem.label && navItem.subMenus && (

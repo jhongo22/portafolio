@@ -25,8 +25,8 @@ const services = [
         color: "text-purple-400"
     },
     {
-        title: "Arquitectura de Software",
-        description: "Diseño de sistemas robustos y mantenibles siguiendo los mejores patrones y principios de ingeniería.",
+        title: "Implementación de MCP",
+        description: "Uso del Model Context Protocol para integrar herramientas, servicios y datos, optimizando la arquitectura y seguridad de aplicaciones inteligentes.",
         icon: Layers,
         color: "text-pink-400"
     },
@@ -43,8 +43,8 @@ const services = [
         color: "text-green-400"
     },
     {
-        title: "Desarrollo de APIs",
-        description: "Diseño e implementación de APIs REST y GraphQL seguras y bien documentadas.",
+        title: "Integración de APIs",
+        description: "Conexión y sincronización de servicios externos para unificar datos y automatizar procesos entre múltiples plataformas.",
         icon: Code2,
         color: "text-orange-400"
     }

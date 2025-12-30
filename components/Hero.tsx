@@ -11,11 +11,11 @@ const TypewriterBlock = () => {
     // Tokens for syntax highlighting
     const tokens = [
         { text: "\n    ", color: "text-white" },
-        { text: "animateValue", color: "text-blue-400" },
+        { text: "animarValor", color: "text-blue-400" },
         { text: ": (v) => {", color: "text-white" },
-        { text: "\n        spring.start({", color: "text-gray-300" },
-        { text: "\n            to: v,", color: "text-gray-300" },
-        { text: "\n            config: config.molasses", color: "text-gray-300" },
+        { text: "\n        motor.iniciar({", color: "text-gray-300" },
+        { text: "\n            hacia: v,", color: "text-gray-300" },
+        { text: "\n            suavizado: 'calidad_maxima'", color: "text-gray-300" },
         { text: "\n        });", color: "text-gray-300" },
         { text: "\n    }", color: "text-white" }
     ];
@@ -120,25 +120,25 @@ const VisualMockup = () => (
             <div className="space-y-3 font-mono text-xs md:text-sm overflow-hidden">
                 <div className="flex gap-4">
                     <span className="text-purple-400">const</span>
-                    <span className="text-blue-400">developer</span>
+                    <span className="text-blue-400">desarrollador</span>
                     <span className="text-white">=</span>
                     <span className="text-yellow-400">{`{`}</span>
                 </div>
                 <div className="pl-6 space-y-1.5">
                     <div>
-                        <span className="text-gray-400 font-bold italic mr-2">// Passionate about detail</span>
+                        <span className="text-gray-400 font-bold italic mr-2">// Apasionado por la automatización inteligente</span>
                     </div>
                     <div>
-                        <span className="text-pink-400">role:</span>
-                        <span className="text-green-400"> "Full-stack Engineer"</span>,
+                        <span className="text-pink-400">rol:</span>
+                        <span className="text-green-400"> "Desarrollador Full Stack & IA"</span>,
                     </div>
                     <div>
-                        <span className="text-pink-400">specialty:</span>
-                        <span className="text-green-400"> ["AI", "Performance"]</span>,
+                        <span className="text-pink-400">especialidad:</span>
+                        <span className="text-green-400"> ["Desarrollo web", "Agentes de IA", "n8n"]</span>,
                     </div>
                     <div>
-                        <span className="text-pink-400">focus:</span>
-                        <span className="text-green-400"> "User Experience"</span>,
+                        <span className="text-pink-400">enfoque:</span>
+                        <span className="text-green-400"> "Soluciones digitales"</span>,
                     </div>
 
                     {/* Animated Typewriter Block */}
@@ -148,8 +148,8 @@ const VisualMockup = () => (
                 <div className="text-yellow-400">{`};`}</div>
 
                 <div className="pt-2 text-gray-500 italic">
-                    {`// Optimized for production`} <br />
-                    <span className="text-blue-400">export default</span> build(developer);
+                    {`// Optimizado para escalabilidad`} <br />
+                    <span className="text-blue-400">export default</span> construir(desarrollador);
                 </div>
             </div>
 
@@ -163,7 +163,7 @@ const VisualMockup = () => (
                     99.9%
                 </div>
                 <div className="text-[10px] text-white/70 uppercase tracking-tighter">
-                    Vite <br /> Benchmark
+                    Rendimiento <br />
                 </div>
             </motion.div>
         </motion.div>
@@ -186,7 +186,7 @@ export default function Hero() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="space-y-6"
                         >
-                            <h1 className="text-4xl md:text-7xl font-black tracking-tighter leading-[1.1]">
+                            <h1 className="text-6xl md:text-7xl font-black tracking-tighter leading-[1.1]">
                                 Desarrollador <br />
                                 <span className="text-white">Full Stack & AI</span>
                             </h1>
@@ -198,7 +198,7 @@ export default function Hero() {
                                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                                 className="text-base md:text-lg text-gray-400 max-w-xl lg:max-w-none mx-auto lg:mx-0 leading-relaxed"
                             >
-                                Especializado en crear aplicaciones web de alto rendimiento y arquitectura escalable. Transformo ideas en productos digitales excepcionales con React, Next.js y Node.js.
+                                Enfocado en crear soluciones digitales escalables integrando inteligencia artificial para optimizar la operación sin intervención humana.
                             </motion.p>
 
                             <motion.div
@@ -231,7 +231,7 @@ export default function Hero() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: 0.3 }}
-                        className="hidden lg:flex items-center justify-center"
+                        className="flex items-center justify-center lg:mt-0 mt-8"
                     >
                         <VisualMockup />
                     </motion.div>

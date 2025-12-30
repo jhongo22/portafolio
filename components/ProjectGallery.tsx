@@ -177,15 +177,15 @@ function ProjectPostCard({ project }: { project: Project }) {
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-white/10 overflow-hidden border border-white/5">
                             <img
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
-                                alt="Alex Dev"
+                                src="/ai-avatar.png"
+                                alt="Jhon Gonzalez"
                                 className="w-full h-full object-cover"
                             />
                         </div>
                         <div className="flex flex-col leading-tight">
                             <div className="flex items-center gap-1.5">
-                                <span className="font-semibold text-white text-[15px]">Alex Dev</span>
-                                <span className="text-zinc-500 text-xs text-[13px]">@alexdev</span>
+                                <span className="font-semibold text-white text-[15px]">Jhon Gonzalez</span>
+                                <span className="text-zinc-500 text-xs text-[13px]">@jhongo</span>
                             </div>
                             <span className="text-zinc-500 text-xs">Full Stack Developer</span>
                         </div>

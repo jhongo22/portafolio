@@ -56,9 +56,14 @@ export default function TechStack() {
       title: "Git"
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain.svg",
-      alt: "MongoDB",
-      title: "MongoDB"
+      src: "https://cdn.raiolanetworks.com/blog/wp-content/uploads/n8n.png",
+      alt: "n8n",
+      title: "n8n"
+    },
+    {
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+      alt: "Laravel",
+      title: "Laravel"
     },
     {
       src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",

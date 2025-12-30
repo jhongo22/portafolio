@@ -54,8 +54,8 @@ export default function FeaturedWork() {
                     <div className="lg:col-span-5 relative rounded-[2rem] overflow-hidden h-[600px] lg:h-auto group border border-white/5">
                         {/* Background Image */}
                         <img
-                            src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop"
-                            alt="Futuristic Portrait"
+                            src="/sobre-mi-futuristic-v2.png"
+                            alt="Visionary Developer"
                             className="absolute inset-0 w-full h-full object-cover filter brightness-[0.85] group-hover:scale-105 transition-transform duration-700 ease-out"
                         />
 
@@ -80,26 +80,26 @@ export default function FeaturedWork() {
                             <div className="flex items-center gap-5">
                                 <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/10 shrink-0">
                                     <img
-                                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
+                                        src="/ai-avatar.png"
                                         alt="Profile"
                                         className="w-full h-full object-cover"
                                     />
                                 </div>
                                 <div>
-                                    <h1 className="text-3xl text-white font-medium tracking-tight mb-1">Alex Dev</h1>
-                                    <p className="text-base text-zinc-500">Senior Full-Stack Engineer - Remote</p>
+                                    <h1 className="text-3xl text-white font-medium tracking-tight mb-1">Jhon Gonzalez</h1>
+                                    <p className="text-base text-zinc-500">Desarrolador Sofware IA</p>
                                 </div>
                             </div>
 
                             <div className="flex flex-col items-end gap-4 w-full md:w-auto">
                                 <div className="flex gap-8 text-sm">
                                     <div className="text-center">
-                                        <span className="block text-zinc-500 text-xs mb-0.5">PROJECTS</span>
-                                        <span className="text-white font-medium text-base">50+</span>
+                                        <span className="block text-zinc-500 text-xs mb-0.5">Proyectos</span>
+                                        <span className="text-white font-medium text-base">10+</span>
                                     </div>
                                     <div className="text-center">
-                                        <span className="block text-zinc-500 text-xs mb-0.5">YEARS</span>
-                                        <span className="text-white font-medium text-base">7+</span>
+                                        <span className="block text-zinc-500 text-xs mb-0.5">Años</span>
+                                        <span className="text-white font-medium text-base">1+</span>
                                     </div>
                                     <div className="text-center">
                                         <span className="block text-zinc-500 text-xs mb-0.5">STACK</span>
@@ -118,16 +118,16 @@ export default function FeaturedWork() {
                             {/* Bio Card */}
                             <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 flex flex-col justify-between h-full min-h-[320px]">
                                 <p className="text-lg text-zinc-400 leading-relaxed">
-                                    Architecting scalable digital solutions with clean code and modern tech stacks. I specialize in building high-performance web applications that deliver exceptional user experiences.
+                                    Desarrollador de software full stack enfocado en crear soluciones digitales escalables intengrando inteligencia artificial para optimizar la operacion sin intervencion humana.
                                 </p>
                                 <div className="flex flex-col gap-3 mt-8">
                                     <div className="flex items-center gap-3 text-zinc-500 text-sm">
                                         <Terminal className="w-4 h-4" />
-                                        <span>Clean Architecture & Patterns</span>
+                                        <span>Custom MCP Servers & CLI Tools</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-zinc-500 text-sm">
                                         <Code className="w-4 h-4" />
-                                        <span>Full-Stack Development</span>
+                                        <span>AI-Driven Automation</span>
                                     </div>
                                 </div>
                             </div>
@@ -161,10 +161,10 @@ export default function FeaturedWork() {
                                     </div>
                                 </div>
 
-                                <button className="w-full mt-4 bg-zinc-300 hover:bg-white text-black font-medium text-base py-3 px-6 rounded-full flex items-center justify-between group transition-colors">
-                                    <span>Schedule a call</span>
+                                <Link href="#contacto" className="w-full mt-4 bg-zinc-300 hover:bg-white text-black font-medium text-base py-3 px-6 rounded-full flex items-center justify-between group transition-colors">
+                                    <span>Contacto</span>
                                     <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                </button>
+                                </Link>
                             </div>
                         </div>
 

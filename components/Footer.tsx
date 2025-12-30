@@ -81,17 +81,6 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-white font-semibold mb-6 uppercase text-xs tracking-widest">Servicios</h3>
-                        <ul className="space-y-4">
-                            {["Web Dev", "IA & Agentes", "Mobile Apps", "UI/UX Design"].map((item) => (
-                                <li key={item}>
-                                    <span className="text-zinc-500">{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div>
                         <h3 className="text-white font-semibold mb-6 uppercase text-xs tracking-widest">Ubicación</h3>
                         <p className="text-zinc-500 leading-relaxed">
                             Disponible remotamente <br />
@@ -104,7 +93,7 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-4">
                     <p className="text-zinc-600 text-sm">
-                        © {currentYear} Alex Dev. Todos los derechos reservados.
+                        © {currentYear} Jhon Gonzalez. Todos los derechos reservados.
                     </p>
                     <div className="flex gap-8 text-sm text-zinc-600">
                         <Link href="#" className="hover:text-zinc-400">Políticas de Privacidad</Link>
