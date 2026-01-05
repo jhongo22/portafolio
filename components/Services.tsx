@@ -37,9 +37,9 @@ const services = [
         color: "text-yellow-400"
     },
     {
-        title: "Optimización de Performance",
-        description: "Análisis y mejora del rendimiento de aplicaciones existentes para garantizar una experiencia de usuario fluida.",
-        icon: Sparkles,
+        title: "Administración de base de datos",
+        description: "Diseño, optimización y gestión de bases de datos relacionales y no relacionales para garantizar la integridad y escala de los datos.",
+        icon: Layers,
         color: "text-green-400"
     },
     {

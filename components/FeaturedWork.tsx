@@ -7,7 +7,7 @@ import {
     Terminal,
     Github,
     Linkedin,
-    Twitter,
+    Mail,
     ArrowUpRight,
     ChevronLeft,
     ChevronRight,
@@ -106,10 +106,13 @@ export default function FeaturedWork() {
                                         <span className="text-white font-medium text-base">12+</span>
                                     </div>
                                 </div>
-                                <button className="flex items-center gap-2 bg-[#1a1a1a] hover:bg-[#222] border border-white/10 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors w-full md:w-auto justify-center">
+                                <Link
+                                    href="https://github.com/jhongo22/"
+                                    className="flex items-center gap-2 bg-[#1a1a1a] hover:bg-[#222] border border-white/10 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors w-full md:w-auto justify-center"
+                                >
                                     <Github className="w-3 h-3 fill-current" />
                                     View GitHub
-                                </button>
+                                </Link>
                             </div>
                         </div>
 
@@ -143,25 +146,31 @@ export default function FeaturedWork() {
                                             <Linkedin className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
                                         </div>
                                     </div>
-                                    {/* Twitter */}
-                                    <div className="group flex items-center justify-between bg-[#151515] hover:bg-[#1a1a1a] border border-white/5 rounded-full px-5 py-3 transition-colors cursor-pointer">
-                                        <span className="text-sm font-medium text-zinc-300">Twitter / X</span>
-                                        <div className="flex items-center gap-2 text-zinc-500">
-                                            <span className="text-xs">Follow</span>
-                                            <Twitter className="w-4 h-4 group-hover:text-white transition-colors" />
-                                        </div>
-                                    </div>
                                     {/* Github */}
-                                    <div className="group flex items-center justify-between bg-[#151515] hover:bg-[#1a1a1a] border border-white/5 rounded-full px-5 py-3 transition-colors cursor-pointer">
+                                    <Link
+                                        href="https://github.com/jhongo22/"
+                                        className="group flex items-center justify-between bg-[#151515] hover:bg-[#1a1a1a] border border-white/5 rounded-full px-5 py-3 transition-colors cursor-pointer"
+                                    >
                                         <span className="text-sm font-medium text-zinc-300">Github</span>
                                         <div className="flex items-center gap-2 text-zinc-500">
                                             <span className="text-xs">Explore</span>
                                             <Github className="w-4 h-4 group-hover:text-white transition-colors" />
                                         </div>
-                                    </div>
+                                    </Link>
+                                    {/* Mail */}
+                                    <Link
+                                        href="mailto:jhonneider1234567@gmail.com"
+                                        className="group flex items-center justify-between bg-[#151515] hover:bg-[#1a1a1a] border border-white/5 rounded-full px-5 py-3 transition-colors cursor-pointer"
+                                    >
+                                        <span className="text-sm font-medium text-zinc-300">Email</span>
+                                        <div className="flex items-center gap-2 text-zinc-500">
+                                            <span className="text-xs">Write</span>
+                                            <Mail className="w-4 h-4 group-hover:text-white transition-colors" />
+                                        </div>
+                                    </Link>
                                 </div>
 
-                                <Link href="#contacto" className="w-full mt-4 bg-zinc-300 hover:bg-white text-black font-medium text-base py-3 px-6 rounded-full flex items-center justify-between group transition-colors">
+                                <Link href="https://wa.me/573004435894" className="w-full mt-4 bg-zinc-300 hover:bg-white text-black font-medium text-base py-3 px-6 rounded-full flex items-center justify-between group transition-colors">
                                     <span>Contacto</span>
                                     <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                 </Link>

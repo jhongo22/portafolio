@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, ArrowRight } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -24,7 +24,7 @@ export default function Footer() {
                         </p>
                     </div>
                     <Link
-                        href="mailto:tuemail@ejemplo.com"
+                        href="https://wa.me/573004435894"
                         className="group relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-white rounded-[2rem] group"
                     >
                         <span className="relative px-8 py-4 transition-all ease-in duration-75 bg-white text-black font-bold text-lg rounded-[1.5rem] hover:bg-gray-200 flex items-center gap-3">
@@ -38,7 +38,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     <div className="space-y-6">
                         <div className="text-2xl font-bold text-white tracking-tighter">
-                            Alex.dev
+                            Jhon.dev
                         </div>
                         <p className="text-zinc-500 leading-relaxed">
                             Creando productos digitales de alto impacto con pasión por los detalles
@@ -46,10 +46,9 @@ export default function Footer() {
                         </p>
                         <div className="flex gap-4">
                             {[
-                                { icon: Github, link: "#" },
+                                { icon: Github, link: "https://github.com/jhongo22/" },
                                 { icon: Linkedin, link: "#" },
-                                { icon: Twitter, link: "#" },
-                                { icon: Mail, link: "#" }
+                                { icon: Mail, link: "mailto:jhonneider1234567@gmail.com" }
                             ].map((social, i) => (
                                 <Link
                                     key={i}
