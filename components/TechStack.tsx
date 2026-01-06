@@ -75,6 +75,17 @@ export default function TechStack() {
   return (
     <section className="relative w-full py-24">
       <div className="container mx-auto px-4 md:px-8">
+        <div className="flex flex-col items-center text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase mb-4"
+          >
+            Stack Tecnológico
+          </motion.h2>
+          <div className="w-20 h-1 bg-red-500 rounded-full" />
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}

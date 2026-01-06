@@ -14,22 +14,22 @@ export default function Footer() {
                 {/* CTA Section */}
                 <div className="flex flex-col lg:flex-row justify-between items-center bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 lg:p-12 mb-20 gap-10">
                     <div className="max-w-2xl text-center lg:text-left space-y-6">
-                        <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-tight">
+                        <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase leading-[0.9]">
                             ¿Tienes un proyecto <br />
-                            <span className="text-zinc-500">en mente?</span>
+                            <span className="text-white/30">en mente?</span>
                         </h2>
-                        <p className="text-zinc-400 text-base md:text-lg">
+                        <p className="text-zinc-400 text-base md:text-lg leading-snug">
                             Estoy disponible para nuevos proyectos y colaboraciones interesantes.
                             Hablemos sobre cómo puedo ayudarte a hacerlo realidad.
                         </p>
                     </div>
                     <Link
                         href="https://wa.me/573004435894"
-                        className="group relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-white rounded-[2rem] group"
+                        className="group relative inline-flex items-center justify-center overflow-hidden transition-transform hover:scale-105 active:scale-95"
                     >
-                        <span className="relative px-8 py-4 transition-all ease-in duration-75 bg-white text-black font-bold text-lg rounded-[1.5rem] hover:bg-gray-200 flex items-center gap-3">
-                            Empezar un proyecto
-                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        <span className="relative px-10 py-5 bg-white text-black font-black uppercase tracking-tighter text-xl rounded-sm hover:bg-gray-200 transition-all flex items-center gap-3">
+                            Hablemos hoy
+                            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                         </span>
                     </Link>
                 </div>
@@ -71,7 +71,7 @@ export default function Footer() {
                                 { name: "Sobre Mí", href: "#sobre-mi" }
                             ].map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-zinc-500 hover:text-white transition-colors">
+                                    <Link href={item.href} className="text-zinc-500 hover:text-white transition-colors uppercase text-xs font-bold tracking-widest">
                                         {item.name}
                                     </Link>
                                 </li>

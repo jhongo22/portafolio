@@ -11,76 +11,51 @@ const TypewriterBlock = () => {
     // Tokens for syntax highlighting
     const tokens = [
         { text: "\n    ", color: "text-white" },
-        { text: "animarValor", color: "text-blue-400" },
+        { text: "animarValor", color: "text-red-400" },
         { text: ": (v) => {", color: "text-white" },
         { text: "\n        motor.iniciar({", color: "text-gray-300" },
         { text: "\n            hacia: v,", color: "text-gray-300" },
-        { text: "\n            suavizado: 'calidad_maxima'", color: "text-gray-300" },
+        { text: "\n            suavizado: 'rapido'", color: "text-gray-300" },
         { text: "\n        });", color: "text-gray-300" },
         { text: "\n    }", color: "text-white" }
     ];
 
-    // Build the full string to calculate indices
     const fullText = tokens.map(t => t.text).join("");
 
     React.useEffect(() => {
         const handleTyping = () => {
             setTextIndex((prev) => {
-                if (!isDeleting && prev < fullText.length) {
-                    return prev + 1;
-                } else if (isDeleting && prev > 0) {
-                    return prev - 1;
-                }
+                if (!isDeleting && prev < fullText.length) return prev + 1;
+                if (isDeleting && prev > 0) return prev - 1;
                 return prev;
             });
         };
 
         let timer: NodeJS.Timeout;
-
         if (!isDeleting && textIndex === fullText.length) {
-            // Finished typing, wait before deleting
-            timer = setTimeout(() => setIsDeleting(true), 1000);
+            timer = setTimeout(() => setIsDeleting(true), 2000);
         } else if (isDeleting && textIndex === 0) {
-            // Finished deleting, wait before typing
             timer = setTimeout(() => setIsDeleting(false), 1000);
         } else {
-            // Typing or deleting speed
-            const speed = isDeleting ? 30 : 50;
-            // Add some randomness for realism
-            const randomSpeed = speed + Math.random() * 20;
-            timer = setTimeout(handleTyping, randomSpeed);
+            const speed = isDeleting ? 20 : 40;
+            timer = setTimeout(handleTyping, speed + Math.random() * 20);
         }
-
         return () => clearTimeout(timer);
     }, [textIndex, isDeleting, fullText.length]);
 
-    // Render logic: reconstruct the text with colors up to textIndex
     const renderContent = () => {
         let currentLength = 0;
         const result = [];
-
         for (let i = 0; i < tokens.length; i++) {
             const token = tokens[i];
-            // If the cursor is past this token, render it fully
             if (textIndex >= currentLength + token.text.length) {
-                result.push(
-                    <span key={i} className={token.color} style={{ whiteSpace: 'pre-wrap' }}>{token.text}</span>
-                );
+                result.push(<span key={i} className={token.color} style={{ whiteSpace: 'pre-wrap' }}>{token.text}</span>);
                 currentLength += token.text.length;
-            }
-            // If the cursor is within this token, render partial and stop
-            else if (textIndex > currentLength) {
+            } else if (textIndex > currentLength) {
                 const slice = token.text.slice(0, textIndex - currentLength);
-                result.push(
-                    <span key={i} className={token.color} style={{ whiteSpace: 'pre-wrap' }}>{slice}</span>
-                );
-                // We reached the cursor
+                result.push(<span key={i} className={token.color} style={{ whiteSpace: 'pre-wrap' }}>{slice}</span>);
                 break;
-            }
-            // Logic implies we stop loop if we haven't reached token
-            else {
-                break;
-            }
+            } else break;
         }
         return result;
     };
@@ -88,11 +63,7 @@ const TypewriterBlock = () => {
     return (
         <div className="min-h-[120px] font-mono text-xs md:text-sm leading-relaxed">
             {renderContent()}
-            <motion.span
-                animate={{ opacity: [1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                className="inline-block w-2 h-4 align-middle bg-blue-400 ml-1"
-            />
+            <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.8, repeat: Infinity }} className="inline-block w-2 h-4 align-middle bg-red-400 ml-1" />
         </div>
     );
 };
@@ -172,23 +143,32 @@ const VisualMockup = () => (
 
 export default function Hero() {
     return (
-        <section id="inicio" className="relative w-full min-h-screen text-white flex items-center overflow-hidden pt-24 lg:pt-0">
-            <div className="container mx-auto px-4 md:px-8 relative z-10 w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <section id="inicio" className="relative w-full min-h-screen text-white flex items-center overflow-hidden pt-32 lg:pt-0">
+            <div className="container mx-auto px-4 md:px-8 relative z-10 w-full mb-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
-                    {/* Left Column - Content */}
-                    <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
-
+                    <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
-                            className="space-y-6"
+                            className="space-y-8"
                         >
-                            <h1 className="text-6xl md:text-7xl font-black tracking-tighter leading-[1.1]">
-                                Desarrollador <br />
-                                <span className="text-white">Full Stack & AI</span>
+                            <motion.span
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.5 }}
+                                className="text-red-500 font-mono text-xs md:text-sm tracking-widest uppercase block"
+                            >
+                                &gt; Desarrollador Full Stack & IA
+                            </motion.span>
+
+                            <h1 className="font-black tracking-tighter leading-[0.9] uppercase flex flex-col items-center lg:items-start select-none">
+                                <span className="text-xl md:text-3xl lg:text-4xl text-white/90 mb-4">Jhon Gonzalez.</span>
+                                <span className="text-4xl md:text-6xl lg:text-[4.2rem] xl:text-[5rem] text-white/30">Desarrollador</span>
+                                <span className="text-4xl md:text-6xl lg:text-[4.2rem] xl:text-[5rem] text-white">Full Stack</span>
+                                <span className="text-4xl md:text-6xl lg:text-[4.2rem] xl:text-[5rem] text-white">& IA.</span>
                             </h1>
 
                             <motion.p
@@ -196,9 +176,9 @@ export default function Hero() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                                className="text-base md:text-lg text-gray-400 max-w-xl lg:max-w-none mx-auto lg:mx-0 leading-relaxed"
+                                className="text-lg md:text-xl text-gray-400 max-w-xl lg:max-w-xl mx-auto lg:mx-0 leading-snug"
                             >
-                                Enfocado en crear soluciones digitales escalables integrando inteligencia artificial para optimizar la operación sin intervención humana.
+                                Transformo ideas en ecosistemas digitales. Especialista en <span className="text-white font-bold">Arquitecturas Full Stack, Agentes de IA y Automatizaciones inteligentes</span> que escalan operaciones sin límites.
                             </motion.p>
 
                             <motion.div
@@ -206,18 +186,18 @@ export default function Hero() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                                className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start items-center"
+                                className="flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start items-center"
                             >
                                 <Link
                                     href="#proyectos"
-                                    className="inline-flex items-center justify-center px-8 py-3.5 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 text-lg min-w-[180px]"
+                                    className="inline-flex items-center justify-center px-10 py-4 bg-transparent border-2 border-white/20 text-white font-bold rounded-sm hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95 text-lg min-w-[220px] tracking-tight uppercase"
                                 >
-                                    Ver Proyectos
+                                    Ver Portafolio
                                 </Link>
 
                                 <Link
                                     href="https://wa.me/573004435894"
-                                    className="inline-flex items-center justify-center px-8 py-3.5 bg-transparent text-white font-bold rounded-full hover:bg-white/10 transition-all hover:scale-105 active:scale-95 text-lg border-2 border-white/20 min-w-[180px]"
+                                    className="inline-flex items-center justify-center px-10 py-4 bg-white text-black font-bold rounded-sm hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 text-lg min-w-[220px] tracking-tight uppercase"
                                 >
                                     Hablemos
                                 </Link>
@@ -225,17 +205,15 @@ export default function Hero() {
                         </motion.div>
                     </div>
 
-                    {/* Right Column - Visual Mockup */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: 0.3 }}
-                        className="flex items-center justify-center lg:mt-0 mt-8"
+                        className="flex items-center justify-center lg:mt-0 mt-12 w-full"
                     >
                         <VisualMockup />
                     </motion.div>
-
                 </div>
             </div>
         </section>

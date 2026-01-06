@@ -47,7 +47,7 @@ const MegaMenu = React.forwardRef<HTMLUListElement, MegaMenuProps>(
                     >
                         <a
                             href={navItem.link || "#"}
-                            className="relative flex cursor-pointer items-center justify-center gap-1 py-2.5 px-6 text-base text-white/50 transition-colors duration-300 hover:text-white group"
+                            className="relative flex cursor-pointer items-center justify-center gap-1 py-2.5 px-6 text-sm font-bold text-white/50 transition-colors duration-300 hover:text-white group uppercase tracking-tighter"
                             onMouseEnter={() => setIsHover(navItem.id)}
                             onMouseLeave={() => setIsHover(null)}
                         >

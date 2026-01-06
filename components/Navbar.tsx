@@ -80,7 +80,7 @@ export default function Navbar() {
                                     key={item.id}
                                     href={item.link}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="text-3xl font-bold text-white/70 hover:text-white transition-colors"
+                                    className="text-3xl font-black text-white/70 hover:text-white transition-colors uppercase tracking-tighter"
                                 >
                                     {item.label}
                                 </motion.a>

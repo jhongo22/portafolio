@@ -257,7 +257,7 @@ export default function ProjectGallery() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-3xl md:text-5xl font-medium text-white tracking-tight"
+                        className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase"
                     >
                         Proyectos Recientes
                     </motion.h2>

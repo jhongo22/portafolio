@@ -68,16 +68,16 @@ export default function Services() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-3xl md:text-5xl font-medium text-white tracking-tight"
+                        className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase"
                     >
-                        Servicios Especializados
+                        Servicios <br className="md:hidden" /> Especializados
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-zinc-400 max-w-2xl text-lg"
+                        className="text-zinc-400 max-w-2xl text-lg leading-snug"
                     >
                         Soluciones tecnológicas a medida, enfocadas en la calidad del código,
                         la escalabilidad y la experiencia del usuario final.
@@ -92,12 +92,12 @@ export default function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="group p-8 rounded-[2rem] bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col items-start gap-4"
+                            className="group p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col items-start gap-4"
                         >
-                            <div className={`p-3 rounded-2xl bg-white/5 border border-white/5 group-hover:scale-110 transition-transform duration-300 ${service.color}`}>
+                            <div className={`p-3 rounded-xl bg-white/5 border border-white/5 group-hover:scale-110 transition-transform duration-300 ${service.color}`}>
                                 <service.icon className="w-6 h-6" />
                             </div>
-                            <h3 className="text-xl font-semibold text-white mt-2">{service.title}</h3>
+                            <h3 className="text-xl font-bold uppercase tracking-tighter text-white mt-2">{service.title}</h3>
                             <p className="text-zinc-400 leading-relaxed text-sm lg:text-base">
                                 {service.description}
                             </p>
