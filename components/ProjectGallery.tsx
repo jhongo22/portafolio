@@ -27,13 +27,13 @@ const projects: Project[] = [
         title: "Alquiler de Ecógrafos",
         category: "web",
         images: [
-            "/projects/ecografos.png",
-            "/projects/ecografos-1.png",
-            "/projects/ecografos-2.png",
-            "/projects/ecografos-3.png",
-            "/projects/ecografos-4.png",
-            "/projects/ecografos-5.png",
-            "/projects/ecografos-6.png"
+            "/projects/ecografos.webp",
+            "/projects/ecografos-1.webp",
+            "/projects/ecografos-2.webp",
+            "/projects/ecografos-3.webp",
+            "/projects/ecografos-4.webp",
+            "/projects/ecografos-5.webp",
+            "/projects/ecografos-6.webp"
         ],
         description: "🩺 Plataforma SaaS robusta para el alquiler de equipos médicos de alta gama. \n\n✅ Full Stack: TypeScript, Node.js y Supabase para gestión de datos en tiempo real. \n✅ Panel Administrativo: Control de stock y disponibilidad mediante calendario interactivo. \n✅ Wizard de Reservas: Formulario inteligente con validación de disponibilidad y registro automatizado. \n✅ SEO & Analytics: Optimización total para motores de búsqueda y rastreo de conversiones avanzado.",
         stack: ["TypeScript", "Node.js", "Supabase"],
@@ -47,10 +47,10 @@ const projects: Project[] = [
         title: "Ecosistema IA Medicina Regenerativa",
         category: "automation",
         images: [
-            "/projects/ai-regenerativa.png",
-            "/projects/subflow-escalado.png",
-            "/projects/follow-up-descuentos.png",
-            "/projects/extraccion-crm.png"
+            "/projects/ai-regenerativa.webp",
+            "/projects/subflow-escalado.webp",
+            "/projects/follow-up-descuentos.webp",
+            "/projects/extraccion-crm.webp"
         ],
         description: "🚀 Ecosistema de automatización de grado empresarial para clínicas médicas. \n\n✅ Agente IA Multimodal: Procesa texto, audio y comprobantes de pago automáticamente. \n✅ Gestión de Memoria con Redis: Sistema inteligente que resume y mantiene el contexto relevante, integrando incluso charlas de agentes humanos. \n✅ Escalamiento Inteligente: Sub-flujo de transición inmediata a humanos con notificaciones push vía WhatsApp. \n✅ Retargeting Automático: Bot de seguimiento que filtra prospectos interesados y ofrece descuentos personalizados cada 24h. \n✅ Extracción de Datos CRM: Procesa conversaciones para extraer automáticamente nombre, email, teléfono y genera biografías detalladas en el CRM. \n✅ Omnicanal & RAG: Integrado en WhatsApp, IG, FB y CRM Chatwoot.",
         stack: ["OpenAI", "Redis", "n8n", "Chatwoot", "WhatsApp API"],
@@ -63,11 +63,11 @@ const projects: Project[] = [
         title: "La Juana de Cerro Tusa",
         category: "web",
         images: [
-            "/projects/lajuana-1.png",
-            "/projects/lajuana-2.png",
-            "/projects/lajuana-3.png",
-            "/projects/lajuana-4.png",
-            "/projects/lajuana-5.png"
+            "/projects/lajuana-1.webp",
+            "/projects/lajuana-2.webp",
+            "/projects/lajuana-3.webp",
+            "/projects/lajuana-4.webp",
+            "/projects/lajuana-5.webp"
         ],
         description: "🏡 Landing page premium para finca de lujo con gestión de hospitalidad. \n\n✅ Experiencia Inmersiva: Diseño visual de alta gama con enfoque en fotografía de gran formato y estética colonial. \n✅ Integración Supabase: Gestión dinámica de contenido y base de datos para reservas. \n✅ Airbnb Sync: Sistema de reservas sincronizado directamente con Airbnb para evitar duplicidades. \n✅ Deploy en Hostinger: Optimizado para carga ultra rápida y SEO local en Fredonia, Antioquia. \n✅ UX High-End: Navegación fluida, mapas integrados y botones de contacto directo para máxima conversión.",
         stack: ["Next.js", "Supabase", "Tailwind CSS", "Airbnb API"],
@@ -80,7 +80,7 @@ const projects: Project[] = [
         id: 14,
         title: "Sistema Automatizado de Prospección y Cualificación de Leads",
         category: "automation",
-        images: ["/projects/lead-gen-main.png", "/projects/lead-gen-insta.png", "/projects/lead-gen-email.png"],
+        images: ["/projects/lead-gen-main.webp", "/projects/lead-gen-insta.webp", "/projects/lead-gen-email.webp"],
         description: "🚀 Automatización end-to-end para extracción y nutrición de prospectos a gran escala. \n\n✅ Extracción Inteligente: Busca hasta 50 prospectos por ejecución (ej: 'Gimnasios Medellín') usando Apify. \n✅ Scraping Avanzado: Recopila datos profundos de sitios web mediante Firecrawl para una cualificación precisa. \n✅ Cualificación con IA: Analiza la información extraída para identificar leads calificados automáticamente. \n✅ Outreach Personalizado: Genera 3 variantes de mensajes únicos para Instagram y Email basados en el perfil de cada empresa. \n✅ Secuencia de Nutrición: Ejecuta envíos de correos programados durante 7 días y gestiona el seguimiento en Google Sheets sin duplicados.",
         stack: ["Apify", "Firecrawl", "OpenAI", "Google Sheets", "n8n"],
         likes: 487,
@@ -91,7 +91,7 @@ const projects: Project[] = [
         id: 2,
         title: "Vive Feliz Sin Dolor",
         category: "web",
-        images: ["/projects/vivefeliz.png"],
+        images: ["/projects/vivefeliz.webp"],
         description: "🏥 Sitio web integral para consultorio de medicina regenerativa. \n\n✅ Desarrollado en WordPress con enfoque en conversión. \n✅ SEO local avanzado y Analytics para rastreo de pacientes. \n✅ Integración de Agente IA de texto y Voz (vía ElevenLabs) para atención 24/7. \n✅ Optimizado en Google Search Console para máxima visibilidad.",
         stack: ["WordPress", "ElevenLabs AI", "SEO / Analytics"],
         link: "https://vivefelizsindolor.com/",
@@ -104,10 +104,10 @@ const projects: Project[] = [
         title: "Telocalizo MX - Rastreadores GPS",
         category: "web",
         images: [
-            "/projects/telocalizo-1.png",
-            "/projects/telocalizo-2.png",
-            "/projects/telocalizo-3.png",
-            "/projects/telocalizo-4.png"
+            "/projects/telocalizo-1.webp",
+            "/projects/telocalizo-2.webp",
+            "/projects/telocalizo-3.webp",
+            "/projects/telocalizo-4.webp"
         ],
         description: "📍 Landing page para distribuidores mayoristas de rastreadores GPS Wanwaytech en México. \n\n✅ Diseño Moderno: Interfaz dark mode con acentos en naranja y tipografía impactante para el mercado B2B. \n✅ Catálogo de Productos: Showcase de 5+ modelos GPS con especificaciones técnicas, precios mayoristas y badges de certificación IFT. \n✅ Sistema de Cotización: Formulario especializado para distribuidores con validación de volumen de compra mensual. \n✅ Ventajas Exclusivas: Sección destacada con beneficios para mayoristas (90% recuperación, stock inmediato CDMX/Puebla/León, soporte 24/7). \n✅ En Construcción: Proyecto activo en desarrollo con Next.js y optimización SEO para el mercado mexicano.",
         stack: ["Next.js", "Tailwind CSS", "TypeScript"],
@@ -121,9 +121,9 @@ const projects: Project[] = [
         title: "Hot Cheese - Hamburguesas y Perros",
         category: "web",
         images: [
-            "/projects/hotcheese-1.png",
-            "/projects/hotcheese-2.png",
-            "/projects/hotcheese-3.png"
+            "/projects/hotcheese-1.webp",
+            "/projects/hotcheese-2.webp",
+            "/projects/hotcheese-3.webp"
         ],
         description: "🍔 Landing page sencilla y efectiva para negocio de comida rápida en Colombia. \n\n✅ Diseño Limpio: Interfaz minimalista con colores cálidos (rosa, amarillo) y fotografía de producto de alta calidad. \n✅ Menú Digital: Catálogo completo de hamburguesas, perros, perras y bebidas con precios y descripciones detalladas. \n✅ Selector de Sedes: Widget interactivo para elegir entre 5 ubicaciones en tiempo real con horarios de atención. \n✅ Integración WhatsApp: Botón de pedido directo que redirige a WhatsApp de la sede seleccionada. \n✅ Responsive: Optimizado para pedidos desde móvil, el canal principal de ventas.",
         stack: ["Next.js", "Tailwind CSS", "WhatsApp API"],
@@ -137,10 +137,10 @@ const projects: Project[] = [
         title: "Dashboard de Analíticas IA - Fábrica de Winners",
         category: "web",
         images: [
-            "/projects/dashboard-ia-1.png",
-            "/projects/dashboard-ia-2.png",
-            "/projects/dashboard-ia-3.jpg",
-            "/projects/dashboard-ia-4.png"
+            "/projects/dashboard-ia-1.webp",
+            "/projects/dashboard-ia-2.webp",
+            "/projects/dashboard-ia-3.webp",
+            "/projects/dashboard-ia-4.webp"
         ],
         description: "📊 Aplicación web avanzada para monitoreo y gestión de agentes IA conversacionales. \n\n✅ Dashboard Analítico: Visualización en tiempo real de métricas clave (conversaciones, mensajes, escaladas, tiempo de respuesta promedio). \n✅ Análisis de Sentimiento: Gráfico de distribución de sentimientos (positivo, neutro, negativo) de las conversaciones. \n✅ Flujo de Actividad: Línea de tiempo detallada del comportamiento del agente por hora/día. \n✅ Panel de Ajustes: Configuración completa del agente IA (personalidad, nombre, avatar, tono de comunicación, expresiones colombianas, nivel de emojis). \n✅ Respuestas Personalizadas: Plantillas de mensajes automáticos (confirmación, recordatorio, escalación) editables desde la interfaz. \n✅ Integración n8n: Conexión vía webhooks para sincronización bidireccional de datos y configuraciones. \n✅ Chat en Vivo: Interfaz de chat integrada para probar el agente en tiempo real.",
         stack: ["Next.js", "TypeScript", "n8n Webhooks", "Chart.js"],
@@ -152,7 +152,7 @@ const projects: Project[] = [
         id: 12,
         title: "Agente IA Restaurante Mexicano",
         category: "automation",
-        images: ["/projects/restaurante-mexicano.png", "/projects/restaurante-subflow.png"],
+        images: ["/projects/restaurante-mexicano.webp", "/projects/restaurante-subflow.webp"],
         description: "🌮 Agente IA especializado para restaurantes con gestión total vía WhatsApp. \n\n✅ Multimodal: Procesa pedidos por voz e interpreta comprobantes de pago mediante visión artificial. \n✅ Gestión Interactiva (Telegram): El personal recibe el comprobante y detalles del pedido con botones de acción (Aceptar/Rechazar) directamente en Telegram. \n✅ Feedback en Tiempo Real: Notifica automáticamente al cliente si su pedido fue confirmado o si hay algún inconveniente, manteniendo una comunicación fluida. \n✅ Consulta SQL Dinámica: Acceso inteligente al menú mediante base de datos SQL para recomendaciones y disponibilidad en tiempo real. \n✅ Pagos Automatizados: Genera links de pago integrados para que el cliente finalice su pedido de forma segura y rápida.",
         stack: ["WhatsApp API", "OpenAI Vision", "Postgres SQL", "Telegram API"],
         likes: 524,
@@ -163,7 +163,7 @@ const projects: Project[] = [
         id: 13,
         title: "Agente IA Fast Food (Burgers & Dogs)",
         category: "automation",
-        images: ["/projects/restaurante-fastfood.png", "/projects/restaurante-fastfood-subflow.png"],
+        images: ["/projects/restaurante-fastfood.webp", "/projects/restaurante-fastfood-subflow.webp"],
         description: "🍔 Agente IA especializado para negocios de comida rápida (Hamburguesas y Perros). \n\n✅ Gestión de Pedidos Multimodal: Recepción de pedidos mediante voz y texto vía WhatsApp con entendimiento de lenguaje natural. \n✅ Validación de Comprobantes: Visión artificial para detectar y procesar imágenes de pagos transferidos. \n✅ Hub de Control (Telegram): Panel interactivo para el equipo de cocina donde aceptan o rechazan pedidos con un toque. \n✅ Notificaciones en Tiempo Real: El cliente recibe el estatus de su pedido ('en preparación', 'en camino') de forma automática. \n✅ Menú Inteligente: Sugerencias automáticas de combos y adicionales basadas en el pedido del cliente.",
         stack: ["WhatsApp API", "n8n", "OpenAI Vision", "Telegram DB"],
         likes: 412,
@@ -174,7 +174,7 @@ const projects: Project[] = [
         id: 11,
         title: "Sistema RAG de Conocimiento Empresarial",
         category: "automation",
-        images: ["/projects/rag-system.png"],
+        images: ["/projects/rag-system.webp"],
         description: "🧠 Sistema de Recuperación Aumentada (RAG) para base de conocimiento dinámica. \n\n✅ Sincronización con Drive: Monitorea carpetas corporativas y activa el flujo ante nuevos documentos o actualizaciones. \n✅ Indexación Inteligente: Clasifica y asigna metadata detallada a cada fragmento (chunk) para trazabilidad total de la fuente. \n✅ Vectorización Automática: Procesa y transforma documentos en vectores usando Embeddings de OpenAI. \n✅ Resúmenes Contextuales: Cada chunk incluye un resumen del contexto global del documento para mejorar la precisión de las respuestas. \n✅ Base de Datos Vectorial: Actualización en tiempo real de Postgres (Supabase Vector) para consultas ultra-rápidas del Agente IA.",
         stack: ["OpenAI Embeddings", "n8n", "Postgres Vector", "Google Drive API"],
         likes: 358,
@@ -185,7 +185,7 @@ const projects: Project[] = [
         id: 15,
         title: "Generación Automática de Contratos Digitales",
         category: "automation",
-        images: ["/projects/contract-automation.png"],
+        images: ["/projects/contract-automation.webp"],
         description: "📝 Flujo integral para la creación y despacho de documentación legal. \n\n✅ Datos Dinámicos: Recibe información vía Webhook y autocompleta contratos legales de forma instantánea. \n✅ Notificación Multi-canal: Envía el contrato generado directamente al WhatsApp del cliente y por correo electrónico. \n✅ Despacho de Políticas: Adjunta automáticamente las políticas de la empresa y términos de servicio a cada envío. \n✅ Gestión Centralizada: Registra cada contrato generado en Google Sheets para control administrativo.",
         stack: ["n8n", "Gmail API", "WhatsApp API", "Google Sheets"],
         likes: 245,
@@ -196,7 +196,7 @@ const projects: Project[] = [
         id: 16,
         title: "Sistema de Backup Cloud (Dual n8n)",
         category: "automation",
-        images: ["/projects/backup-n8n.png"],
+        images: ["/projects/backup-n8n.webp"],
         description: "☁️ Automatización de backups para flujos críticos en múltiples instancias. \n\n✅ Sincronización Dual: Monitorea y extrae flujos de dos instancias independientes de n8n (Hostinger y ViveFeliz). \n✅ Almacenamiento Seguro: Empaqueta y sube automáticamente copias de seguridad a Google Drive de forma programada. \n✅ Continuidad de Negocio: Garantiza la recuperación rápida ante cualquier fallo en el servidor mediante backups dinámicos.",
         stack: ["n8n", "Google Drive API", "Cloud"],
         likes: 124,

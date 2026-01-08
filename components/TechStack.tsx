@@ -1,9 +1,10 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import LogoLoop, { LogoItem } from "@/components/ui/LogoLoop";
 
-export default function TechStack() {
+function TechStack() {
   const techLogos: LogoItem[] = [
     {
       src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
@@ -112,3 +113,5 @@ export default function TechStack() {
     </section>
   );
 }
+
+export default React.memo(TechStack);

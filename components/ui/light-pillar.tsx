@@ -249,7 +249,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
                 uPillarHeight: { value: pillarHeight },
                 uNoiseIntensity: { value: noiseIntensity },
                 uPillarRotation: { value: pillarRotation },
-                uMaxIterations: { value: isMobile ? 35.0 : 100.0 }
+                uMaxIterations: { value: isMobile ? 30.0 : 60.0 }
             },
             transparent: true,
             depthWrite: false,

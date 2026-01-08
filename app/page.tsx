@@ -1,11 +1,19 @@
+"use client";
+
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import TechStack from "@/components/TechStack";
-import LightPillar from "@/components/ui/light-pillar";
 import FeaturedWork from "@/components/FeaturedWork";
 import ProjectGallery from "@/components/ProjectGallery";
 import Services from "@/components/Services";
 import Footer from "@/components/Footer";
+import dynamic from "next/dynamic";
+
+// Dynamically import LightPillar to improve initial load performance
+const LightPillar = dynamic(() => import("@/components/ui/light-pillar"), {
+  ssr: false,
+  loading: () => <div className="fixed inset-0 bg-black z-0" />,
+});
 
 export default function Home() {
   return (

@@ -123,20 +123,6 @@ const VisualMockup = () => (
                     <span className="text-blue-400">export default</span> construir(desarrollador);
                 </div>
             </div>
-
-            {/* Floating Stats UI */}
-            <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-6 right-6 bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-xl shadow-xl flex items-center gap-3"
-            >
-                <div className="bg-green-500/20 p-2 rounded-lg text-green-400 font-bold text-sm">
-                    99.9%
-                </div>
-                <div className="text-[10px] text-white/70 uppercase tracking-tighter">
-                    Rendimiento <br />
-                </div>
-            </motion.div>
         </motion.div>
     </div>
 );
@@ -145,7 +131,7 @@ export default function Hero() {
     return (
         <section id="inicio" className="relative w-full min-h-screen text-white flex items-center overflow-hidden pt-32 lg:pt-0">
             <div className="container mx-auto px-4 md:px-8 relative z-10 w-full mb-12">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32 items-center">
 
                     <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                         <motion.div
@@ -155,20 +141,11 @@ export default function Hero() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             className="space-y-8"
                         >
-                            <motion.span
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.5 }}
-                                className="text-red-500 font-mono text-xs md:text-sm tracking-widest uppercase block"
-                            >
-                                &gt; Desarrollador Full Stack & IA
-                            </motion.span>
-
-                            <h1 className="font-black tracking-tighter leading-[0.9] uppercase flex flex-col items-center lg:items-start select-none">
-                                <span className="text-xl md:text-3xl lg:text-4xl text-white/90 mb-4">Jhon Gonzalez.</span>
-                                <span className="text-4xl md:text-6xl lg:text-[4.2rem] xl:text-[5rem] text-white/30">Desarrollador</span>
-                                <span className="text-4xl md:text-6xl lg:text-[4.2rem] xl:text-[5rem] text-white">Full Stack</span>
-                                <span className="text-4xl md:text-6xl lg:text-[4.2rem] xl:text-[5rem] text-white">& IA.</span>
+                            <h1 className="font-black tracking-tighter leading-[0.85] uppercase flex flex-col items-center lg:items-start select-none">
+                                <span className="text-3xl md:text-2xl lg:text-3xl text-white/90 mb-4">Jhon Gonzalez.</span>
+                                <span className="text-5xl md:text-5xl lg:text-[3.5rem] xl:text-[4.5rem] text-white/30">Desarrollador</span>
+                                <span className="text-6xl md:text-5xl lg:text-[3.5rem] xl:text-[4.5rem] text-white">Full Stack</span>
+                                <span className="text-6xl md:text-5xl lg:text-[3.5rem] xl:text-[4.5rem] text-white">& IA.</span>
                             </h1>
 
                             <motion.p
@@ -176,7 +153,7 @@ export default function Hero() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                                className="text-lg md:text-xl text-gray-400 max-w-xl lg:max-w-xl mx-auto lg:mx-0 leading-snug"
+                                className="text-lg md:text-xl text-gray-400 max-w-lg lg:max-w-md mx-auto lg:mx-0 leading-snug"
                             >
                                 Transformo ideas en ecosistemas digitales. Especialista en <span className="text-white font-bold">Arquitecturas Full Stack, Agentes de IA y Automatizaciones inteligentes</span> que escalan operaciones sin límites.
                             </motion.p>

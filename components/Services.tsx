@@ -70,7 +70,7 @@ export default function Services() {
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase"
                     >
-                        Servicios <br className="md:hidden" /> Especializados
+                        QUE PUEDO <br className="md:hidden" /> HACER
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

@@ -5,20 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import MegaMenu from "@/components/ui/mega-menu";
 import type { MegaMenuItem } from "@/components/ui/mega-menu";
 import {
-    Cpu,
-    Globe,
-    Eye,
-    Shield,
-    Rocket,
-    Box,
-    Search,
-    Palette,
-    BookOpen,
-    FileText,
-    Newspaper,
+    Menu,
+    X as CloseIcon
 } from "lucide-react";
 
-export default function Navbar() {
+function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     const NAV_ITEMS: MegaMenuItem[] = [
@@ -92,3 +83,5 @@ export default function Navbar() {
         </nav>
     );
 }
+
+export default React.memo(Navbar);
