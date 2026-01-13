@@ -14,7 +14,7 @@ import {
 const services = [
     {
         title: "Desarrollo Web Full Stack",
-        description: "Creación de aplicaciones web modernas, rápidas y escalables utilizando React, Next.js y el ecosistema de Node.js.",
+        description: "Creación de aplicaciones web modernas, rápidas y escalables.",
         icon: Globe,
         color: "text-blue-400"
     },
@@ -32,7 +32,7 @@ const services = [
     },
     {
         title: "Automatización de Workflows",
-        description: "Optimización de tareas mediante flujos automáticos conectando diferentes herramientas y APIs.",
+        description: "Optimización de tareas mediante flujos automáticos conectando diferentes herramientas.",
         icon: Zap,
         color: "text-yellow-400"
     },
@@ -43,7 +43,7 @@ const services = [
         color: "text-green-400"
     },
     {
-        title: "Integración de APIs",
+        title: "Integraciónes",
         description: "Conexión y sincronización de servicios externos para unificar datos y automatizar procesos entre múltiples plataformas.",
         icon: Code2,
         color: "text-orange-400"

@@ -103,7 +103,7 @@ export default function FeaturedWork() {
                                     </div>
                                     <div className="text-center">
                                         <span className="block text-zinc-500 text-xs mb-0.5 font-bold uppercase tracking-tighter">STACK</span>
-                                        <span className="text-white font-black text-xl">12+</span>
+                                        <span className="text-white font-black text-xl">8+</span>
                                     </div>
                                 </div>
                                 <Link
@@ -121,16 +121,16 @@ export default function FeaturedWork() {
                             {/* Bio Card */}
                             <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col justify-between h-full min-h-[320px]">
                                 <p className="text-lg text-zinc-400 leading-snug">
-                                    Experto en la arquitectura de soluciones digitales de alto rendimiento. Mi enfoque combina el desarrollo <span className="text-white font-bold">Full Stack</span> con la potencia de la <span className="text-white font-bold">Inteligencia Artificial</span> para automatizar operaciones complejas y escalar negocios.
+                                    Desarrollador de software con 1+ de experiencia. Mi enfoque combina el desarrollo <span className="text-white font-bold">Full Stack</span> con la potencia de la <span className="text-white font-bold">Inteligencia Artificial</span> para automatizar operaciones y escalar negocios.
                                 </p>
                                 <div className="flex flex-col gap-3 mt-8">
                                     <div className="flex items-center gap-3 text-zinc-500 text-sm font-bold uppercase tracking-tighter">
                                         <Terminal className="w-4 h-4" />
-                                        <span>Custom MCP Servers & CLI Tools</span>
+                                        <span>PLANEACION</span>
                                     </div>
                                     <div className="flex items-center gap-3 text-zinc-500 text-sm font-bold uppercase tracking-tighter">
                                         <Code className="w-4 h-4" />
-                                        <span>AI-Driven Automation</span>
+                                        <span>AI Automation</span>
                                     </div>
                                 </div>
                             </div>
