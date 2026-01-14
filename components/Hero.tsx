@@ -135,10 +135,9 @@ export default function Hero() {
 
                     <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                         <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
                             className="space-y-8"
                         >
                             <h1 className="font-black tracking-tighter leading-[0.85] uppercase flex flex-col items-center lg:items-start select-none">
@@ -149,20 +148,18 @@ export default function Hero() {
                             </h1>
 
                             <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
                                 className="text-lg md:text-xl text-gray-400 max-w-lg lg:max-w-md mx-auto lg:mx-0 leading-snug"
                             >
                                 Transformo ideas en ecosistemas digitales. Especialista en <span className="text-white font-bold">Arquitecturas Full Stack, Agentes de IA y Automatizaciones inteligentes</span> que escalan operaciones sin límites.
                             </motion.p>
 
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
                                 className="flex flex-col sm:flex-row gap-4 pt-6 justify-center lg:justify-start items-center"
                             >
                                 <Link

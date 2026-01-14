@@ -262,6 +262,9 @@ const LightPillar: React.FC<LightPillarProps> = ({
         const mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
 
+        // Cache container dimensions to avoid layout thrashing
+        let containerRect = container.getBoundingClientRect();
+
         // Mouse interaction - throttled for performance
         let mouseMoveTimeout: number | null = null;
         const handleMouseMove = (event: MouseEvent) => {
@@ -273,9 +276,8 @@ const LightPillar: React.FC<LightPillarProps> = ({
                 mouseMoveTimeout = null;
             }, 16); // ~60fps throttle
 
-            const rect = container.getBoundingClientRect();
-            const x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-            const y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+            const x = ((event.clientX - containerRect.left) / containerRect.width) * 2 - 1;
+            const y = -((event.clientY - containerRect.top) / containerRect.height) * 2 + 1;
             mouseRef.current.set(x, y);
         };
 
@@ -313,6 +315,10 @@ const LightPillar: React.FC<LightPillarProps> = ({
 
             resizeTimeout = window.setTimeout(() => {
                 if (!rendererRef.current || !materialRef.current || !containerRef.current) return;
+
+                // Update cached rect on resize
+                containerRect = containerRef.current.getBoundingClientRect();
+
                 const newWidth = containerRef.current.clientWidth;
                 const newHeight = containerRef.current.clientHeight;
                 rendererRef.current.setSize(newWidth, newHeight);
