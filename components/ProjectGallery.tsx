@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Heart, Bookmark, Share2, ExternalLink, MessageCircle, Repeat2, X, ChevronLeft, ChevronRight, Sparkle } from "lucide-react";
+import SectionHeader from "./SectionHeader";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 type ProjectCategory = "web" | "automation";
@@ -286,35 +288,10 @@ export default function ProjectGallery() {
         <section className="w-full py-24 relative z-10">
             <div className="container mx-auto px-4 md:px-8">
 
-                <div className="flex flex-col items-center text-center mb-16 space-y-4">
-                    <motion.span
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-zinc-400"
-                    >
-                        Mi Trabajo
-                    </motion.span>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase"
-                    >
-                        Proyectos
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-zinc-400 max-w-2xl text-lg"
-                    >
-                        Una selección de mis últimos trabajos, desde aplicaciones web completas
-                        hasta automatizaciones avanzadas.
-                    </motion.p>
-                </div>
+                <SectionHeader
+                    title="Proyectos"
+                    description="Una selección de mis últimos trabajos, desde aplicaciones web completas hasta automatizaciones avanzadas."
+                />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {projects.map((project) => (
@@ -382,17 +359,24 @@ export default function ProjectGallery() {
                         )}
 
                         <AnimatePresence mode="wait">
-                            <motion.img
+                            <motion.div
                                 key={activeImageIndex}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.95 }}
                                 transition={{ duration: 0.2 }}
-                                src={selectedProject.images[activeImageIndex]}
-                                alt={`Project view ${activeImageIndex + 1}`}
-                                className="max-w-[90%] max-h-[85vh] object-contain rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10 cursor-default relative z-[100000]"
+                                className="relative w-[90%] h-[85vh] z-[100000]"
                                 onClick={(e) => e.stopPropagation()}
-                            />
+                            >
+                                <Image
+                                    src={selectedProject.images[activeImageIndex]}
+                                    alt={`Project view ${activeImageIndex + 1}`}
+                                    fill
+                                    className="object-contain rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10"
+                                    sizes="90vw"
+                                    priority
+                                />
+                            </motion.div>
                         </AnimatePresence>
                     </motion.div>
                 </AnimatePresence>,
@@ -428,11 +412,12 @@ function ProjectPostCard({ project, onImageClick }: { project: Project, onImageC
                 {/* Header */}
                 <div className="flex items-center justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-white/10 overflow-hidden border border-white/5">
-                            <img
+                        <div className="w-10 h-10 rounded-full bg-white/10 overflow-hidden border border-white/5 relative">
+                            <Image
                                 src="/ai-avatar.png"
                                 alt="Jhon Gonzalez"
-                                className="w-full h-full object-cover"
+                                fill
+                                className="object-cover"
                             />
                         </div>
                         <div className="flex flex-col leading-tight">
@@ -482,16 +467,22 @@ function ProjectPostCard({ project, onImageClick }: { project: Project, onImageC
                     onClick={() => onImageClick()}
                 >
                     <AnimatePresence mode="wait">
-                        <motion.img
+                        <motion.div
                             key={cardImageIndex}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            src={project.images[cardImageIndex]}
-                            alt={project.title}
-                            className="w-full h-full object-cover"
-                        />
+                            className="absolute inset-0"
+                        >
+                            <Image
+                                src={project.images[cardImageIndex]}
+                                alt={project.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                        </motion.div>
                     </AnimatePresence>
 
                     {/* Card Arrows (Always visible) */}

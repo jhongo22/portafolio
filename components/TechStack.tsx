@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import LogoLoop, { LogoItem } from "@/components/ui/LogoLoop";
+import SectionHeader from "./SectionHeader";
 
 function TechStack() {
   const techLogos: LogoItem[] = [
@@ -76,25 +76,9 @@ function TechStack() {
   return (
     <section className="relative w-full py-24">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="flex flex-col items-center text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase mb-4"
-          >
-            Stack Tecnológico
-          </motion.h2>
-          <div className="w-20 h-1 bg-red-500 rounded-full" />
-        </div>
+        <SectionHeader title="Stack Tecnológico" />
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="relative"
-        >
+        <div className="relative">
           <LogoLoop
             logos={techLogos}
             speed={60}
@@ -108,10 +92,10 @@ function TechStack() {
             ariaLabel="Tecnologías y herramientas"
             className=""
           />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
 
-export default React.memo(TechStack);
+export default TechStack;

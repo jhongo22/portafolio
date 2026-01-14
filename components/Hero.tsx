@@ -11,7 +11,7 @@ const TypewriterBlock = () => {
     // Tokens for syntax highlighting
     const tokens = [
         { text: "\n    ", color: "text-white" },
-        { text: "animarValor", color: "text-red-400" },
+        { text: "animarValor", color: "text-red-500" },
         { text: ": (v) => {", color: "text-white" },
         { text: "\n        motor.iniciar({", color: "text-gray-300" },
         { text: "\n            hacia: v,", color: "text-gray-300" },
@@ -63,7 +63,7 @@ const TypewriterBlock = () => {
     return (
         <div className="min-h-[120px] font-mono text-xs md:text-sm leading-relaxed">
             {renderContent()}
-            <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.8, repeat: Infinity }} className="inline-block w-2 h-4 align-middle bg-red-400 ml-1" />
+            <motion.span animate={{ opacity: [1, 0] }} transition={{ duration: 0.8, repeat: Infinity }} className="inline-block w-2 h-4 align-middle bg-red-500 ml-1" />
         </div>
     );
 };
@@ -71,7 +71,7 @@ const TypewriterBlock = () => {
 const VisualMockup = () => (
     <div className="relative w-full max-w-[500px] lg:max-w-none">
         {/* Background Glow */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-red-500/20 to-purple-500/20 blur-[100px] rounded-full" />
+        <div className="absolute inset-0 bg-red-500/20 blur-[120px] rounded-full" />
 
         {/* Main Card */}
         <motion.div
@@ -82,16 +82,16 @@ const VisualMockup = () => (
         >
             {/* Window Controls */}
             <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                <div className="w-3 h-3 rounded-full bg-green-500/50" />
+                <div className="w-3 h-3 rounded-full bg-white/20" />
+                <div className="w-3 h-3 rounded-full bg-white/20" />
+                <div className="w-3 h-3 rounded-full bg-white/20" />
             </div>
 
             {/* Code Content Simulation */}
             <div className="space-y-3 font-mono text-xs md:text-sm overflow-hidden">
                 <div className="flex gap-4">
-                    <span className="text-purple-400">const</span>
-                    <span className="text-blue-400">desarrollador</span>
+                    <span className="text-sky-400">const</span>
+                    <span className="text-white">desarrollador</span>
                     <span className="text-white">=</span>
                     <span className="text-yellow-400">{`{`}</span>
                 </div>
@@ -100,16 +100,16 @@ const VisualMockup = () => (
                         <span className="text-gray-400 font-bold italic mr-2">// Apasionado por la automatización inteligente</span>
                     </div>
                     <div>
-                        <span className="text-pink-400">rol:</span>
-                        <span className="text-green-400"> "Desarrollador Full Stack & IA"</span>,
+                        <span className="text-red-500">rol:</span>
+                        <span className="text-emerald-400"> "Desarrollador Full Stack & IA"</span>,
                     </div>
                     <div>
-                        <span className="text-pink-400">especialidad:</span>
-                        <span className="text-green-400"> ["Desarrollo web", "Agentes de IA", "n8n"]</span>,
+                        <span className="text-red-500">especialidad:</span>
+                        <span className="text-emerald-400"> ["Desarrollo web", "Agentes de IA", "n8n"]</span>,
                     </div>
                     <div>
-                        <span className="text-pink-400">enfoque:</span>
-                        <span className="text-green-400"> "Soluciones digitales"</span>,
+                        <span className="text-red-500">enfoque:</span>
+                        <span className="text-emerald-400"> "Soluciones digitales"</span>,
                     </div>
 
                     {/* Animated Typewriter Block */}
@@ -120,7 +120,7 @@ const VisualMockup = () => (
 
                 <div className="pt-2 text-gray-500 italic">
                     {`// Optimizado para escalabilidad`} <br />
-                    <span className="text-blue-400">export default</span> construir(desarrollador);
+                    <span className="text-sky-400">export default</span> construir(desarrollador);
                 </div>
             </div>
         </motion.div>

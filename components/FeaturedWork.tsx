@@ -14,53 +14,33 @@ import {
     User
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import SectionHeader from "./SectionHeader";
 
 export default function FeaturedWork() {
     return (
         <section className="w-full bg-transparent text-zinc-300 py-24 relative z-10">
             <div className="container mx-auto px-4 md:px-8">
-                <div className="flex flex-col items-center text-center mb-16 space-y-4">
-                    <motion.span
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-zinc-400"
-                    >
-                        Conóceme
-                    </motion.span>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase"
-                    >
-                        Sobre Mí
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-zinc-400 max-w-2xl text-lg leading-snug"
-                    >
-                        Apasionado por los detalles y la excelencia técnica.
-                        Mi objetivo es crear productos digitales que dejen huella.
-                    </motion.p>
-                </div>
+                <SectionHeader
+                    subtitle="Conóceme"
+                    title="Sobre Mí"
+                    description="Apasionado por los detalles y la excelencia técnica. Mi objetivo es crear productos digitales que dejen huella."
+                />
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
                     {/* Left Column: Featured Image Card (Spans 5 cols on large) */}
                     <div className="lg:col-span-5 relative rounded-2xl overflow-hidden h-[600px] lg:h-auto group border border-white/5">
                         {/* Background Image */}
-                        <img
+                        <Image
                             src="/sobre-mi-futuristic-v2.png"
                             alt="Visionary Developer"
-                            className="absolute inset-0 w-full h-full object-cover filter brightness-[0.85] group-hover:scale-105 transition-transform duration-700 ease-out"
+                            fill
+                            className="object-cover filter brightness-[0.85] group-hover:scale-105 transition-transform duration-700 ease-out"
+                            sizes="(max-width: 1024px) 100vw, 40vw"
                         />
 
-                        {/* Orange overlay tint to match style */}
-                        <div className="absolute inset-0 bg-orange-500/10 mix-blend-overlay"></div>
+                        {/* Red overlay tint to match style */}
+                        <div className="absolute inset-0 bg-red-500/10 mix-blend-overlay"></div>
 
                         {/* Navigation Arrows */}
                         <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-3 rounded-full transition-colors border border-white/5">
@@ -78,11 +58,12 @@ export default function FeaturedWork() {
                         {/* Row 1: Profile Header */}
                         <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                             <div className="flex items-center gap-5">
-                                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/10 shrink-0">
-                                    <img
+                                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/10 shrink-0 relative">
+                                    <Image
                                         src="/ai-avatar.png"
                                         alt="Profile"
-                                        className="w-full h-full object-cover"
+                                        fill
+                                        className="object-cover"
                                     />
                                 </div>
                                 <div>
