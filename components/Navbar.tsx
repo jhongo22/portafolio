@@ -14,7 +14,7 @@ function Navbar() {
 
     const NAV_ITEMS: MegaMenuItem[] = [
         { id: 1, label: "Inicio", link: "#inicio" },
-        { id: 2, label: "Servicios", link: "#servicios" },
+        { id: 2, label: "Habilidades", link: "#servicios" },
         { id: 3, label: "Proyectos", link: "#proyectos" },
         { id: 4, label: "Sobre Mí", link: "#sobre-mi" },
         { id: 5, label: "Contacto", link: "#contacto" },

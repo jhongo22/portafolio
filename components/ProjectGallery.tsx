@@ -63,13 +63,13 @@ const projects: Project[] = [
         title: "Dashboard de Analíticas IA - Fábrica de Winners",
         category: "web",
         images: [
-            "/projects/dashboard-winners-1.png",
-            "/projects/dashboard-winners-2.png",
-            "/projects/dashboard-winners-3.png",
-            "/projects/dashboard-winners-4.png",
-            "/projects/dashboard-winners-5.png",
-            "/projects/dashboard-winners-6.png",
-            "/projects/dashboard-winners-7.png"
+            "/projects/dashboard-winners-6.webp",
+            "/projects/dashboard-winners-7.webp",
+            "/projects/dashboard-winners-5.webp",
+            "/projects/dashboard-winners-1.webp",
+            "/projects/dashboard-winners-2.webp",
+            "/projects/dashboard-winners-3.webp",
+            "/projects/dashboard-winners-4.webp"
         ],
         description: "📊 Aplicación web para monitoreo y gestión de agentes IA. \n\n✅ Dashboard Analítico: Visualización en tiempo real de métricas (conversaciones, mensajes, escaladas, tiempo de respuesta promedio). \n✅ Análisis de Sentimiento.  \n✅ Panel de Ajustes: Configuración completa del agente IA (personalidad, nombre, tono de comunicación, expresiones). \n✅ Respuestas Personalizadas: Plantillas de mensajes automáticos (confirmación, recordatorio, escalación) editables desde la interfaz. \n✅  Full Stack: TypeScript, Node.js y conexión vía webhooks con n8n para sincronización de datos y configuraciones.",
         stack: ["Next.js", "TypeScript", "n8n Webhooks", "Chart.js"],
@@ -87,10 +87,10 @@ const projects: Project[] = [
             "/projects/lajuana-3.webp",
             "/projects/lajuana-4.webp",
             "/projects/lajuana-5.webp",
-            "/projects/lajuana-admin-1.png",
-            "/projects/lajuana-admin-2.png"
+            "/projects/lajuana-admin-1.webp",
+            "/projects/lajuana-admin-2.webp"
         ],
-        description: "🏡 Landing page para finca con integracion a plataformas de reservas. \n\n✅ Experiencia Inmersiva: Diseño visual con enfoque en fotografía de gran formato y estética colonial. \n✅ Integración airbnb, booking, vrbo: Sistema de reservas sincronizado directamente con airbnb, booking, vrbo para evitar duplicidades.  \n✅ Deploy en Hostinger: Optimizado para carga ultra rápida y SEO local en Fredonia, Antioquia., \n✅ Stack: next.js, Node.js ",
+        description: "🏡 Landing page para finca con integracion a plataformas de reservas. \n\n✅ Experiencia Inmersiva: Diseño visual con enfoque en fotografía de gran formato y estética colonial. \n✅ Integración airbnb, booking, vrbo: Sistema de reservas sincronizado directamente con airbnb, booking, vrbo para evitar duplicidades.  \n✅ Deploy en Hostinger: Optimizado para carga ultra rápida y SEO local en Fredonia, Antioquia., \n✅ Stack: Next.js, Tailwind CSS, Airbnb API",
         stack: ["Next.js", "Supabase", "Tailwind CSS", "Airbnb API"],
         link: "https://lajuanacerrotusa.com/",
         likes: 315,
@@ -102,11 +102,11 @@ const projects: Project[] = [
         title: "Toxxic - Tienda de Ropa Urbana",
         category: "web",
         images: [
-            "/projects/toxxic-main.png",
-            "/projects/toxxic-1.png",
-            "/projects/toxxic-2.png",
-            "/projects/toxxic-3.png",
-            "/projects/toxxic-4.png"
+            "/projects/toxxic-main.webp",
+            "/projects/toxxic-1.webp",
+            "/projects/toxxic-2.webp",
+            "/projects/toxxic-3.webp",
+            "/projects/toxxic-4.webp"
         ],
         description: "👕 Tienda de ropa urbana en Medellín desarrollada con Laravel. \n\n✅ Full Stack: PHP y Laravel para un backend robusto y escalable. \n✅ Carrito de Compras: Sistema completo de gestión de pedidos y pagos. \n✅ Panel Administrativo: Gestión integral de productos, usuarios y mensajes de clientes. \n✅ Responsive: Optimizado para una experiencia de compra fluida en móviles.",
         stack: ["Laravel", "PHP", "MySQL", "Vercel"],
@@ -131,6 +131,26 @@ const projects: Project[] = [
         likes: 198,
         comments: 28,
         shares: 64
+    },
+    {
+        id: 22,
+        title: "Villa Grande - La Misía",
+        category: "web",
+        images: [
+            "/projects/lamisia-1.webp",
+            "/projects/lamisia-2.webp",
+            "/projects/lamisia-3.webp",
+            "/projects/lamisia-4.webp",
+            "/projects/lamisia-5.webp",
+            "/projects/lamisia-6.webp",
+            "/projects/lamisia-7.webp",
+            "/projects/lamisia-8.webp"
+        ],
+        description: "🏡 Landing page para finca con integracion a plataformas de reservas. \n\n✅ Experiencia Inmersiva: Diseño visual con enfoque en fotografía de gran formato y estética colonial. \n✅ Integración airbnb, booking, vrbo: Sistema de reservas sincronizado directamente con airbnb, booking, vrbo para evitar duplicidades.  \n✅ Deploy en Hostinger: Optimizado para carga ultra rápida y SEO local en Llanogrande, Rionegro. \n\n✅ Stack: Next.js, Tailwind CSS, Airbnb API",
+        stack: ["Next.js", "Supabase", "Tailwind CSS", "Airbnb API"],
+        likes: 284,
+        comments: 36,
+        shares: 62
     },
     {
         id: 14,
@@ -282,7 +302,7 @@ export default function ProjectGallery() {
                         transition={{ delay: 0.1 }}
                         className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase"
                     >
-                        Proyectos Recientes
+                        Proyectos
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
