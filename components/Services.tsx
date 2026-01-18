@@ -14,47 +14,53 @@ const services = [
         title: "Desarrollo Web Full Stack",
         description: "Creación de aplicaciones web modernas, rápidas y escalables.",
         iconName: "Globe",
-        color: "text-blue-400"
+        color: "text-red-500",
+        lottiePath: "/SVG/Desarrollo web.json"
     },
     {
         title: "Inteligencia Artificial",
         description: "Integración de LLMs, agentes de IA y automatizaciones inteligentes para potenciar los procesos de negocio.",
         iconName: "Cpu",
-        color: "text-purple-400"
+        color: "text-red-500",
+        lottiePath: "/SVG/Inteligencia artificial.json"
     },
     {
         title: "Implementación de MCP",
         description: "Uso del Model Context Protocol para integrar herramientas, servicios y datos, optimizando la arquitectura y seguridad de aplicaciones inteligentes.",
         iconName: "Layers",
-        color: "text-pink-400"
+        color: "text-red-500",
+        lottiePath: "/SVG/MCP.json"
     },
     {
         title: "Automatización de Workflows",
-        description: "Optimización de tareas mediante flujos automáticos conectando diferentes herramientas.",
+        description: "Optimización de tareas mediante flujos automáticos conectando differentes herramientas.",
         iconName: "Zap",
-        color: "text-yellow-400"
+        color: "text-red-500",
+        lottiePath: "/SVG/Workflows.json"
     },
     {
         title: "Administración de base de datos",
         description: "Diseño, optimización y gestión de bases de datos relacionales y no relacionales para garantizar la integridad y escala de los datos.",
         iconName: "Layers",
-        color: "text-green-400"
+        color: "text-red-500",
+        lottiePath: "/SVG/Base de datos.json"
     },
     {
         title: "Integraciónes",
         description: "Conexión y sincronización de servicios externos para unificar datos y automatizar procesos entre múltiples plataformas.",
         iconName: "Code2",
-        color: "text-orange-400"
+        color: "text-red-500",
+        lottiePath: "/SVG/Integraciones.json"
     }
 ] as const;
 
 export default function Services() {
     return (
-        <section id="servicios" className="w-full py-24 relative z-10">
+        <section id="habilidades" className="w-full py-24 relative z-10">
             <div className="container mx-auto px-4 md:px-8">
                 <SectionHeader
                     subtitle="Lo que ofrezco"
-                    title={"QUE PUEDO\nHACER"}
+                    title={"QUE PUEDO HACER"}
                     description="Soluciones tecnológicas a medida, enfocadas en la calidad del código, la escalabilidad y la experiencia del usuario final."
                 />
 
@@ -66,6 +72,7 @@ export default function Services() {
                             description={service.description}
                             iconName={service.iconName}
                             color={service.color}
+                            lottiePath={service.lottiePath}
                             index={index}
                         />
                     ))}

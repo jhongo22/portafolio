@@ -285,7 +285,7 @@ export default function ProjectGallery() {
     };
 
     return (
-        <section className="w-full py-24 relative z-10">
+        <section id="proyectos" className="w-full py-24 relative z-10">
             <div className="container mx-auto px-4 md:px-8">
 
                 <SectionHeader
@@ -293,9 +293,9 @@ export default function ProjectGallery() {
                     description="Una selección de mis últimos trabajos, desde aplicaciones web completas hasta automatizaciones avanzadas."
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projects.map((project) => (
-                        <ProjectPostCard key={project.id} project={project} onImageClick={() => {
+                        <ProjectCard key={project.id} project={project} onImageClick={() => {
                             setSelectedProject(project);
                             setActiveImageIndex(0);
                         }} />
@@ -319,14 +319,14 @@ export default function ProjectGallery() {
                             initial={{ scale: 0.5, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.5, opacity: 0 }}
-                            className="absolute top-6 right-6 p-4 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all border border-white/10 z-[100001] cursor-pointer shadow-lg active:scale-95"
+                            className="absolute top-4 right-4 md:top-8 md:right-8 p-2.5 rounded-full bg-black/40 text-white hover:bg-white/20 transition-all border border-white/10 z-[100001] cursor-pointer shadow-lg active:scale-95 backdrop-blur-md"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 setSelectedProject(null);
                                 setActiveImageIndex(0);
                             }}
                         >
-                            <X className="w-6 h-6" />
+                            <X className="w-5 h-5 md:w-6 md:h-6" />
                         </motion.button>
 
                         {/* Carousel Controls */}
@@ -334,50 +334,44 @@ export default function ProjectGallery() {
                             <>
                                 <button
                                     onClick={handlePrev}
-                                    className="absolute left-6 p-4 rounded-full bg-white/5 text-white hover:bg-white/15 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90"
+                                    className="absolute left-4 md:left-8 p-2.5 rounded-full bg-black/40 text-white hover:bg-white/15 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
                                 >
-                                    <ChevronLeft className="w-8 h-8" />
+                                    <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
                                 </button>
                                 <button
                                     onClick={handleNext}
-                                    className="absolute right-6 p-4 rounded-full bg-white/5 text-white hover:bg-white/15 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90"
+                                    className="absolute right-4 md:right-8 p-2.5 rounded-full bg-black/40 text-white hover:bg-white/15 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
                                 >
-                                    <ChevronRight className="w-8 h-8" />
+                                    <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
                                 </button>
 
                                 {/* Pagination Dots */}
-                                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-[100001]" onClick={(e) => e.stopPropagation()}>
+                                <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-[100001]" onClick={(e) => e.stopPropagation()}>
                                     {selectedProject.images.map((_: string, idx: number) => (
                                         <button
                                             key={idx}
                                             onClick={() => setActiveImageIndex(idx)}
-                                            className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${idx === activeImageIndex ? "bg-white scale-125" : "bg-white/30"}`}
+                                            className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all cursor-pointer ${idx === activeImageIndex ? "bg-white scale-125" : "bg-white/30"}`}
                                         />
                                     ))}
                                 </div>
                             </>
                         )}
 
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeImageIndex}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.95 }}
-                                transition={{ duration: 0.2 }}
-                                className="relative w-[90%] h-[85vh] z-[100000]"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <Image
-                                    src={selectedProject.images[activeImageIndex]}
-                                    alt={`Project view ${activeImageIndex + 1}`}
-                                    fill
-                                    className="object-contain rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10"
-                                    sizes="90vw"
-                                    priority
-                                />
-                            </motion.div>
-                        </AnimatePresence>
+                        <div
+                            key={activeImageIndex}
+                            className="relative w-[90%] h-[85vh] z-[100000]"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <Image
+                                src={selectedProject.images[activeImageIndex]}
+                                alt={`Project view ${activeImageIndex + 1}`}
+                                fill
+                                className="object-contain rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10"
+                                sizes="90vw"
+                                priority
+                            />
+                        </div>
                     </motion.div>
                 </AnimatePresence>,
                 document.body
@@ -386,6 +380,202 @@ export default function ProjectGallery() {
     );
 }
 
+// --- NEW PREMIUM DESIGN (3D FLIP) ---
+function ProjectCard({ project, onImageClick }: { project: Project, onImageClick: () => void }) {
+    const [isFlipped, setIsFlipped] = useState(false);
+    const [cardImageIndex, setCardImageIndex] = useState(0);
+
+    const nextCardImage = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setCardImageIndex((prev) => (prev + 1) % project.images.length);
+    };
+
+    const prevCardImage = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setCardImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+    };
+
+    const toggleFlip = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setIsFlipped(!isFlipped);
+    };
+
+    return (
+        <div className="relative h-[440px] w-full [perspective:1500px] group">
+            <style jsx>{`
+                .custom-red-scrollbar::-webkit-scrollbar {
+                    width: 4px;
+                }
+                .custom-red-scrollbar::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                .custom-red-scrollbar::-webkit-scrollbar-thumb {
+                    background: #ef4444;
+                    border-radius: 10px;
+                }
+                .custom-red-scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: #dc2626;
+                }
+            `}</style>
+            <motion.div
+                animate={{ rotateY: isFlipped ? 180 : 0 }}
+                transition={{ duration: 0.8, type: "spring", stiffness: 260, damping: 20 }}
+                style={{ transformStyle: "preserve-3d" }}
+                className="relative w-full h-full"
+            >
+                {/* FRONT SIDE */}
+                <div
+                    className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-zinc-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden flex flex-col shadow-2xl"
+                >
+                    {/* Image Container */}
+                    <div
+                        className="relative h-[220px] overflow-hidden cursor-zoom-in"
+                        onClick={onImageClick}
+                    >
+                        <div
+                            key={cardImageIndex}
+                            className="absolute inset-0"
+                        >
+                            <Image
+                                src={project.images[cardImageIndex]}
+                                alt={project.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                        </div>
+
+                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
+
+                        {/* Tech Badges */}
+                        <div className="absolute top-5 left-5 flex flex-wrap gap-2 z-10">
+                            {project.stack.slice(0, 3).map((tech, i) => (
+                                <span key={i} className="px-2.5 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-lg text-[10px] font-bold uppercase tracking-wider text-zinc-300">
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
+
+                        {/* Navigation Arrows */}
+                        {project.images.length > 1 && (
+                            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-3">
+                                <button onClick={prevCardImage} className="p-2 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/10 hover:bg-white hover:text-black transition-all">
+                                    <ChevronLeft className="w-4 h-4" />
+                                </button>
+                                <button onClick={nextCardImage} className="p-2 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/10 hover:bg-white hover:text-black transition-all">
+                                    <ChevronRight className="w-4 h-4" />
+                                </button>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Content Brief */}
+                    <div className="flex flex-col flex-grow p-5 md:p-6 text-left">
+                        <div className="flex justify-between items-start mb-2">
+                            <h3 className="text-xl font-bold text-white tracking-tight leading-tight group-hover:text-red-500 transition-colors">
+                                {project.title}
+                            </h3>
+                            {project.link && (
+                                <Link
+                                    href={project.link}
+                                    target="_blank"
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="text-zinc-500 hover:text-white transition-colors"
+                                >
+                                    <ExternalLink className="w-5 h-5" />
+                                </Link>
+                            )}
+                        </div>
+
+                        <p className="text-zinc-400 text-[13px] leading-relaxed mb-4 line-clamp-2">
+                            {project.description.split('\n')[0].replace(/🩺|🚀|📊|🏡|👕|📍|🌮|🧠|🍔|🏥|📝|☁️|📍|🧠|📝|☁️/g, "").trim()}
+                        </p>
+
+                        <button
+                            onClick={toggleFlip}
+                            className="mt-auto w-full group/btn flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 py-3 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all"
+                        >
+                            Ver Detalles
+                            <motion.div animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+                                <ChevronRight className="w-4 h-4" />
+                            </motion.div>
+                        </button>
+                    </div>
+                </div>
+
+                {/* BACK SIDE */}
+                <div
+                    className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-zinc-900 border border-red-500/20 rounded-2xl overflow-hidden flex flex-col p-6 shadow-[0_0_50px_rgba(239,68,68,0.1)]"
+                >
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-lg font-bold text-white uppercase tracking-tighter">
+                            Detalles
+                        </h3>
+                        <button
+                            onClick={toggleFlip}
+                            className="p-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors"
+                        >
+                            <Repeat2 className="w-4 h-4" />
+                        </button>
+                    </div>
+
+                    <div className="flex-grow overflow-y-auto pr-2 custom-red-scrollbar">
+                        <div className="space-y-4 mb-8">
+                            {project.description.split('\n').map((line, i) => {
+                                if (line.trim().startsWith('✅')) {
+                                    return (
+                                        <div key={i} className="flex gap-3 items-start group/line">
+                                            <Sparkle className="w-4 h-4 mt-1 text-red-500 shrink-0" />
+                                            <span className="text-zinc-300 text-sm leading-relaxed">{line.replace('✅', '').trim()}</span>
+                                        </div>
+                                    );
+                                }
+                                if (line.trim() === '') return <div key={i} className="h-2" />;
+                                return <p key={i} className="text-zinc-400 text-sm leading-relaxed">{line}</p>;
+                            })}
+                        </div>
+
+                        <div className="space-y-3">
+                            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] block mb-2">Tecnologías Estructurales</span>
+                            <div className="flex flex-wrap gap-2">
+                                {project.stack.map((tech, i) => (
+                                    <span key={i} className="px-3 py-1.5 bg-zinc-800 text-zinc-300 rounded-md text-[11px] font-bold border border-white/5 uppercase">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mt-8 pt-6 border-t border-white/5 flex gap-4">
+                        {project.link && (
+                            <Link
+                                href={project.link}
+                                target="_blank"
+                                className="flex-grow flex items-center justify-center gap-2 bg-red-500 text-white py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-red-400 transition-colors"
+                            >
+                                <ExternalLink className="w-4 h-4" />
+                                Visitar Sitio
+                            </Link>
+                        )}
+                        <button
+                            onClick={toggleFlip}
+                            className="flex-grow flex items-center justify-center gap-2 bg-white/5 text-zinc-300 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-colors border border-white/5"
+                        >
+                            Volver
+                        </button>
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* Background Glow Effect */}
+            <div className="absolute -inset-4 bg-red-500/5 rounded-[40px] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-20 pointer-events-none" />
+        </div>
+    );
+}
+
+
+// --- LEGACY DESIGN (Preserved) ---
 function ProjectPostCard({ project, onImageClick }: { project: Project, onImageClick: () => void }) {
     const [liked, setLiked] = useState(false);
     const [saved, setSaved] = useState(false);
@@ -466,24 +656,18 @@ function ProjectPostCard({ project, onImageClick }: { project: Project, onImageC
                     className="relative rounded-2xl overflow-hidden bg-[#1a1a1a] border border-white/5 mb-4 aspect-video cursor-zoom-in group/img"
                     onClick={() => onImageClick()}
                 >
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={cardImageIndex}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute inset-0"
-                        >
-                            <Image
-                                src={project.images[cardImageIndex]}
-                                alt={project.title}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            />
-                        </motion.div>
-                    </AnimatePresence>
+                    <div
+                        key={cardImageIndex}
+                        className="absolute inset-0"
+                    >
+                        <Image
+                            src={project.images[cardImageIndex]}
+                            alt={project.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                    </div>
 
                     {/* Card Arrows (Always visible) */}
                     {project.images.length > 1 && (

@@ -19,7 +19,7 @@ import SectionHeader from "./SectionHeader";
 
 export default function FeaturedWork() {
     return (
-        <section className="w-full bg-transparent text-zinc-300 py-24 relative z-10">
+        <section id="sobre-mi" className="w-full bg-transparent text-zinc-300 py-24 relative z-10">
             <div className="container mx-auto px-4 md:px-8">
                 <SectionHeader
                     subtitle="Conóceme"
@@ -29,7 +29,7 @@ export default function FeaturedWork() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
                     {/* Left Column: Featured Image Card (Spans 5 cols on large) */}
-                    <div className="lg:col-span-5 relative rounded-2xl overflow-hidden h-[600px] lg:h-auto group border border-white/5">
+                    <div className="hidden lg:block lg:col-span-5 relative rounded-2xl overflow-hidden h-[600px] lg:h-auto group border border-white/5">
                         {/* Background Image */}
                         <Image
                             src="/sobre-mi-futuristic-v2.png"
@@ -56,9 +56,9 @@ export default function FeaturedWork() {
                     <div className="lg:col-span-7 flex flex-col gap-6">
 
                         {/* Row 1: Profile Header */}
-                        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                            <div className="flex items-center gap-5">
-                                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/10 shrink-0 relative">
+                        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden">
+                            <div className="flex items-center gap-4 md:gap-5 relative z-10">
+                                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-white/10 shrink-0 relative shadow-2xl">
                                     <Image
                                         src="/ai-avatar.png"
                                         alt="Profile"
@@ -66,94 +66,112 @@ export default function FeaturedWork() {
                                         className="object-cover"
                                     />
                                 </div>
-                                <div>
-                                    <h1 className="text-3xl text-white font-bold uppercase tracking-tighter mb-1">Jhon Gonzalez</h1>
-                                    <p className="text-base text-zinc-500 font-mono uppercase tracking-widest text-[10px]">Desarrollador Full Stack & IA</p>
+                                <div className="space-y-1">
+                                    <h1 className="text-2xl md:text-3xl text-white font-black uppercase tracking-tighter">Jhon Gonzalez</h1>
+                                    <div className="flex flex-col gap-1">
+                                        <p className="text-zinc-500 font-mono uppercase tracking-widest text-[9px] md:text-[10px]">Desarrollador Full Stack & IA</p>
+                                        <div className="flex items-center gap-1.5 text-red-500 font-bold uppercase tracking-widest text-[8px] md:text-[9px]">
+                                            <span className="relative flex h-1.5 w-1.5">
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+                                            </span>
+                                            Medellín, Colombia
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col items-end gap-4 w-full md:w-auto">
-                                <div className="flex gap-8 text-sm">
-                                    <div className="text-center">
-                                        <span className="block text-zinc-500 text-xs mb-0.5 font-bold uppercase tracking-tighter">Proyectos</span>
-                                        <span className="text-white font-black text-xl">10+</span>
+                            <div className="flex flex-col items-start md:items-end gap-5 w-full md:w-auto relative z-10">
+                                <div className="flex gap-6 md:gap-8 text-sm">
+                                    <div className="text-center md:text-right">
+                                        <span className="block text-zinc-500 text-[10px] mb-1 font-bold uppercase tracking-widest opacity-60">Proyectos</span>
+                                        <span className="text-white font-black text-xl md:text-2xl">10+</span>
                                     </div>
-                                    <div className="text-center">
-                                        <span className="block text-zinc-500 text-xs mb-0.5 font-bold uppercase tracking-tighter">Años</span>
-                                        <span className="text-white font-black text-xl">1+</span>
+                                    <div className="text-center md:text-right">
+                                        <span className="block text-zinc-500 text-[10px] mb-1 font-bold uppercase tracking-widest opacity-60">Años</span>
+                                        <span className="text-white font-black text-xl md:text-2xl">1+</span>
                                     </div>
-                                    <div className="text-center">
-                                        <span className="block text-zinc-500 text-xs mb-0.5 font-bold uppercase tracking-tighter">STACK</span>
-                                        <span className="text-white font-black text-xl">8+</span>
+                                    <div className="text-center md:text-right">
+                                        <span className="block text-zinc-500 text-[10px] mb-1 font-bold uppercase tracking-widest opacity-60">STACK</span>
+                                        <span className="text-white font-black text-xl md:text-2xl">8+</span>
                                     </div>
                                 </div>
                                 <Link
                                     href="https://github.com/jhongo22/"
-                                    className="flex items-center gap-2 bg-[#1a1a1a] hover:bg-[#222] border border-white/10 text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-sm transition-colors w-full md:w-auto justify-center"
+                                    className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-lg transition-all w-full md:w-auto justify-center"
                                 >
-                                    <Github className="w-3 h-3 fill-current" />
+                                    <Github className="w-3.5 h-3.5" />
                                     View GitHub
                                 </Link>
                             </div>
+
+                            {/* Decorative background element like in image */}
+                            <div className="absolute right-0 top-0 w-64 h-64 bg-red-500/5 blur-[100px] -z-10" />
                         </div>
 
-                        {/* Row 2: Bio & Socials */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Row 2: Bio & Socials (2 Columns on Mobile) */}
+                        <div className="grid grid-cols-2 gap-4 md:gap-6">
                             {/* Bio Card */}
-                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col justify-between h-full min-h-[320px]">
-                                <p className="text-lg text-zinc-400 leading-snug">
+                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-5 md:p-8 flex flex-col justify-between h-full min-h-[300px] md:min-h-[350px]">
+                                <p className="text-sm md:text-lg text-zinc-400 leading-relaxed md:leading-snug">
                                     Desarrollador de software con 1+ de experiencia. Mi enfoque combina el desarrollo <span className="text-white font-bold">Full Stack</span> con la potencia de la <span className="text-white font-bold">Inteligencia Artificial</span> para automatizar operaciones y escalar negocios.
                                 </p>
-                                <div className="flex flex-col gap-3 mt-8">
-                                    <div className="flex items-center gap-3 text-zinc-500 text-sm font-bold uppercase tracking-tighter">
-                                        <Terminal className="w-4 h-4" />
+                                <div className="flex flex-col gap-3 mt-6">
+                                    <div className="flex items-center gap-2.5 text-zinc-500 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em]">
+                                        <Terminal className="w-3.5 h-3.5 text-white/40" />
                                         <span>PLANEACION</span>
                                     </div>
-                                    <div className="flex items-center gap-3 text-zinc-500 text-sm font-bold uppercase tracking-tighter">
-                                        <Code className="w-4 h-4" />
+                                    <div className="flex items-center gap-2.5 text-zinc-500 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em]">
+                                        <Code className="w-3.5 h-3.5 text-white/40" />
                                         <span>AI Automation</span>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Socials Card */}
-                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col justify-between h-full min-h-[320px]">
-                                <div className="space-y-3">
+                            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-5 md:p-8 flex flex-col h-full min-h-[300px] md:min-h-[350px]">
+                                <div className="space-y-2 md:space-y-3 mb-6">
                                     {/* LinkedIn */}
-                                    <div className="group flex items-center justify-between bg-[#151515] hover:bg-[#1a1a1a] border border-white/5 rounded-full px-5 py-3 transition-colors cursor-pointer">
-                                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-300">LinkedIn</span>
-                                        <div className="flex items-center gap-2 text-zinc-500">
-                                            <span className="text-[10px] uppercase font-bold tracking-widest">Connect</span>
-                                            <Linkedin className="w-4 h-4 group-hover:text-blue-400 transition-colors" />
+                                    <Link
+                                        href="#"
+                                        className="group flex items-center justify-between bg-black/40 hover:bg-black/60 border border-white/5 rounded-2xl px-4 py-3 md:px-5 md:py-4 transition-all"
+                                    >
+                                        <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-zinc-300">LinkedIn</span>
+                                        <div className="flex items-center gap-2 text-zinc-600 group-hover:text-blue-400 transition-colors">
+                                            <span className="hidden md:block text-[8px] uppercase font-bold tracking-widest">Connect</span>
+                                            <Linkedin className="w-4 h-4" />
                                         </div>
-                                    </div>
+                                    </Link>
                                     {/* Github */}
                                     <Link
                                         href="https://github.com/jhongo22/"
-                                        className="group flex items-center justify-between bg-[#151515] hover:bg-[#1a1a1a] border border-white/5 rounded-full px-5 py-3 transition-colors cursor-pointer"
+                                        className="group flex items-center justify-between bg-black/40 hover:bg-black/60 border border-white/5 rounded-2xl px-4 py-3 md:px-5 md:py-4 transition-all"
                                     >
-                                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-300">Github</span>
-                                        <div className="flex items-center gap-2 text-zinc-500">
-                                            <span className="text-[10px] uppercase font-bold tracking-widest">Explore</span>
-                                            <Github className="w-4 h-4 group-hover:text-white transition-colors" />
+                                        <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-zinc-300">Github</span>
+                                        <div className="flex items-center gap-2 text-zinc-600 group-hover:text-white transition-colors">
+                                            <span className="hidden md:block text-[8px] uppercase font-bold tracking-widest">Explore</span>
+                                            <Github className="w-4 h-4" />
                                         </div>
                                     </Link>
-                                    {/* Mail */}
+                                    {/* Email */}
                                     <Link
                                         href="mailto:jhonneider1234567@gmail.com"
-                                        className="group flex items-center justify-between bg-[#151515] hover:bg-[#1a1a1a] border border-white/5 rounded-full px-5 py-3 transition-colors cursor-pointer"
+                                        className="group flex items-center justify-between bg-black/40 hover:bg-black/60 border border-white/5 rounded-2xl px-4 py-3 md:px-5 md:py-4 transition-all"
                                     >
-                                        <span className="text-xs font-bold uppercase tracking-widest text-zinc-300">Email</span>
-                                        <div className="flex items-center gap-2 text-zinc-500">
-                                            <span className="text-[10px] uppercase font-bold tracking-widest">Write</span>
-                                            <Mail className="w-4 h-4 group-hover:text-white transition-colors" />
+                                        <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-zinc-300">Email</span>
+                                        <div className="flex items-center gap-2 text-zinc-600 group-hover:text-white transition-colors">
+                                            <span className="hidden md:block text-[8px] uppercase font-bold tracking-widest">Write</span>
+                                            <Mail className="w-4 h-4" />
                                         </div>
                                     </Link>
                                 </div>
 
-                                <Link href="https://wa.me/573004435894" className="w-full mt-4 bg-zinc-300 hover:bg-white text-black font-black uppercase tracking-tighter text-lg py-3 px-6 rounded-sm flex items-center justify-between group transition-colors">
-                                    <span>Contacto</span>
-                                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                <Link
+                                    href="https://wa.me/573004435894"
+                                    className="mt-auto w-full bg-[#d9d9d9] hover:bg-white text-black font-black uppercase tracking-widest text-xs md:text-sm py-4 md:py-5 rounded-xl flex items-center justify-center gap-3 group transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                                >
+                                    CONTACTO
+                                    <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                                 </Link>
                             </div>
                         </div>

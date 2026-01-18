@@ -66,9 +66,10 @@ function Footer() {
                         <ul className="space-y-4">
                             {[
                                 { name: "Inicio", href: "#inicio" },
-                                { name: "Servicios", href: "#servicios" },
-                                { name: "Proyectos", href: "#proyectos" },
-                                { name: "Sobre Mí", href: "#sobre-mi" }
+                                { name: "Stack", href: "#stack" },
+                                { name: "Habilidades", href: "#habilidades" },
+                                { name: "Sobre Mí", href: "#sobre-mi" },
+                                { name: "Proyectos", href: "#proyectos" }
                             ].map((item) => (
                                 <li key={item.name}>
                                     <Link href={item.href} className="text-zinc-500 hover:text-white transition-colors uppercase text-xs font-bold tracking-widest">
@@ -82,9 +83,9 @@ function Footer() {
                     <div>
                         <h3 className="text-white font-semibold mb-6 uppercase text-xs tracking-widest">Ubicación</h3>
                         <p className="text-zinc-500 leading-relaxed">
-                            Disponible remotamente <br />
-                            para todo el mundo. <br />
-                            GMT-5
+                            Medellin <br />
+                            Colombia <br />
+
                         </p>
                     </div>
                 </div>
