@@ -15,7 +15,7 @@ export default function Background() {
         let w: number, h: number;
         let p: Pt[] = [];
         const cnt = window.innerWidth < 768 ? 30 : 60;
-        const cols = ['#ef4444', '#f3bdcd', '#333'];
+        const cols = ['#ef4444', '#f87171', '#333'];
         let mouse = { x: null as number | null, y: null as number | null };
 
         const resize = () => {

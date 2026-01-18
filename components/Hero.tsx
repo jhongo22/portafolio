@@ -23,10 +23,9 @@ const TypewriterBlock = () => {
 
     const fullText = tokens.map(t => t.text).join("");
 
-    // Initial Delay to wait for card entrance animation (1s)
+    // Start immediate as the card has no entry animation now
     React.useEffect(() => {
-        const timer = setTimeout(() => setHasStarted(true), 600);
-        return () => clearTimeout(timer);
+        setHasStarted(true);
     }, []);
 
     React.useEffect(() => {
@@ -88,10 +87,7 @@ const TypewriterBlock = () => {
 const VisualMockup = () => (
     <div className="relative w-full max-w-[500px] lg:max-w-none">
         {/* Main Card */}
-        <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+        <div
             className="relative z-10 w-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col pt-4 px-6 pb-20 gap-6"
         >
             {/* Background Glow - Moved Inside to sync with animation */}
@@ -140,7 +136,7 @@ const VisualMockup = () => (
                     <span className="text-sky-400">export default</span> construir(desarrollador);
                 </div>
             </div>
-        </motion.div>
+        </div>
     </div>
 );
 
@@ -196,15 +192,11 @@ export default function Hero() {
                         </motion.div>
                     </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.3 }}
+                    <div
                         className="flex items-center justify-center lg:mt-0 mt-12 w-full lg:scale-[0.7] xl:scale-[0.8] origin-center lg:origin-right"
                     >
                         <VisualMockup />
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

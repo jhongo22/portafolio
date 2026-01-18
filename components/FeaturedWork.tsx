@@ -64,6 +64,8 @@ export default function FeaturedWork() {
                                         alt="Profile"
                                         fill
                                         className="object-cover"
+                                        priority
+                                        sizes="(max-width: 768px) 64px, 80px"
                                     />
                                 </div>
                                 <div className="space-y-1">
