@@ -19,7 +19,7 @@ const services = [
     },
     {
         title: "Inteligencia Artificial",
-        description: "Integración de LLMs, agentes de IA y automatizaciones inteligentes para potenciar los procesos de negocio.",
+        description: "Integración de LLMs, agentes de IA y automatizaciones inteligentes para potenciar la productividad.",
         iconName: "Cpu",
         color: "text-red-500",
         lottiePath: "/SVG/Inteligencia artificial.json"

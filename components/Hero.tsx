@@ -179,7 +179,7 @@ export default function Hero() {
                                     href="#proyectos"
                                     className="inline-flex items-center justify-center px-10 py-4 lg:px-7 lg:py-3 xl:px-8 xl:py-3.5 bg-transparent border-2 border-white/20 text-white font-bold rounded-sm hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95 text-lg lg:text-sm xl:text-base min-w-[220px] md:min-w-[220px] lg:min-w-[180px] xl:min-w-[200px] tracking-tight uppercase"
                                 >
-                                    Ver Portafolio
+                                    Ver proyectos
                                 </Link>
 
                                 <Link

@@ -67,7 +67,7 @@ export default function ServiceCard({ title, description, iconName, color, lotti
 
             {/* Lottie Animation at Bottom Right */}
             {animationData && (
-                <div className="absolute -bottom-4 -right-4 w-40 h-40 opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 pointer-events-none grayscale-[0.5] group-hover:grayscale-0">
+                <div className="absolute -bottom-4 -right-4 w-40 h-40 opacity-100 group-hover:scale-110 transition-all duration-500 pointer-events-none grayscale-[0.5] group-hover:grayscale-0">
                     <Lottie
                         animationData={animationData}
                         loop={true}

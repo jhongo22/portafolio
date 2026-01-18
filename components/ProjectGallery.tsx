@@ -384,14 +384,40 @@ export default function ProjectGallery() {
 function ProjectCard({ project, onImageClick }: { project: Project, onImageClick: () => void }) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [cardImageIndex, setCardImageIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+    const [isAutoplayDisabled, setIsAutoplayDisabled] = useState(false);
+    useEffect(() => {
+        let timeout: NodeJS.Timeout;
+        let interval: NodeJS.Timeout;
+        const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+
+        if (isHovered && isDesktop && project.images.length > 1 && !isFlipped && !isAutoplayDisabled) {
+            // First transition after 2s
+            timeout = setTimeout(() => {
+                setCardImageIndex((prev) => (prev + 1) % project.images.length);
+
+                // Subsequent transitions every 3s
+                interval = setInterval(() => {
+                    setCardImageIndex((prev) => (prev + 1) % project.images.length);
+                }, 3000);
+            }, 2000);
+        }
+
+        return () => {
+            if (timeout) clearTimeout(timeout);
+            if (interval) clearInterval(interval);
+        };
+    }, [isHovered, project.images.length, isFlipped, isAutoplayDisabled]);
 
     const nextCardImage = (e: React.MouseEvent) => {
         e.stopPropagation();
+        setIsAutoplayDisabled(true);
         setCardImageIndex((prev) => (prev + 1) % project.images.length);
     };
 
     const prevCardImage = (e: React.MouseEvent) => {
         e.stopPropagation();
+        setIsAutoplayDisabled(true);
         setCardImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
     };
 
@@ -418,6 +444,11 @@ function ProjectCard({ project, onImageClick }: { project: Project, onImageClick
                 }
             `}</style>
             <motion.div
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => {
+                    setIsHovered(false);
+                    setIsAutoplayDisabled(false);
+                }}
                 animate={{ rotateY: isFlipped ? 180 : 0 }}
                 transition={{ duration: 0.8, type: "spring", stiffness: 260, damping: 20 }}
                 style={{ transformStyle: "preserve-3d" }}
@@ -431,19 +462,27 @@ function ProjectCard({ project, onImageClick }: { project: Project, onImageClick
                     <div
                         className="relative h-[220px] overflow-hidden cursor-zoom-in"
                         onClick={onImageClick}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
                     >
-                        <div
-                            key={cardImageIndex}
-                            className="absolute inset-0"
-                        >
-                            <Image
-                                src={project.images[cardImageIndex]}
-                                alt={project.title}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            />
-                        </div>
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={cardImageIndex}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.4 }}
+                                className="absolute inset-0"
+                            >
+                                <Image
+                                    src={project.images[cardImageIndex]}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                />
+                            </motion.div>
+                        </AnimatePresence>
 
                         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
 
@@ -493,6 +532,8 @@ function ProjectCard({ project, onImageClick }: { project: Project, onImageClick
 
                         <button
                             onClick={toggleFlip}
+                            onMouseEnter={() => setIsHovered(false)} // Pause carousel when focusing on the button
+                            onMouseLeave={() => setIsHovered(true)}
                             className="mt-auto w-full group/btn flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 py-3 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all"
                         >
                             Ver Detalles

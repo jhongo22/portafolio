@@ -11,7 +11,8 @@ import {
     ArrowUpRight,
     ChevronLeft,
     ChevronRight,
-    User
+    User,
+    Download
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -42,13 +43,6 @@ export default function FeaturedWork() {
                         {/* Red overlay tint to match style */}
                         <div className="absolute inset-0 bg-red-500/10 mix-blend-overlay"></div>
 
-                        {/* Navigation Arrows */}
-                        <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-3 rounded-full transition-colors border border-white/5">
-                            <ChevronLeft className="w-6 h-6" />
-                        </button>
-                        <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-3 rounded-full transition-colors border border-white/5">
-                            <ChevronRight className="w-6 h-6" />
-                        </button>
 
                     </div>
 
@@ -103,7 +97,7 @@ export default function FeaturedWork() {
                                     className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-[10px] font-black uppercase tracking-[0.2em] px-5 py-2.5 rounded-lg transition-all w-full md:w-auto justify-center"
                                 >
                                     <Github className="w-3.5 h-3.5" />
-                                    View GitHub
+                                    Ver GitHub
                                 </Link>
                             </div>
 
@@ -133,15 +127,15 @@ export default function FeaturedWork() {
                             {/* Socials Card */}
                             <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-5 md:p-8 flex flex-col h-full min-h-[300px] md:min-h-[350px]">
                                 <div className="space-y-2 md:space-y-3 mb-6">
-                                    {/* LinkedIn */}
+                                    {/* Download CV */}
                                     <Link
                                         href="#"
                                         className="group flex items-center justify-between bg-black/40 hover:bg-black/60 border border-white/5 rounded-2xl px-4 py-3 md:px-5 md:py-4 transition-all"
                                     >
-                                        <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-zinc-300">LinkedIn</span>
-                                        <div className="flex items-center gap-2 text-zinc-600 group-hover:text-blue-400 transition-colors">
-                                            <span className="hidden md:block text-[8px] uppercase font-bold tracking-widest">Connect</span>
-                                            <Linkedin className="w-4 h-4" />
+                                        <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-zinc-300">Hoja de Vida</span>
+                                        <div className="flex items-center gap-2 text-zinc-600 group-hover:text-emerald-400 transition-colors">
+                                            <span className="hidden md:block text-[8px] uppercase font-bold tracking-widest">Descargar CV</span>
+                                            <Download className="w-4 h-4" />
                                         </div>
                                     </Link>
                                     {/* Github */}
@@ -151,7 +145,7 @@ export default function FeaturedWork() {
                                     >
                                         <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-zinc-300">Github</span>
                                         <div className="flex items-center gap-2 text-zinc-600 group-hover:text-white transition-colors">
-                                            <span className="hidden md:block text-[8px] uppercase font-bold tracking-widest">Explore</span>
+                                            <span className="hidden md:block text-[8px] uppercase font-bold tracking-widest">Explorar</span>
                                             <Github className="w-4 h-4" />
                                         </div>
                                     </Link>
@@ -162,7 +156,7 @@ export default function FeaturedWork() {
                                     >
                                         <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-zinc-300">Email</span>
                                         <div className="flex items-center gap-2 text-zinc-600 group-hover:text-white transition-colors">
-                                            <span className="hidden md:block text-[8px] uppercase font-bold tracking-widest">Write</span>
+                                            <span className="hidden md:block text-[8px] uppercase font-bold tracking-widest">Enviar mensaje</span>
                                             <Mail className="w-4 h-4" />
                                         </div>
                                     </Link>

@@ -6,15 +6,11 @@ import SectionHeader from "./SectionHeader";
 
 function TechStack() {
   const techLogos: LogoItem[] = [
+    // --- LENGUAJES ---
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-      alt: "React",
-      title: "React"
-    },
-    {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-      alt: "Next.js",
-      title: "Next.js"
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg",
+      alt: "JavaScript",
+      title: "JavaScript"
     },
     {
       src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg",
@@ -22,19 +18,14 @@ function TechStack() {
       title: "TypeScript"
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg",
-      alt: "JavaScript",
-      title: "JavaScript"
-    },
-    {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-      alt: "Node.js",
-      title: "Node.js"
-    },
-    {
       src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
       alt: "Python",
       title: "Python"
+    },
+    {
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+      alt: "PHP",
+      title: "PHP"
     },
     {
       src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg",
@@ -46,20 +37,21 @@ function TechStack() {
       alt: "CSS3",
       title: "CSS3"
     },
+    // --- FRAMEWORKS & LIBS ---
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-      alt: "Tailwind CSS",
-      title: "Tailwind CSS"
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      alt: "Node.js",
+      title: "Node.js"
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain.svg",
-      alt: "Git",
-      title: "Git"
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      alt: "React",
+      title: "React"
     },
     {
-      src: "https://cdn.raiolanetworks.com/blog/wp-content/uploads/n8n.png",
-      alt: "n8n",
-      title: "n8n"
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      alt: "Next.js",
+      title: "Next.js"
     },
     {
       src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
@@ -67,14 +59,61 @@ function TechStack() {
       title: "Laravel"
     },
     {
-      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-      alt: "PostgreSQL",
-      title: "PostgreSQL"
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      alt: "Tailwind CSS",
+      title: "Tailwind CSS"
+    },
+    // --- BASES DE DATOS ---
+    {
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      alt: "MySQL",
+      title: "MySQL"
+    },
+    {
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg",
+      alt: "SQL Server",
+      title: "SQL Server"
+    },
+    // --- HERRAMIENTAS & PLATAFORMAS ---
+    {
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+      alt: "GitHub",
+      title: "GitHub"
+    },
+    {
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-plain.svg",
+      alt: "Git",
+      title: "Git"
+    },
+    {
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      alt: "Docker",
+      title: "Docker"
+    },
+    {
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg",
+      alt: "WordPress",
+      title: "WordPress"
+    },
+    {
+      src: "https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg",
+      alt: "Postman",
+      title: "Postman"
+    },
+    {
+      src: "https://cdn-public.softwarereviews.com/production/logos/offerings/7351/original/microsoft_power_automate_logo.png?1710966766",
+      alt: "Power Automate",
+      title: "Power Automate"
+    },
+    {
+      src: "https://cdn.raiolanetworks.com/blog/wp-content/uploads/n8n.png",
+      alt: "n8n",
+      title: "n8n"
     }
   ];
 
   return (
-    <section className="relative w-full py-24">
+    <section id="stack" className="relative w-full py-24">
       <div className="container mx-auto px-4 md:px-8">
         <SectionHeader title="Stack Tecnológico" />
 
