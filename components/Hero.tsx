@@ -143,8 +143,8 @@ const VisualMockup = () => (
 export default function Hero() {
     return (
         <section id="inicio" className="relative w-full min-h-screen lg:h-screen text-white flex items-center overflow-hidden pt-32 lg:pt-16">
-            <div className="container mx-auto px-4 md:px-8 lg:max-w-5xl xl:max-w-6xl relative z-10 w-full mb-4">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-2 xl:gap-4 items-center">
+            <div className="container mx-auto px-4 md:px-8 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl relative z-10 w-full mb-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-2 xl:gap-4 2xl:gap-32 items-center">
 
                     <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                         <motion.div
@@ -154,17 +154,17 @@ export default function Hero() {
                             className="space-y-8"
                         >
                             <h1 className="font-black tracking-tighter leading-[0.85] uppercase flex flex-col items-center lg:items-start select-none">
-                                <span className="text-3xl md:text-2xl lg:text-2xl xl:text-2xl text-white/90 mb-4">Jhon Gonzalez.</span>
-                                <span className="text-5xl md:text-5xl lg:text-[2.8rem] xl:text-[3rem] text-white/30">Desarrollador</span>
-                                <span className="text-6xl md:text-5xl lg:text-[3.5rem] xl:text-[3.8rem] text-white">Full Stack</span>
-                                <span className="text-6xl md:text-5xl lg:text-[3.5rem] xl:text-[3.8rem] text-white">& IA.</span>
+                                <span className="text-3xl md:text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl text-white/90 mb-4">Jhon Gonzalez.</span>
+                                <span className="text-5xl md:text-5xl lg:text-[2.8rem] xl:text-[3rem] 2xl:text-[4.5rem] text-white/30">Desarrollador</span>
+                                <span className="text-6xl md:text-5xl lg:text-[3.5rem] xl:text-[3.8rem] 2xl:text-[4.5rem] text-white">Full Stack</span>
+                                <span className="text-6xl md:text-5xl lg:text-[3.5rem] xl:text-[3.8rem] 2xl:text-[4.5rem] text-white">& IA.</span>
                             </h1>
 
                             <motion.p
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                                className="text-lg md:text-xl lg:text-base xl:text-lg text-gray-400 max-w-lg lg:max-w-md mx-auto lg:mx-0 leading-snug"
+                                className="text-lg md:text-xl lg:text-base xl:text-lg 2xl:text-2xl text-gray-400 max-w-lg lg:max-w-md 2xl:max-w-2xl mx-auto lg:mx-0 leading-snug 2xl:leading-relaxed"
                             >
                                 Transformo ideas en ecosistemas digitales. Especialista en <span className="text-white font-bold">Arquitecturas Full Stack, Agentes de IA y Automatizaciones inteligentes</span> que escalan operaciones sin límites.
                             </motion.p>
@@ -177,14 +177,14 @@ export default function Hero() {
                             >
                                 <Link
                                     href="#proyectos"
-                                    className="inline-flex items-center justify-center px-10 py-4 lg:px-7 lg:py-3 xl:px-8 xl:py-3.5 bg-transparent border-2 border-white/20 text-white font-bold rounded-sm hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95 text-lg lg:text-sm xl:text-base min-w-[220px] md:min-w-[220px] lg:min-w-[180px] xl:min-w-[200px] tracking-tight uppercase"
+                                    className="inline-flex items-center justify-center px-10 py-4 lg:px-7 lg:py-3 xl:px-8 xl:py-3.5 2xl:px-12 2xl:py-5 bg-transparent border-2 border-white/20 text-white font-bold rounded-sm hover:bg-white hover:text-black transition-all hover:scale-105 active:scale-95 text-lg lg:text-sm xl:text-base 2xl:text-xl min-w-[220px] md:min-w-[220px] lg:min-w-[180px] xl:min-w-[200px] 2xl:min-w-[260px] tracking-tight uppercase"
                                 >
                                     Ver proyectos
                                 </Link>
 
                                 <Link
                                     href="https://wa.me/573004435894"
-                                    className="inline-flex items-center justify-center px-10 py-4 lg:px-7 lg:py-3 xl:px-8 xl:py-3.5 bg-white text-black font-bold rounded-sm hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 text-lg lg:text-sm xl:text-base min-w-[220px] md:min-w-[220px] lg:min-w-[180px] xl:min-w-[200px] tracking-tight uppercase"
+                                    className="inline-flex items-center justify-center px-10 py-4 lg:px-7 lg:py-3 xl:px-8 xl:py-3.5 2xl:px-12 2xl:py-5 bg-white text-black font-bold rounded-sm hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 text-lg lg:text-sm xl:text-base 2xl:text-xl min-w-[220px] md:min-w-[220px] lg:min-w-[180px] xl:min-w-[200px] 2xl:min-w-[260px] tracking-tight uppercase"
                                 >
                                     Hablemos
                                 </Link>
@@ -193,7 +193,7 @@ export default function Hero() {
                     </div>
 
                     <div
-                        className="flex items-center justify-center lg:mt-0 mt-12 w-full lg:scale-[0.7] xl:scale-[0.8] origin-center lg:origin-right"
+                        className="flex items-center justify-center lg:mt-0 mt-12 w-full lg:scale-[0.7] xl:scale-[0.8] 2xl:scale-100 2xl:translate-x-[15%] origin-center lg:origin-right"
                     >
                         <VisualMockup />
                     </div>
