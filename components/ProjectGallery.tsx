@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Heart, Bookmark, Share2, ExternalLink, MessageCircle, Repeat2, X, ChevronLeft, ChevronRight, Sparkle } from "lucide-react";
+import { Heart, Bookmark, Share2, ExternalLink, MessageCircle, Repeat2, X, ChevronLeft, ChevronRight, Sparkle, LayoutGrid, List, ArrowUpRight } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import Link from "next/link";
 import Image from "next/image";
@@ -253,6 +253,7 @@ const projects: Project[] = [
 export default function ProjectGallery() {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [activeImageIndex, setActiveImageIndex] = useState(0);
+    const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -293,12 +294,39 @@ export default function ProjectGallery() {
                     description="Una selección de mis últimos trabajos, desde aplicaciones web completas hasta automatizaciones avanzadas."
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project) => (
-                        <ProjectCard key={project.id} project={project} onImageClick={() => {
-                            setSelectedProject(project);
-                            setActiveImageIndex(0);
-                        }} />
+                {/* View Toggle - Desktop Only, Centered */}
+                <div className="hidden lg:flex justify-center mb-16">
+                    <div className="flex items-center bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-xl">
+                        <button
+                            onClick={() => setViewMode("grid")}
+                            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all ${viewMode === "grid" ? "bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.4)]" : "text-zinc-500 hover:text-zinc-300"}`}
+                        >
+                            <LayoutGrid className="w-4 h-4" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Cuadrícula</span>
+                        </button>
+                        <button
+                            onClick={() => setViewMode("list")}
+                            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all ${viewMode === "list" ? "bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.4)]" : "text-zinc-500 hover:text-zinc-300"}`}
+                        >
+                            <List className="w-4 h-4" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Showcase</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div className={`grid ${viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" : "grid-cols-1 gap-48"}`}>
+                    {projects.map((project, index) => (
+                        <div key={project.id} className={viewMode === "list" ? "max-w-7xl mx-auto w-full" : "w-full"}>
+                            <ProjectCard
+                                project={project}
+                                index={index}
+                                viewMode={viewMode}
+                                onImageClick={() => {
+                                    setSelectedProject(project);
+                                    setActiveImageIndex(0);
+                                }}
+                            />
+                        </div>
                     ))}
                 </div>
             </div>
@@ -313,20 +341,21 @@ export default function ProjectGallery() {
                             setSelectedProject(null);
                             setActiveImageIndex(0);
                         }}
-                        className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/98 backdrop-blur-2xl p-4 cursor-zoom-out"
+                        className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 cursor-zoom-out"
                     >
+                        {/* Close Button */}
                         <motion.button
                             initial={{ scale: 0.5, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.5, opacity: 0 }}
-                            className="absolute top-4 right-4 md:top-8 md:right-8 p-2.5 rounded-full bg-black/40 text-white hover:bg-white/20 transition-all border border-white/10 z-[100001] cursor-pointer shadow-lg active:scale-95 backdrop-blur-md"
+                            className="absolute top-6 right-6 md:top-10 md:right-10 p-4 rounded-full bg-white/10 text-white hover:bg-red-600 transition-all border border-white/10 z-[100005] cursor-pointer shadow-2xl backdrop-blur-xl group"
                             onClick={(e) => {
                                 e.stopPropagation();
                                 setSelectedProject(null);
                                 setActiveImageIndex(0);
                             }}
                         >
-                            <X className="w-5 h-5 md:w-6 md:h-6" />
+                            <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
                         </motion.button>
 
                         {/* Carousel Controls */}
@@ -334,24 +363,24 @@ export default function ProjectGallery() {
                             <>
                                 <button
                                     onClick={handlePrev}
-                                    className="absolute left-4 md:left-8 p-2.5 rounded-full bg-black/40 text-white hover:bg-white/15 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
+                                    className="absolute left-4 md:left-10 p-4 rounded-full bg-black/40 text-white hover:bg-red-600 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
                                 >
-                                    <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+                                    <ChevronLeft className="w-8 h-8" />
                                 </button>
                                 <button
                                     onClick={handleNext}
-                                    className="absolute right-4 md:right-8 p-2.5 rounded-full bg-black/40 text-white hover:bg-white/15 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
+                                    className="absolute right-4 md:right-10 p-4 rounded-full bg-black/40 text-white hover:bg-red-600 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
                                 >
-                                    <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+                                    <ChevronRight className="w-8 h-8" />
                                 </button>
 
                                 {/* Pagination Dots */}
-                                <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-[100001]" onClick={(e) => e.stopPropagation()}>
+                                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-[100001]" onClick={(e) => e.stopPropagation()}>
                                     {selectedProject.images.map((_: string, idx: number) => (
                                         <button
                                             key={idx}
                                             onClick={() => setActiveImageIndex(idx)}
-                                            className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full transition-all cursor-pointer ${idx === activeImageIndex ? "bg-white scale-125" : "bg-white/30"}`}
+                                            className={`h-1.5 rounded-full transition-all cursor-pointer ${idx === activeImageIndex ? "bg-red-600 w-8" : "bg-white/20 w-4 hover:bg-white/40"}`}
                                         />
                                     ))}
                                 </div>
@@ -359,15 +388,14 @@ export default function ProjectGallery() {
                         )}
 
                         <div
-                            key={activeImageIndex}
-                            className="relative w-[90%] h-[85vh] z-[100000]"
+                            className="relative w-full max-w-6xl h-[80vh] z-[100000]"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <Image
                                 src={selectedProject.images[activeImageIndex]}
                                 alt={`Project view ${activeImageIndex + 1}`}
                                 fill
-                                className="object-contain rounded-xl shadow-[0_0_80px_rgba(0,0,0,0.8)] border border-white/10"
+                                className="object-contain"
                                 sizes="90vw"
                                 priority
                             />
@@ -381,7 +409,7 @@ export default function ProjectGallery() {
 }
 
 // --- NEW PREMIUM DESIGN (3D FLIP) ---
-function ProjectCard({ project, onImageClick }: { project: Project, onImageClick: () => void }) {
+function ProjectCard({ project, onImageClick, viewMode, index }: { project: Project, onImageClick: () => void, viewMode: "grid" | "list", index: number }) {
     const [isFlipped, setIsFlipped] = useState(false);
     const [cardImageIndex, setCardImageIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -427,62 +455,59 @@ function ProjectCard({ project, onImageClick }: { project: Project, onImageClick
     };
 
     return (
-        <div className="relative h-[440px] w-full [perspective:1500px] group">
-            <style jsx>{`
+        <div className={`relative w-full group ${viewMode === "list" ? "min-h-fit overflow-visible" : "transition-all duration-1000 [perspective:1500px] h-[460px]"}`}>
+            <style jsx global>{`
                 .custom-red-scrollbar::-webkit-scrollbar {
-                    width: 4px;
+                    width: 6px;
                 }
                 .custom-red-scrollbar::-webkit-scrollbar-track {
-                    background: transparent;
-                }
-                .custom-red-scrollbar::-webkit-scrollbar-thumb {
-                    background: #ef4444;
+                    background: rgba(255, 255, 255, 0.05);
                     border-radius: 10px;
                 }
+                .custom-red-scrollbar::-webkit-scrollbar-thumb {
+                    background: #ef4444 !important;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+                }
                 .custom-red-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: #dc2626;
+                    background: #ff5555 !important;
+                }
+                /* For Firefox */
+                .custom-red-scrollbar {
+                    scrollbar-width: thin;
+                    scrollbar-color: #ef4444 rgba(255, 255, 255, 0.05);
                 }
             `}</style>
             <motion.div
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => {
-                    setIsHovered(false);
-                    setIsAutoplayDisabled(false);
-                }}
-                animate={{ rotateY: isFlipped ? 180 : 0 }}
-                transition={{ duration: 0.8, type: "spring", stiffness: 260, damping: 20 }}
-                style={{ transformStyle: "preserve-3d" }}
-                className="relative w-full h-full"
+                initial={false}
+                animate={viewMode === "grid" ? { rotateY: isFlipped ? 180 : 0 } : { rotateY: 0 }}
+                transition={{ duration: 0.8, ease: "circOut" }}
+                className={`w-full h-full ${viewMode === "grid" ? "[transform-style:preserve-3d]" : ""}`}
             >
                 {/* FRONT SIDE */}
                 <div
-                    className="absolute inset-0 w-full h-full [backface-visibility:hidden] bg-zinc-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden flex flex-col shadow-2xl"
+                    className={viewMode === "list"
+                        ? `w-full flex flex-col lg:flex-row gap-12 lg:gap-16 transition-all items-center bg-transparent border-none ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}`
+                        : "absolute inset-0 w-full h-full [backface-visibility:hidden] bg-zinc-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden flex flex-col shadow-2xl"}
                 >
                     {/* Image Container */}
                     <div
-                        className="relative h-[220px] overflow-hidden cursor-zoom-in"
+                        className={viewMode === "list"
+                            ? `relative overflow-hidden cursor-zoom-in group/card-img w-full lg:w-[48%] aspect-video rounded-3xl border border-white/5 shadow-2xl transition-transform duration-700 hover:scale-[1.01] h-fit`
+                            : "relative h-[220px] w-full overflow-hidden cursor-zoom-in"}
                         onClick={onImageClick}
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                     >
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={cardImageIndex}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.4 }}
-                                className="absolute inset-0"
-                            >
-                                <Image
-                                    src={project.images[cardImageIndex]}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                />
-                            </motion.div>
-                        </AnimatePresence>
+                        <div className="absolute inset-0">
+                            <Image
+                                src={project.images[cardImageIndex]}
+                                alt={project.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                        </div>
 
                         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
 
@@ -509,108 +534,134 @@ function ProjectCard({ project, onImageClick }: { project: Project, onImageClick
                     </div>
 
                     {/* Content Brief */}
-                    <div className="flex flex-col flex-grow p-5 md:p-6 text-left">
-                        <div className="flex justify-between items-start mb-2">
-                            <h3 className="text-xl font-bold text-white tracking-tight leading-tight group-hover:text-red-500 transition-colors">
+                    <div className={viewMode === "list"
+                        ? "flex flex-col flex-grow justify-center py-4 lg:w-[52%]"
+                        : "flex flex-col flex-grow p-6 md:p-8 text-left"}>
+                        {viewMode === "list" && (
+                            <div className="flex items-center gap-4 mb-4">
+                                <span className="text-red-600 font-black text-xl tracking-tighter">#{String(index + 1).padStart(2, '0')}</span>
+                                <div className="h-px w-8 bg-red-600/30"></div>
+                                <span className="text-zinc-500 font-bold uppercase tracking-[0.2em] text-[10px]">{project.category}</span>
+                            </div>
+                        )}
+
+                        <div className="flex flex-col mb-4">
+                            <h3 className={`font-black text-white uppercase tracking-tighter ${viewMode === "list" ? "text-3xl md:text-4xl lg:text-5xl leading-tight" : "text-xl transition-colors group-hover:text-red-500"}`}>
                                 {project.title}
                             </h3>
-                            {project.link && (
-                                <Link
-                                    href={project.link}
-                                    target="_blank"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="text-zinc-500 hover:text-white transition-colors"
-                                >
-                                    <ExternalLink className="w-5 h-5" />
-                                </Link>
+                        </div>
+
+                        <div className={`space-y-4 ${viewMode === "list" ? "max-w-xl" : ""}`}>
+                            <p className={`text-zinc-400 leading-relaxed ${viewMode === "list" ? "text-base md:text-lg" : "text-[13px] line-clamp-2"}`}>
+                                {project.description.split('\n')[0].replace(/🩺|🚀|📊|🏡|👕|📍|🌮|🧠|🍔|🏥|📝|☁️|📍|🧠|📝|☁️/g, "").trim()}
+                            </p>
+
+                            {viewMode === "list" && (
+                                <div className="space-y-2 py-4">
+                                    {project.description.split('\n').slice(1, 5).map((line, i) => {
+                                        if (line.trim().startsWith('✅')) {
+                                            return (
+                                                <div key={i} className="flex gap-3 items-start">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 shrink-0 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+                                                    <span className="text-zinc-300 text-sm md:text-base font-medium">{line.replace('✅', '').trim()}</span>
+                                                </div>
+                                            );
+                                        }
+                                        return null;
+                                    })}
+                                </div>
                             )}
                         </div>
 
-                        <p className="text-zinc-400 text-[13px] leading-relaxed mb-4 line-clamp-2">
-                            {project.description.split('\n')[0].replace(/🩺|🚀|📊|🏡|👕|📍|🌮|🧠|🍔|🏥|📝|☁️|📍|🧠|📝|☁️/g, "").trim()}
-                        </p>
-
-                        <button
-                            onClick={toggleFlip}
-                            onMouseEnter={() => setIsHovered(false)} // Pause carousel when focusing on the button
-                            onMouseLeave={() => setIsHovered(true)}
-                            className="mt-auto w-full group/btn flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 py-3 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all"
-                        >
-                            Ver Detalles
-                            <motion.div animate={{ x: [0, 4, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
-                                <ChevronRight className="w-4 h-4" />
-                            </motion.div>
-                        </button>
-                    </div>
-                </div>
-
-                {/* BACK SIDE */}
-                <div
-                    className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-zinc-900 border border-red-500/20 rounded-2xl overflow-hidden flex flex-col p-6 shadow-[0_0_50px_rgba(239,68,68,0.1)]"
-                >
-                    <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-lg font-bold text-white uppercase tracking-tighter">
-                            Detalles
-                        </h3>
-                        <button
-                            onClick={toggleFlip}
-                            className="p-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors"
-                        >
-                            <Repeat2 className="w-4 h-4" />
-                        </button>
-                    </div>
-
-                    <div className="flex-grow overflow-y-auto pr-2 custom-red-scrollbar">
-                        <div className="space-y-4 mb-8">
-                            {project.description.split('\n').map((line, i) => {
-                                if (line.trim().startsWith('✅')) {
-                                    return (
-                                        <div key={i} className="flex gap-3 items-start group/line">
-                                            <Sparkle className="w-4 h-4 mt-1 text-red-500 shrink-0" />
-                                            <span className="text-zinc-300 text-sm leading-relaxed">{line.replace('✅', '').trim()}</span>
-                                        </div>
-                                    );
-                                }
-                                if (line.trim() === '') return <div key={i} className="h-2" />;
-                                return <p key={i} className="text-zinc-400 text-sm leading-relaxed">{line}</p>;
-                            })}
-                        </div>
-
-                        <div className="space-y-3">
-                            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] block mb-2">Tecnologías Estructurales</span>
-                            <div className="flex flex-wrap gap-2">
+                        {viewMode === "list" && (
+                            <div className="flex flex-wrap gap-2 mb-10">
                                 {project.stack.map((tech, i) => (
-                                    <span key={i} className="px-3 py-1.5 bg-zinc-800 text-zinc-300 rounded-md text-[11px] font-bold border border-white/5 uppercase">
+                                    <span key={i} className="px-3 py-1 bg-white/5 text-zinc-500 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-white/5">
                                         {tech}
                                     </span>
                                 ))}
                             </div>
+                        )}
+
+                        <div className="flex flex-col sm:flex-row gap-5 w-full mt-auto">
+                            {viewMode === "list" && project.link && (
+                                <Link
+                                    href={project.link}
+                                    target="_blank"
+                                    className="flex items-center justify-center gap-3 bg-white text-black hover:bg-red-600 hover:text-white py-4 px-10 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] transition-all duration-500 group/btn-visit"
+                                >
+                                    Visitar Sitio
+                                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn-visit:translate-x-0.5 group-hover/btn-visit:-translate-y-0.5" />
+                                </Link>
+                            )}
+
+                            {viewMode === "grid" && (
+                                <button
+                                    onClick={toggleFlip}
+                                    className="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 py-3 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all"
+                                >
+                                    Ver Detalles
+                                    <ChevronRight className="w-4 h-4" />
+                                </button>
+                            )}
                         </div>
                     </div>
-
-                    <div className="mt-8 pt-6 border-t border-white/5 flex gap-4">
-                        {project.link && (
-                            <Link
-                                href={project.link}
-                                target="_blank"
-                                className="flex-grow flex items-center justify-center gap-2 bg-red-500 text-white py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-red-400 transition-colors"
-                            >
-                                <ExternalLink className="w-4 h-4" />
-                                Visitar Sitio
-                            </Link>
-                        )}
-                        <button
-                            onClick={toggleFlip}
-                            className="flex-grow flex items-center justify-center gap-2 bg-white/5 text-zinc-300 py-3 rounded-lg font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-colors border border-white/5"
-                        >
-                            Volver
-                        </button>
-                    </div>
                 </div>
+
+                {/* BACK SIDE (Only in Grid View) */}
+                {viewMode === "grid" && (
+                    <div
+                        className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-zinc-900 backdrop-blur-3xl border border-white/10 rounded-2xl p-8 flex flex-col shadow-2xl overflow-hidden"
+                    >
+                        <div className="flex justify-between items-start mb-6">
+                            <h3 className="text-2xl font-black text-white uppercase tracking-tighter">
+                                {project.title}
+                            </h3>
+                            <div className="p-2 rounded-lg bg-red-600/10 text-red-500">
+                                <Sparkle className="w-5 h-5" />
+                            </div>
+                        </div>
+
+                        <div className="flex-grow space-y-4 overflow-y-auto custom-red-scrollbar pr-2 pb-4">
+                            {project.description.split('\n').map((line, i) => {
+                                if (line.trim().startsWith('✅')) {
+                                    return (
+                                        <div key={i} className="flex gap-3 items-start group/line">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 shrink-0 group-hover/line:scale-125 transition-transform shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+                                            <span className="text-zinc-300 text-sm font-medium leading-relaxed">{line.replace('✅', '').trim()}</span>
+                                        </div>
+                                    );
+                                }
+                                return null;
+                            })}
+                        </div>
+
+                        <div className="mt-auto pt-6 border-t border-white/5 flex gap-4">
+                            {project.link && (
+                                <Link
+                                    href={project.link}
+                                    target="_blank"
+                                    className="flex-grow flex items-center justify-center gap-2 bg-red-600 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-red-500 transition-all shadow-[0_10px_20px_rgba(239,68,68,0.2)]"
+                                >
+                                    <ExternalLink className="w-4 h-4" />
+                                    Sitio
+                                </Link>
+                            )}
+                            <button
+                                onClick={toggleFlip}
+                                className="flex-grow flex items-center justify-center gap-2 bg-white/5 text-zinc-400 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all border border-white/5"
+                            >
+                                Volver
+                            </button>
+                        </div>
+                    </div>
+                )}
             </motion.div>
 
-            {/* Background Glow Effect */}
-            <div className="absolute -inset-4 bg-red-500/5 rounded-[40px] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-20 pointer-events-none" />
+            {/* Background Glow Effect (Only in Grid View) */}
+            {viewMode === "grid" && (
+                <div className="absolute -inset-4 bg-red-500/5 rounded-[40px] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-20 pointer-events-none" />
+            )}
         </div>
     );
 }
