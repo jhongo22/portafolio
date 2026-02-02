@@ -21,7 +21,7 @@ import SectionHeader from "./SectionHeader";
 export default function FeaturedWork() {
     return (
         <section id="sobre-mi" className="w-full bg-transparent text-zinc-300 py-24 relative z-10">
-            <div className="container mx-auto px-4 md:px-8">
+            <div className="container mx-auto px-4 md:px-8 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
                 <SectionHeader
                     subtitle="Conóceme"
                     title="Sobre Mí"
@@ -119,7 +119,7 @@ export default function FeaturedWork() {
                                     </div>
                                     <div className="flex items-center gap-2.5 text-zinc-500 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em]">
                                         <Code className="w-3.5 h-3.5 text-white/40" />
-                                        <span>AI Automation</span>
+                                        <span>AI Automatizacion</span>
                                     </div>
                                 </div>
                             </div>

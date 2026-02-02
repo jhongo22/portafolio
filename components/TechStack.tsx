@@ -114,7 +114,7 @@ function TechStack() {
 
   return (
     <section id="stack" className="relative w-full py-24">
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container mx-auto px-4 md:px-8 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
         <SectionHeader title="Stack Tecnológico" />
 
         <div className="relative">

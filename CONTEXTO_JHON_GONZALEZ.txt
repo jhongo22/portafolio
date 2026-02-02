@@ -1,0 +1,49 @@
+================================================================================
+CONTEXTO PROFESIONAL: JHON GONZALEZ - FULL STACK & IA DEVELOPER
+================================================================================
+
+PERFIL PROFESIONAL
+------------------
+Jhon Gonzalez es un Desarrollador Full Stack especializado en la integración de Inteligencia Artificial y Automatizaciones avanzadas. Con base en Medellín, Colombia, cuenta con más de un año de experiencia y un portafolio de más de 10 proyectos exitosos. Su enfoque principal es optimizar y escalar operaciones de negocio mediante soluciones tecnológicas inmersivas y agentes inteligentes.
+
+CORE TECH STACK
+---------------
+- Frontend: Next.js, React, Tailwind CSS, TypeScript, Framer Motion.
+- Backend: Node.js, PHP (Laravel), Python (para automatizaciones/IA).
+- Bases de Datos y CMS: Supabase, Postgres (Vector), MySQL, WordPress.
+- IA y Automatización: OpenAI (Embeddings, Vision, RAG), n8n, ElevenLabs (Voz IA), LangChain/Conceptos RAG.
+- Integraciones API: WhatsApp API, Telegram API, Airbnb/Booking/VRBO APIs, Google Drive/Sheets.
+- Otros: SEO avanzado, Analytics, Google Search Console, Render/Vercel/Hostinger para deploy.
+
+ANÁLISIS DE PROYECTOS POR CATEGORÍA
+-----------------------------------
+
+1. DESARROLLO WEB FULL STACK:
+   - Alquiler de Ecógrafos: Aplicación para gestión de equipos médicos con panel administrativo, calendario de disponibilidad y Supabase.
+   - E-commerce "Toxxic": Tienda de ropa urbana desarrollada en Laravel con gestión integral de pedidos y stock.
+   - Landing Pages Premium: "La Juana de Cerro Tusa" y "Villa Grande", sitios turísticos con integración directa a APIs de Airbnb/Booking para sincronización de reservas.
+   - Hot Cheese: Landing enfocada en comida rápida con selector de sedes e integración directa con WhatsApp.
+   - Telocalizo MX: Catálogo para mayoristas en México optimizado para SEO.
+
+2. IA Y AUTOMATIZACIÓN DE PROCESOS:
+   - Ecosistema IA Medicina Regenerativa: Automatización de CRM (Chatwoot) que procesa texto, audio y comprobantes de pago. Incluye gestión de memoria para mantener contexto de conversaciones.
+   - Agentes de Voz y Texto: Integración de ElevenLabs y OpenAI para atención al cliente 24/7 en sectores médicos (Vive Feliz Sin Dolor).
+   - Automatización de Restaurantes: Agentes multimodales que procesan pedidos por voz, verifican pagos con visión artificial y gestionan el flujo vía Telegram/WhatsApp.
+   - Lead Gen Automático: Sistema que extrae datos (Apify/Firecrawl), cualifica leads con IA y genera prospección personalizada por Instagram y Email.
+   - Generación Digital de Contratos: Flujo automatizado que genera documentos legales y los despacha por canales digitales instantáneamente.
+
+3. ARQUITECTURA DE DATOS E INFRAESTRUCTURA:
+   - Sistema RAG Empresarial: Sincronización con Google Drive para crear bases de conocimiento vectorizadas en Postgres (Supabase Vector) para consultas precisas de IA.
+   - Sistema de Backups Cloud: Automatización de copias de seguridad entre múltiples instancias de n8n hacia Google Drive.
+
+ESPECIALIZACIONES Y VALOR AGREGADO
+----------------------------------
+- Inteligencia Artificial Multimodal: Capacidad para procesar texto, imágenes (pagos) y voz.
+- RAG (Retrieval-Augmented Generation): Construcción de cerebros digitales para empresas basados en sus propios documentos.
+- Automatización CRM: Integración de flujos de trabajo que eliminan tareas repetitivas y escalan la capacidad de respuesta humana.
+- UX/UI de Alto Impacto: Diseño moderno (Glassmorphism, animaciones fluidas) enfocado en la conversión y la experiencia de usuario premium.
+
+RESUMEN DE IMPACTO
+------------------
+Jhon combina la robustez del desarrollo web tradicional con la vanguardia de la IA generativa. No solo construye sitios web, sino ecosistemas digitales autónomos que permiten a las empresas operar de forma más eficiente, captar mejores clientes y ofrecer atención premium automatizada.
+================================================================================

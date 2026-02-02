@@ -57,7 +57,7 @@ const services = [
 export default function Services() {
     return (
         <section id="habilidades" className="w-full py-24 relative z-10">
-            <div className="container mx-auto px-4 md:px-8">
+            <div className="container mx-auto px-4 md:px-8 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
                 <SectionHeader
                     subtitle="Lo que ofrezco"
                     title={"QUE PUEDO HACER"}
