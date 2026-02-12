@@ -77,6 +77,18 @@ const projects: Project[] = [
     shares: 128,
   },
   {
+    id: 11,
+    title: "Sistema RAG de Conocimiento Empresarial",
+    category: "automatizacion",
+    images: ["/projects/rag-system.webp"],
+    description:
+      "🧠 Sistema de Recuperación Aumentada (RAG) para base de conocimiento dinámica. \n\n✅ Sincronización con Drive: Monitorea carpetas compartidas y activa el flujo ante nuevos documentos o actualizaciones. \n✅ Indexación Inteligente: Clasifica y asigna metadata detallada a cada fragmento (chunk) para trazabilidad total de la fuente. \n✅ Vectorización Automática: Procesa y transforma documentos en vectores usando Embeddings de OpenAI. \n✅ Resúmenes Contextuales: Cada chunk incluye un resumen del contexto global del documento para mejorar la precisión de las respuestas. \n✅ Base de Datos Vectorial: Actualización en tiempo real de Postgres (Supabase Vector) para consultas ultra-rápidas del Agente IA.",
+    stack: ["OpenAI Embeddings", "n8n", "Postgres", "Google Drive", "Servidor VPS"],
+    likes: 358,
+    comments: 42,
+    shares: 85,
+  },
+  {
     id: 20,
     title: "Panel de Control Agentes IA",
     category: "web",
@@ -111,13 +123,13 @@ const projects: Project[] = [
     ],
     description:
       "🏡 Aplicación web para finca con integracion a plataformas de reservas.  \n\n✅ Panel Administrativo: Control de reservas de todas las plataformas y disponibilidad mediante calendario interactivo.\n\n✅ Experiencia Inmersiva: Diseño visual responsivo con enfoque en fotografía de gran formato y estética moderna. \n✅ Integración plataformas de reservas: Sistema de reservas sincronizado directamente con airbnb, booking, vrbo para evitar duplicidades.  \n✅ Analitica: SEO con palabras clave, Analytics, Tag Manager, Search console, Google Ads, Mapa de calor Clarity.",
-    stack: ["Next.js", "Supabase", "Tailwind CSS", "Hospitable API" ,"Hostinger"],
+    stack: ["Next.js", "Supabase", "Tailwind CSS", "Hospitable API", "Hostinger"],
     link: "https://lajuanacerrotusa.com/",
     likes: 315,
     comments: 48,
     shares: 92,
   },
-     {
+  {
     id: 12,
     title: "Agente IA Restaurante Mexicano",
     category: "automatizacion",
@@ -145,7 +157,7 @@ const projects: Project[] = [
     ],
     description:
       "👕 Aplicación web para tienda de ropa urbana en Medellín. \n✅ Diseño: Moderno y minimalista con paginas para cada seccion. \n✅ Carrito de Compras: Sistema completo de gestión de pedidos. \n✅ Panel Administrativo: Gestión integral de productos, usuarios y mensajes de clientes. \n✅ Responsive: Optimizado para una experiencia de compra fluida en móviles.",
-    stack: ["Laravel", "PHP","Javascript", "MySQL", "Vercel"],
+    stack: ["Laravel", "PHP", "Javascript", "MySQL", "Vercel"],
     link: "https://toxxic.vercel.app/",
     likes: 256,
     comments: 42,
@@ -167,7 +179,7 @@ const projects: Project[] = [
     comments: 92,
     shares: 156,
   },
- {
+  {
     id: 18,
     title: "Telocalizo MX - GPS",
     category: "web",
@@ -205,18 +217,6 @@ const projects: Project[] = [
     likes: 284,
     comments: 36,
     shares: 62,
-  },
-  {
-    id: 11,
-    title: "Sistema RAG de Conocimiento Empresarial",
-    category: "automatizacion",
-    images: ["/projects/rag-system.webp"],
-    description:
-      "🧠 Sistema de Recuperación Aumentada (RAG) para base de conocimiento dinámica. \n\n✅ Sincronización con Drive: Monitorea carpetas compartidas y activa el flujo ante nuevos documentos o actualizaciones. \n✅ Indexación Inteligente: Clasifica y asigna metadata detallada a cada fragmento (chunk) para trazabilidad total de la fuente. \n✅ Vectorización Automática: Procesa y transforma documentos en vectores usando Embeddings de OpenAI. \n✅ Resúmenes Contextuales: Cada chunk incluye un resumen del contexto global del documento para mejorar la precisión de las respuestas. \n✅ Base de Datos Vectorial: Actualización en tiempo real de Postgres (Supabase Vector) para consultas ultra-rápidas del Agente IA.",
-    stack: ["OpenAI Embeddings", "n8n", "Postgres", "Google Drive", "Servidor VPS"],
-    likes: 358,
-    comments: 42,
-    shares: 85,
   },
   {
     id: 19,
@@ -274,6 +274,25 @@ const projects: Project[] = [
     likes: 245,
     comments: 32,
     shares: 54,
+  },
+  {
+    id: 23,
+    title: "Sabrositas - Alitas & Papas",
+    category: "web",
+    images: [
+      "/projects/sabrositas/sabrositas-1.png",
+      "/projects/sabrositas/sabrositas-2.png",
+      "/projects/sabrositas/sabrositas-3.png",
+      "/projects/sabrositas/sabrositas-4.png",
+      "/projects/sabrositas/sabrositas-5.png",
+    ],
+    description:
+      "🍗 Página web para negocio de alitas y papas. \n✅ Experiencia de Usuario: Interfaz vibrante y moderna enfocada en la provocación visual y facilidad de navegación. \n✅ Menú Digital: Catálogo interactivo con precios y descripciones detalladas de productos. \n✅ Responsive: Optimizado para una experiencia fluida desde cualquier dispositivo móvil. \n✅ Tecnologías: Construida con PHP, HTML, Javascript y CSS, alojada exitosamente en Hostinger.",
+    stack: ["PHP", "HTML", "Javascript", "CSS", "Hostinger"],
+    link: "https://sabrositas.co/",
+    likes: 215,
+    comments: 28,
+    shares: 64,
   }
 ];
 
