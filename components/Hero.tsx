@@ -114,11 +114,11 @@ const VisualMockup = () => (
                     </div>
                     <div>
                         <span className="text-red-500">rol:</span>
-                        <span className="text-emerald-400"> "Desarrollador Full Stack & IA"</span>,
+                        <span className="text-emerald-400"> "Desarrollador web Full Stack & IA"</span>,
                     </div>
                     <div>
                         <span className="text-red-500">especialidad:</span>
-                        <span className="text-emerald-400"> ["Desarrollo web", "Agentes de IA", "n8n"]</span>,
+                        <span className="text-emerald-400"> ["Desarrollo web", "Agentes de IA", "Automacion de procesos con IA"]</span>,
                     </div>
                     <div>
                         <span className="text-red-500">enfoque:</span>

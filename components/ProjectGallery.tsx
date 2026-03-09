@@ -1,1031 +1,202 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import {
-  Heart,
-  Bookmark,
-  Share2,
-  ExternalLink,
-  MessageCircle,
-  Repeat2,
-  X,
-  ChevronLeft,
-  ChevronRight,
-  Sparkle,
-  LayoutGrid,
-  List,
-  ArrowUpRight,
-} from "lucide-react";
+import { X, ChevronLeft, ChevronRight, LayoutGrid, List } from "lucide-react";
 import SectionHeader from "./SectionHeader";
-import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-
-type ProjectCategory = "web" | "automatizacion";
-
-interface Project {
-  id: number;
-  title: string;
-  category: ProjectCategory;
-  images: string[];
-  description: string;
-  stack: string[];
-  link?: string;
-  likes: number;
-  comments: number;
-  shares: number;
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Alquiler de Ecógrafos",
-    category: "web",
-    images: [
-      "/projects/ecografos.webp",
-      "/projects/ecografos-1.webp",
-      "/projects/ecografos-2.webp",
-      "/projects/ecografos-3.webp",
-      "/projects/ecografos-4.webp",
-      "/projects/ecografos-5.webp",
-      "/projects/ecografos-6.webp",
-    ],
-    description:
-      "🩺 Aplicacion web para alquiler de ecografos médicos. \n✅ Panel Administrativo: Control de stock y disponibilidad mediante calendario interactivo. \n✅ Formulario de Reservas: Validación de disponibilidad y registro automatizado en google sheets, notificacion con WhatsApp y correo electrónico. \n✅ Responsive: optimizado para personas que navegan desde móvil. \n✅ Analitica: SEO con palabras clave, Analytics, Tag Manager, Search console, Google Ads, Mapa de calor Clarity.",
-    stack: ["Next.js", "TypeScript", "Supabase", "n8n", "Hostinger"],
-    link: "https://alquilerdeecografos.com/",
-    likes: 184,
-    comments: 32,
-    shares: 76,
-  },
-  {
-    id: 10,
-    title: "Ecosistema IA Consultorio Médico",
-    category: "automatizacion",
-    images: [
-      "/projects/ai-regenerativa.webp",
-      "/projects/subflow-escalado.webp",
-      "/projects/follow-up-descuentos.webp",
-      "/projects/extraccion-crm.webp",
-    ],
-    description:
-      "🚀 Automatización CRM para consultorio médico. \n\n✅ Agente IA: Proporciona informacion del negocio con RAG, asesora el cliente, gestiona citas medicas, procesa texto, audio y comprobantes de pago automáticamente. \n✅ Gestión de Memoria: Resume y mantiene el contexto relevante, integrando incluso charlas de agentes humanos. \n✅ Escalacion a humano: Transición inmediata a humanos con notificaciones vía WhatsApp. \n✅ Marketing : Seguimiento que filtra prospectos interesados y ofrece descuentos \n✅ Extracción de Datos: Procesa conversaciones para extraer automáticamente nombre, email, teléfono y genera biografías en el CRM. \n✅ Omnicanal & RAG: Integrado en WhatsApp, Instagram, Facebook, Pagina web y CRM Chatwoot.",
-    stack: ["OpenAI", "Redis", "n8n", "Chatwoot", "Meta API", "Servicios Google", "Servidor vps"],
-    likes: 412,
-    comments: 64,
-    shares: 128,
-  },
-  {
-    id: 11,
-    title: "Sistema RAG de Conocimiento Empresarial",
-    category: "automatizacion",
-    images: ["/projects/rag-system.webp"],
-    description:
-      "🧠 Sistema de Recuperación Aumentada (RAG) para base de conocimiento dinámica. \n\n✅ Sincronización con Drive: Monitorea carpetas compartidas y activa el flujo ante nuevos documentos o actualizaciones. \n✅ Indexación Inteligente: Clasifica y asigna metadata detallada a cada fragmento (chunk) para trazabilidad total de la fuente. \n✅ Vectorización Automática: Procesa y transforma documentos en vectores usando Embeddings de OpenAI. \n✅ Resúmenes Contextuales: Cada chunk incluye un resumen del contexto global del documento para mejorar la precisión de las respuestas. \n✅ Base de Datos Vectorial: Actualización en tiempo real de Postgres (Supabase Vector) para consultas ultra-rápidas del Agente IA.",
-    stack: ["OpenAI Embeddings", "n8n", "Postgres", "Google Drive", "Servidor VPS"],
-    likes: 358,
-    comments: 42,
-    shares: 85,
-  },
-  {
-    id: 20,
-    title: "Panel de Control Agentes IA",
-    category: "web",
-    images: [
-      "/projects/dashboard-winners-6.webp",
-      "/projects/dashboard-winners-7.webp",
-      "/projects/dashboard-winners-5.webp",
-      "/projects/dashboard-winners-1.webp",
-      "/projects/dashboard-winners-2.webp",
-      "/projects/dashboard-winners-3.webp",
-      "/projects/dashboard-winners-4.webp",
-    ],
-    description:
-      "📊 Aplicación web para monitoreo y gestión de agentes IA. \n\n✅ Dashboard Analítico: Visualización en tiempo real de métricas (conversaciones, mensajes, escalaciones, tiempo de respuesta promedio, etc.). \n✅ Análisis de Sentimiento.  \n✅ Panel de Ajustes: Configuración completa del agente IA y de la informacion del negocio (personalidad, nombre, tono de comunicación, expresiones, horarios, servicios, precios, etc.). \n✅ Respuestas Personalizadas: Plantillas de mensajes automáticos (confirmación, recordatorio, escalación) editables desde la interfaz. \n✅  Full Stack: TypeScript, Node.js y conexión vía webhooks con n8n para sincronización de datos y configuraciones.",
-    stack: ["Next.js", "TypeScript", "n8n Webhooks", "Shadcn UI", "Vercel"],
-    likes: 342,
-    comments: 56,
-    shares: 89,
-  },
-  {
-    id: 17,
-    title: "La Juana de Cerro Tusa",
-    category: "web",
-    images: [
-      "/projects/lajuana-1.webp",
-      "/projects/lajuana-2.webp",
-      "/projects/lajuana-3.webp",
-      "/projects/lajuana-4.webp",
-      "/projects/lajuana-5.webp",
-      "/projects/lajuana-admin-1.webp",
-      "/projects/lajuana-admin-2.webp",
-    ],
-    description:
-      "🏡 Aplicación web para finca con integracion a plataformas de reservas.  \n\n✅ Panel Administrativo: Control de reservas de todas las plataformas y disponibilidad mediante calendario interactivo.\n\n✅ Experiencia Inmersiva: Diseño visual responsivo con enfoque en fotografía de gran formato y estética moderna. \n✅ Integración plataformas de reservas: Sistema de reservas sincronizado directamente con airbnb, booking, vrbo para evitar duplicidades.  \n✅ Analitica: SEO con palabras clave, Analytics, Tag Manager, Search console, Google Ads, Mapa de calor Clarity.",
-    stack: ["Next.js", "Supabase", "Tailwind CSS", "Hospitable API", "Hostinger"],
-    link: "https://lajuanacerrotusa.com/",
-    likes: 315,
-    comments: 48,
-    shares: 92,
-  },
-  {
-    id: 12,
-    title: "Agente IA Restaurante Mexicano",
-    category: "automatizacion",
-    images: [
-      "/projects/restaurante-mexicano.webp",
-      "/projects/restaurante-subflow.webp",
-    ],
-    description:
-      "🌮 Agente IA para restaurante de comida mexicana. \n\n✅ Multimodal y personalidad mexicana: Procesa pedidos por texto y voz e interpreta comprobantes de pago. \n✅ Gestión de pedidos (Telegram): El personal recibe el comprobante y detalles del pedido con botones de acción (aceptar/rechazar) directamente en Telegram. \n✅ Notifica automáticamente al cliente si su pedido fue confirmado o si hay algún inconveniente. \n✅ Menu con SQL: Acceso inteligente al menú mediante base de datos SQL para recomendaciones y disponibilidad en tiempo real. \n✅ Pagos Automatizados: Genera links de pago para que el cliente haga el pago.",
-    stack: ["n8n", "WhatsApp API", "OpenAI", "Supabase", "Telegram", "Monabit", "Servidor VPS"],
-    likes: 524,
-    comments: 78,
-    shares: 112,
-  },
-  {
-    id: 21,
-    title: "Toxxic - Tienda de Ropa Urbana",
-    category: "web",
-    images: [
-      "/projects/toxxic-main.webp",
-      "/projects/toxxic-1.webp",
-      "/projects/toxxic-2.webp",
-      "/projects/toxxic-3.webp",
-      "/projects/toxxic-4.webp",
-    ],
-    description:
-      "👕 Aplicación web para tienda de ropa urbana en Medellín. \n✅ Diseño: Moderno y minimalista con paginas para cada seccion. \n✅ Carrito de Compras: Sistema completo de gestión de pedidos. \n✅ Panel Administrativo: Gestión integral de productos, usuarios y mensajes de clientes. \n✅ Responsive: Optimizado para una experiencia de compra fluida en móviles.",
-    stack: ["Laravel", "PHP", "Javascript", "MySQL", "Vercel"],
-    link: "https://toxxic.vercel.app/",
-    likes: 256,
-    comments: 42,
-    shares: 78,
-  },
-  {
-    id: 14,
-    title: "Sistema Automatizado de Prospección y Cualificación de Leads",
-    category: "automatizacion",
-    images: [
-      "/projects/lead-gen-main.webp",
-      "/projects/lead-gen-insta.webp",
-      "/projects/lead-gen-email.webp",
-    ],
-    description:
-      "🚀 Automatización prospectos a gran escala. \n\n✅ Extracción Inteligente: Busca prospectos por ejecución (ej: 'Gimnasios Medellín') usando Apify. \n✅ Scraping Avanzado: Recopila datos profundos de sitios web mediante Firecrawl. \n✅ Cualificación con IA: Analiza la información extraída para identificar leads calificados automáticamente. \n✅ Mensajes Personalizado: Genera 3 variantes de mensajes únicos para Instagram y Email basados en el perfil de cada empresa. \n✅ Contacto: Ejecuta envíos de correos programados durante 7 días y gestiona el seguimiento.",
-    stack: ["n8n", "Apify", "Firecrawl", "OpenAI", "Google Sheets", "Servidor VPS"],
-    likes: 487,
-    comments: 92,
-    shares: 156,
-  },
-  {
-    id: 18,
-    title: "Telocalizo MX - GPS",
-    category: "web",
-    images: [
-      "/projects/telocalizo-1.webp",
-      "/projects/telocalizo-2.webp",
-      "/projects/telocalizo-3.webp",
-      "/projects/telocalizo-4.webp",
-    ],
-    description:
-      "📍 Landing page para distribuidores mayoristas de rastreadores GPS en México. \n✅ Formulario de Cotización: Registro automatizado en google sheets, notificacion con WhatsApp y correo electrónico. \n\n✅ Diseño UX/UI: Moderno, responsivo y minimalista. \n✅ Catálogo de Productos: Modelos GPS con especificaciones técnicas, precios mayoristas.  \n✅ Analitica: SEO con palabras clave mexicanas, Analytics, Tag Manager, Search console, Google Ads, Mapa de calor Clarity.",
-    stack: ["PHP", "Javascript", "Hostinger"],
-    link: "https://telocalizo.mx/",
-    likes: 198,
-    comments: 28,
-    shares: 64,
-  },
-  {
-    id: 22,
-    title: "Villa Grande - La Misía",
-    category: "web",
-    images: [
-      "/projects/lamisia-1.webp",
-      "/projects/lamisia-2.webp",
-      "/projects/lamisia-3.webp",
-      "/projects/lamisia-4.webp",
-      "/projects/lamisia-5.webp",
-      "/projects/lamisia-6.webp",
-      "/projects/lamisia-7.webp",
-      "/projects/lamisia-8.webp",
-    ],
-    description:
-      "🏡 Landing page para finca en Llanogrande, Rionegro.  \n\n✅ Experiencia Inmersiva: Diseño visual responsivo con enfoque en fotografía de gran formato y estética moderna.  \n✅ Analitica: SEO con palabras clave, Search console  \n✅ Responsive: optimizado para personas que navegan desde móvil.",
-    stack: ["Next.js", "tailwind css", "Hostinger"],
-    likes: 284,
-    comments: 36,
-    shares: 62,
-  },
-  {
-    id: 19,
-    title: "Hot Cheese - Hamburguesas y Perros",
-    category: "web",
-    images: [
-      "/projects/hotcheese-1.webp",
-      "/projects/hotcheese-2.webp",
-      "/projects/hotcheese-3.webp",
-    ],
-    description:
-      "🍔 Landing page sencilla y efectiva para negocio de comida rápida en Medellín. \n\n✅ Diseño: Interfaz minimalista. \n✅ Menú Digital: Catálogo completo de hamburguesas, perros, perras y bebidas con precios y descripciones. \n✅ Selector de Sedes: Widget interactivo para elegir entre 5 ubicaciones. \n✅ Responsive: Optimizado para personas que navegan desde móvil.",
-    stack: ["Next.js", "Tailwind CSS", "Hostinger"],
-    link: "https://www.hotcheese.com.co/",
-    likes: 167,
-    comments: 21,
-    shares: 48,
-  },
-  {
-    id: 13,
-    title: "Agente IA Comidas rapidas",
-    category: "automatizacion",
-    images: [
-      "/projects/restaurante-fastfood.webp",
-      "/projects/restaurante-fastfood-subflow.webp",
-    ],
-    description:
-      "🍔 Agente IA especializado para negocios de comida rápida (Hamburguesas y Perros). \n\n✅ Multimodal y personalidad mexicana: Procesa pedidos por texto y voz e interpreta comprobantes de pago. \n✅ Gestión de pedidos (Telegram): El personal recibe el comprobante y detalles del pedido con botones de acción (aceptar/rechazar) directamente en Telegram. \n✅ Notifica automáticamente al cliente si su pedido fue confirmado o si hay algún inconveniente. \n✅ Menu con SQL: Acceso inteligente al menú mediante base de datos SQL para recomendaciones y disponibilidad en tiempo real. \n✅ Pagos Automatizados: Genera links de pago para que el cliente haga el pago.",
-    stack: ["n8n", "WhatsApp API", "OpenAI", "Supabase", "Telegram", "Monabit", "Servidor VPS"],
-    likes: 412,
-    comments: 65,
-    shares: 98,
-  },
-  {
-    id: 2,
-    title: "Vive Feliz Sin Dolor",
-    category: "web",
-    images: ["/projects/vivefeliz.webp"],
-    description:
-      "🏥 Sitio web integral para consultorio de medicina regenerativa. \n\n✅ Desarrollado en WordPress con enfoque en conversión. \n✅ Analitica: SEO con palabras clave, Analytics, Tag Manager, Search console, Google Ads, Mapa de calor Clarity. \n✅ Integración de Agente IA de texto y Voz (vía ElevenLabs y n8n) para atención 24/7.",
-    stack: ["WordPress", "ElevenLabs AI", "n8n", "Hostinger"],
-    link: "https://vivefelizsindolor.com/",
-    likes: 145,
-    comments: 24,
-    shares: 56,
-  },
-  {
-    id: 15,
-    title: "Generación Automática de Contratos Digitales",
-    category: "automatizacion",
-    images: ["/projects/contract-automatizacion.webp"],
-    description:
-      "📝 Flujo integral para la creación y despacho de documentación legal. \n\n✅ Datos Dinámicos: Recibe información vía Webhook y autocompleta contratos legales de forma instantánea. \n✅ Notificación Multi-canal: Envía el contrato generado directamente al WhatsApp del cliente y por correo electrónico. \n✅ Despacho de Políticas: Adjunta automáticamente las políticas de la empresa y términos de servicio a cada envío. \n✅ Gestión Centralizada: Registra cada contrato generado en Google Sheets para control administrativo.",
-    stack: ["n8n", "Gmail API", "WhatsApp API", "Google Sheets"],
-    likes: 245,
-    comments: 32,
-    shares: 54,
-  },
-  {
-    id: 23,
-    title: "Sabrositas - Alitas & Papas",
-    category: "web",
-    images: [
-      "/projects/sabrositas/sabrositas-1.png",
-      "/projects/sabrositas/sabrositas-2.png",
-      "/projects/sabrositas/sabrositas-3.png",
-      "/projects/sabrositas/sabrositas-4.png",
-      "/projects/sabrositas/sabrositas-5.png",
-    ],
-    description:
-      "🍗 Página web para negocio de alitas y papas. \n✅ Experiencia de Usuario: Interfaz vibrante y moderna enfocada en la provocación visual y facilidad de navegación. \n✅ Menú Digital: Catálogo interactivo con precios y descripciones detalladas de productos. \n✅ Responsive: Optimizado para una experiencia fluida desde cualquier dispositivo móvil. \n✅ Tecnologías: Construida con PHP, HTML, Javascript y CSS, alojada exitosamente en Hostinger.",
-    stack: ["PHP", "HTML", "Javascript", "CSS", "Hostinger"],
-    link: "https://sabrositas.co/",
-    likes: 215,
-    comments: 28,
-    shares: 64,
-  }
-];
+import { projects, Project } from "../data/projects";
+import ProjectCard from "./ProjectCard";
 
 export default function ProjectGallery() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [viewMode, setViewMode] = useState<"grid" | "list">("list");
-  const [mounted, setMounted] = useState(false);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [activeImageIndex, setActiveImageIndex] = useState(0);
+    const [viewMode, setViewMode] = useState<"grid" | "list">("list");
+    const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
-
-
-  useEffect(() => {
-    if (selectedProject) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [selectedProject]);
-
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (selectedProject) {
-      setActiveImageIndex(
-        (prev: number) => (prev + 1) % selectedProject.images.length,
-      );
-    }
-  };
-
-  const handlePrev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (selectedProject) {
-      setActiveImageIndex(
-        (prev: number) =>
-          (prev - 1 + selectedProject.images.length) %
-          selectedProject.images.length,
-      );
-    }
-  };
-
-  return (
-    <section id="proyectos" className="w-full py-24 relative z-10">
-      <GlobalScrollbarStyles />
-      <div className="container mx-auto px-4 md:px-8 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
-        <SectionHeader
-          title="Proyectos"
-          description="Una selección de mis últimos trabajos, desde aplicaciones web completas hasta automatizaciones avanzadas."
-        />
-
-        {/* View Toggle - Desktop Only, Centered */}
-        <div className="hidden lg:flex justify-center mb-16">
-          <div className="flex items-center bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-xl">
-            <button
-              onClick={() => setViewMode("list")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all ${viewMode === "list" ? "bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.4)]" : "text-zinc-500 hover:text-zinc-300"}`}
-            >
-              <List className="w-4 h-4" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em]">
-                Filas
-              </span>
-            </button>
-            <button
-              onClick={() => setViewMode("grid")}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all ${viewMode === "grid" ? "bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.4)]" : "text-zinc-500 hover:text-zinc-300"}`}
-            >
-              <LayoutGrid className="w-4 h-4" />
-              <span className="text-[10px] font-black uppercase tracking-[0.2em]">
-                Cuadrícula
-              </span>
-            </button>
-          </div>
-        </div>
-
-        <div className={`grid ${viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" : "grid-cols-1 gap-48 max-w-5xl mx-auto"}`}>
-          {projects.map((project, index) => (
-            <div key={project.id} className={viewMode === "list" ? "max-w-7xl mx-auto w-full" : "w-full"}>
-              <ProjectCard
+    const projectCards = React.useMemo(() => projects.map((project, index) => (
+        <motion.div
+            key={project.id}
+            layout
+            className={viewMode === "list" ? "max-w-7xl mx-auto w-full" : "w-full"}
+        >
+            <ProjectCard
                 project={project}
                 index={index}
                 viewMode={viewMode}
                 onImageClick={() => {
-                  setSelectedProject(project);
-                  setActiveImageIndex(0);
+                    setSelectedProject(project);
+                    setActiveImageIndex(0);
                 }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+            />
+        </motion.div>
+    )), [viewMode]);
 
-      {mounted &&
-        selectedProject &&
-        createPortal(
-          <AnimatePresence>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => {
-                setSelectedProject(null);
-                setActiveImageIndex(0);
-              }}
-              className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 cursor-zoom-out"
-            >
-              {/* Close Button */}
-              <motion.button
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.5, opacity: 0 }}
-                className="absolute top-6 right-6 md:top-10 md:right-10 p-4 rounded-full bg-white/10 text-white hover:bg-red-600 transition-all border border-white/10 z-[100005] cursor-pointer shadow-2xl backdrop-blur-xl group"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedProject(null);
-                  setActiveImageIndex(0);
-                }}
-              >
-                <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
-              </motion.button>
+    useEffect(() => {
+        if (selectedProject) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [selectedProject]);
 
-              {/* Carousel Controls */}
-              {selectedProject.images.length > 1 && (
-                <>
-                  <button
-                    onClick={handlePrev}
-                    className="absolute left-4 md:left-10 p-4 rounded-full bg-black/40 text-white hover:bg-red-600 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
-                  >
-                    <ChevronLeft className="w-8 h-8" />
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    className="absolute right-4 md:right-10 p-4 rounded-full bg-black/40 text-white hover:bg-red-600 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
-                  >
-                    <ChevronRight className="w-8 h-8" />
-                  </button>
+    const handleNext = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (selectedProject) {
+            setActiveImageIndex((prev: number) => (prev + 1) % selectedProject.images.length);
+        }
+    };
 
-                  {/* Pagination Dots */}
-                  <div
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-[100001]"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    {selectedProject.images.map((_: string, idx: number) => (
-                      <button
-                        key={idx}
-                        onClick={() => setActiveImageIndex(idx)}
-                        className={`h-1.5 rounded-full transition-all cursor-pointer ${idx === activeImageIndex ? "bg-red-600 w-8" : "bg-white/20 w-4 hover:bg-white/40"}`}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
+    const handlePrev = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (selectedProject) {
+            setActiveImageIndex((prev: number) => (prev - 1 + selectedProject.images.length) % selectedProject.images.length);
+        }
+    };
 
-              <div
-                className="relative w-full max-w-6xl h-[80vh] z-[100000]"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Image
-                  src={selectedProject.images[activeImageIndex]}
-                  alt={`Project view ${activeImageIndex + 1}`}
-                  fill
-                  className="object-contain"
-                  sizes="90vw"
-                  priority
+    return (
+        <section id="proyectos" className="w-full py-24 relative z-10">
+            <GlobalScrollbarStyles />
+            <div className="container mx-auto px-4 md:px-8 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+                <SectionHeader
+                    title="Proyectos"
+                    description="Una selección de mis últimos trabajos, desde aplicaciones web completas hasta automatizaciones avanzadas."
                 />
-              </div>
-            </motion.div>
-          </AnimatePresence>,
-          document.body,
-        )}
-    </section>
-  );
+
+                {/* View Toggle - Desktop Only, Centered */}
+                <div className="hidden lg:flex justify-center mb-16">
+                    <div className="flex items-center bg-white/5 backdrop-blur-md border border-white/10 p-1 rounded-xl">
+                        <button
+                            onClick={() => setViewMode("list")}
+                            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all ${viewMode === "list" ? "bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.4)]" : "text-zinc-500 hover:text-zinc-300"}`}
+                        >
+                            <List className="w-4 h-4" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Filas</span>
+                        </button>
+                        <button
+                            onClick={() => setViewMode("grid")}
+                            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg transition-all ${viewMode === "grid" ? "bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.4)]" : "text-zinc-500 hover:text-zinc-300"}`}
+                        >
+                            <LayoutGrid className="w-4 h-4" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Cuadrícula</span>
+                        </button>
+                    </div>
+                </div>
+
+                <motion.div
+                    layout
+                    className={`grid ${viewMode === "grid" ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" : "grid-cols-1 gap-48"}`}
+                >
+                    <AnimatePresence mode="popLayout">
+                        {projectCards}
+                    </AnimatePresence>
+                </motion.div>
+            </div>
+
+            {mounted && selectedProject && createPortal(
+                <AnimatePresence>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => {
+                            setSelectedProject(null);
+                            setActiveImageIndex(0);
+                        }}
+                        className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 cursor-zoom-out"
+                    >
+                        {/* Close Button */}
+                        <motion.button
+                            initial={{ scale: 0.5, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.5, opacity: 0 }}
+                            className="absolute top-6 right-6 md:top-10 md:right-10 p-4 rounded-full bg-white/10 text-white hover:bg-red-600 transition-all border border-white/10 z-[100005] cursor-pointer shadow-2xl backdrop-blur-xl group"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedProject(null);
+                                setActiveImageIndex(0);
+                            }}
+                        >
+                            <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
+                        </motion.button>
+
+                        {/* Carousel Controls */}
+                        {selectedProject.images.length > 1 && (
+                            <>
+                                <button
+                                    onClick={handlePrev}
+                                    className="absolute left-4 md:left-10 p-4 rounded-full bg-black/40 text-white hover:bg-red-600 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
+                                >
+                                    <ChevronLeft className="w-8 h-8" />
+                                </button>
+                                <button
+                                    onClick={handleNext}
+                                    className="absolute right-4 md:right-10 p-4 rounded-full bg-black/40 text-white hover:bg-red-600 transition-all border border-white/10 z-[100001] cursor-pointer active:scale-90 backdrop-blur-md"
+                                >
+                                    <ChevronRight className="w-8 h-8" />
+                                </button>
+
+                                {/* Pagination Dots */}
+                                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-[100001]" onClick={(e) => e.stopPropagation()}>
+                                    {selectedProject.images.map((_: string, idx: number) => (
+                                        <button
+                                            key={idx}
+                                            onClick={() => setActiveImageIndex(idx)}
+                                            className={`h-1.5 rounded-full transition-all cursor-pointer ${idx === activeImageIndex ? 'bg-red-600 w-8' : 'bg-white/20 w-4 hover:bg-white/40'}`}
+                                        />
+                                    ))}
+                                </div>
+                            </>
+                        )}
+
+                        <div className="relative w-full max-w-6xl h-[80vh] z-[100000]" onClick={(e) => e.stopPropagation()}>
+                            <Image
+                                src={selectedProject.images[activeImageIndex]}
+                                alt={`Project view ${activeImageIndex + 1}`}
+                                fill
+                                className="object-contain"
+                                sizes="90vw"
+                                priority
+                            />
+                        </div>
+                    </motion.div>
+                </AnimatePresence>,
+                document.body
+            )}
+        </section>
+    );
 }
 
 // --- STYLES ---
 const GlobalScrollbarStyles = () => (
-  <style jsx global>{`
-    .custom-red-scrollbar::-webkit-scrollbar {
-      width: 6px;
-    }
-    .custom-red-scrollbar::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-    }
-    .custom-red-scrollbar::-webkit-scrollbar-thumb {
-      background: #ef4444 !important;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
-    }
-    .custom-red-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #ff5555 !important;
-    }
-    /* For Firefox */
-    .custom-red-scrollbar {
-      scrollbar-width: thin;
-      scrollbar-color: #ef4444 rgba(255, 255, 255, 0.05);
-    }
-  `}</style>
+    <style jsx global>{`
+        .custom-red-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-red-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .custom-red-scrollbar::-webkit-scrollbar-thumb {
+            background: #ef4444 !important;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+        .custom-red-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #ff5555 !important;
+        }
+        /* For Firefox */
+        .custom-red-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #ef4444 rgba(255, 255, 255, 0.05);
+        }
+    `}</style>
 );
-
-// --- NEW PREMIUM DESIGN (3D FLIP) ---
-const ProjectCard = React.memo(
-  ({
-    project,
-    onImageClick,
-    viewMode,
-    index,
-  }: {
-    project: Project;
-    onImageClick: () => void;
-    viewMode: "grid" | "list";
-    index: number;
-  }) => {
-    const [isFlipped, setIsFlipped] = useState(false);
-    const [cardImageIndex, setCardImageIndex] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
-    const [isAutoplayDisabled, setIsAutoplayDisabled] = useState(false);
-
-    // Memoize split description to avoid re-calculating on every render
-    const descriptionLines = React.useMemo(
-      () => project.description.split("\n"),
-      [project.description],
-    );
-    const shortDescription = React.useMemo(
-      () =>
-        descriptionLines[0]
-          .replace(/🩺|🚀|📊|🏡|👕|📍|🌮|🧠|🍔|🏥|📝|☁️|📍|🧠|📝|☁️/g, "")
-          .trim(),
-      [descriptionLines],
-    );
-
-    // Track if it's the first image change to handle the 1s vs 2s delay
-    const autoplayDelayRef = useRef(3000);
-
-    useEffect(() => {
-      if (isFlipped || isAutoplayDisabled || project.images.length <= 1) {
-        autoplayDelayRef.current = 3000;
-        return;
-      }
-
-      const shouldRun = viewMode === "list" || isHovered;
-      if (!shouldRun) {
-        autoplayDelayRef.current = 3000;
-        return;
-      }
-
-      const isDesktop = window.matchMedia("(min-width: 768px)").matches;
-      if (!isDesktop) return;
-
-      const timer = setTimeout(() => {
-        setCardImageIndex((prev) => (prev + 1) % project.images.length);
-        autoplayDelayRef.current = 3000; // After first jump, keep 3s
-      }, autoplayDelayRef.current);
-
-      return () => clearTimeout(timer);
-    }, [
-      cardImageIndex,
-      isHovered,
-      viewMode,
-      isFlipped,
-      isAutoplayDisabled,
-      project.images.length,
-    ]);
-    const nextCardImage = (e: React.MouseEvent) => {
-      e.stopPropagation();
-      setIsAutoplayDisabled(true);
-      setCardImageIndex((prev: number) => (prev + 1) % project.images.length);
-    };
-
-    const prevCardImage = (e: React.MouseEvent) => {
-      e.stopPropagation();
-      setIsAutoplayDisabled(true);
-      setCardImageIndex(
-        (prev: number) =>
-          (prev - 1 + project.images.length) % project.images.length,
-      );
-    };
-
-    const toggleFlip = (e: React.MouseEvent) => {
-      e.stopPropagation();
-      setIsFlipped(!isFlipped);
-    };
-
-    return (
-      <div
-        className={`relative w-full group ${viewMode === "list" ? "min-h-fit overflow-visible" : "transition-all duration-1000 [perspective:1500px] h-[460px]"}`}
-      >
-        <motion.div
-          initial={false}
-          animate={
-            viewMode === "grid"
-              ? { rotateY: isFlipped ? 180 : 0 }
-              : { rotateY: 0 }
-          }
-          transition={{ duration: 0.8, ease: "circOut" }}
-          className={`w-full h-full ${viewMode === "grid" ? "[transform-style:preserve-3d]" : ""}`}
-        >
-          {/* FRONT SIDE */}
-          <div
-            className={
-              viewMode === "list"
-                ? `w-full flex flex-col lg:flex-row gap-12 lg:gap-16 transition-all items-center bg-transparent border-none ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}`
-                : "absolute inset-0 w-full h-full [backface-visibility:hidden] bg-zinc-900/40 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden flex flex-col shadow-2xl"
-            }
-          >
-            {/* Image Container */}
-            <div
-              className={
-                viewMode === "list"
-                  ? `relative overflow-hidden cursor-zoom-in group/card-img w-full lg:w-[48%] aspect-video rounded-3xl border border-white/5 shadow-2xl transition-transform duration-700 hover:scale-[1.01] h-fit`
-                  : "relative h-[220px] w-full overflow-hidden cursor-zoom-in"
-              }
-              onClick={onImageClick}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              <div className="absolute inset-0">
-                <Image
-                  src={project.images[cardImageIndex]}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
-
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
-
-              {/* Tech Badges */}
-              <div className="absolute top-5 left-5 flex flex-wrap gap-2 z-10">
-                {project.stack.slice(0, 3).map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-2.5 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-lg text-[10px] font-bold uppercase tracking-wider text-zinc-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              {/* Navigation Arrows */}
-              {project.images.length > 1 && (
-                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-3">
-                  <button
-                    onClick={prevCardImage}
-                    className="p-2 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/10 hover:bg-white hover:text-black transition-all"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={nextCardImage}
-                    className="p-2 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/10 hover:bg-white hover:text-black transition-all"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Content Brief */}
-            <div
-              className={
-                viewMode === "list"
-                  ? "flex flex-col flex-grow justify-center py-4 lg:w-[52%]"
-                  : "flex flex-col flex-grow p-6 md:p-8 text-left"
-              }
-            >
-              {viewMode === "list" && (
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-red-600 font-black text-xl tracking-tighter">
-                    #{String(index + 1).padStart(2, "0")}
-                  </span>
-                  <div className="h-px w-8 bg-red-600/30"></div>
-                  <span className="text-zinc-500 font-bold uppercase tracking-[0.2em] text-[10px]">
-                    {project.category}
-                  </span>
-                </div>
-              )}
-
-              <div className="flex flex-col mb-4">
-                <h3
-                  className={`font-black text-white uppercase tracking-tighter ${viewMode === "list" ? "text-3xl md:text-4xl lg:text-5xl leading-tight" : "text-xl transition-colors group-hover:text-red-500"}`}
-                >
-                  {project.title}
-                </h3>
-              </div>
-
-              <div
-                className={`space-y-4 ${viewMode === "list" ? "max-w-xl" : ""}`}
-              >
-                <p
-                  className={`text-zinc-400 leading-relaxed ${viewMode === "list" ? "text-base md:text-lg" : "text-[13px] line-clamp-2"}`}
-                >
-                  {shortDescription}
-                </p>
-
-                {viewMode === "list" && (
-                  <div className="space-y-2 py-4">
-                    {descriptionLines.slice(1).map((line, i) => {
-                      const trimmedLine = line.trim();
-                      if (!trimmedLine) return null;
-
-                      if (trimmedLine.startsWith("✅")) {
-                        return (
-                          <div key={i} className="flex gap-3 items-start">
-                            <div className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 shrink-0 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                            <span className="text-zinc-300 text-sm md:text-base font-medium">
-                              {trimmedLine.replace("✅", "").trim()}
-                            </span>
-                          </div>
-                        );
-                      }
-
-                      return (
-                        <p key={i} className="text-zinc-400 text-sm md:text-base leading-relaxed">
-                          {trimmedLine}
-                        </p>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-
-              {viewMode === "list" && (
-                <div className="flex flex-wrap gap-2 mb-10">
-                  {project.stack.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 bg-white/5 text-zinc-500 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-white/5"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              <div className="flex flex-col sm:flex-row gap-5 w-full mt-auto">
-                {viewMode === "list" && project.link && (
-                  <Link
-                    href={project.link}
-                    target="_blank"
-                    className="flex items-center justify-center gap-3 bg-white text-black hover:bg-red-600 hover:text-white py-4 px-10 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] transition-all duration-500 group/btn-visit"
-                  >
-                    Visitar Sitio
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn-visit:translate-x-0.5 group-hover/btn-visit:-translate-y-0.5" />
-                  </Link>
-                )}
-
-                {viewMode === "grid" && (
-                  <button
-                    onClick={toggleFlip}
-                    className="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 py-3 rounded-lg font-bold uppercase tracking-widest text-[10px] transition-all"
-                  >
-                    Ver Detalles
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* BACK SIDE (Only in Grid View) */}
-          {viewMode === "grid" && (
-            <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] [transform:rotateY(180deg)] bg-zinc-900 backdrop-blur-3xl border border-white/10 rounded-2xl p-8 flex flex-col shadow-2xl overflow-hidden">
-              <div className="flex justify-between items-start mb-6">
-                <h3 className="text-2xl font-black text-white uppercase tracking-tighter">
-                  {project.title}
-                </h3>
-                <div className="p-2 rounded-lg bg-red-600/10 text-red-500">
-                  <Sparkle className="w-5 h-5" />
-                </div>
-              </div>
-
-              <div className="flex-grow space-y-4 overflow-y-auto custom-red-scrollbar pr-2 pb-4">
-                {descriptionLines.map((line, i) => {
-                  if (line.trim().startsWith("✅")) {
-                    return (
-                      <div
-                        key={i}
-                        className="flex gap-3 items-start group/line"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-red-600 mt-2 shrink-0 group-hover/line:scale-125 transition-transform shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                        <span className="text-zinc-300 text-sm font-medium leading-relaxed">
-                          {line.replace("✅", "").trim()}
-                        </span>
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
-
-              <div className="mt-auto pt-6 border-t border-white/5 flex gap-4">
-                {project.link && (
-                  <Link
-                    href={project.link}
-                    target="_blank"
-                    className="flex-grow flex items-center justify-center gap-2 bg-red-600 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-red-500 transition-all shadow-[0_10px_20px_rgba(239,68,68,0.2)]"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Sitio
-                  </Link>
-                )}
-                <button
-                  onClick={toggleFlip}
-                  className="flex-grow flex items-center justify-center gap-2 bg-white/5 text-zinc-400 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all border border-white/5"
-                >
-                  Volver
-                </button>
-              </div>
-            </div>
-          )}
-        </motion.div>
-
-        {/* Background Glow Effect (Only in Grid View) */}
-        {viewMode === "grid" && (
-          <div className="absolute -inset-4 bg-red-500/5 rounded-[40px] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -z-20 pointer-events-none" />
-        )}
-      </div>
-    );
-  },
-);
-ProjectCard.displayName = "ProjectCard";
-
-// --- LEGACY DESIGN (Preserved) ---
-function ProjectPostCard({
-  project,
-  onImageClick,
-}: {
-  project: Project;
-  onImageClick: () => void;
-}) {
-  const [liked, setLiked] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const [cardImageIndex, setCardImageIndex] = useState(0);
-
-  const nextCardImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCardImageIndex((prev) => (prev + 1) % project.images.length);
-  };
-
-  const prevCardImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setCardImageIndex(
-      (prev) => (prev - 1 + project.images.length) % project.images.length,
-    );
-  };
-
-  return (
-    <div className="h-full">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="w-full h-full flex flex-col rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-5 hover:border-white/20 transition-colors"
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between gap-3 mb-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/10 overflow-hidden border border-white/5 relative">
-              <Image
-                src="/ai-avatar.png"
-                alt="Jhon Gonzalez"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="flex flex-col leading-tight">
-              <div className="flex items-center gap-1.5">
-                <span className="font-semibold text-white text-[15px]">
-                  Jhon Gonzalez
-                </span>
-                <span className="text-zinc-500 text-xs text-[13px]">
-                  @jhongo
-                </span>
-              </div>
-              <span className="text-zinc-500 text-xs">
-                Full Stack Developer
-              </span>
-            </div>
-          </div>
-          <button className="text-zinc-500 hover:text-white transition-colors">
-            <span className="sr-only">More options</span>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="1" />
-              <circle cx="19" cy="12" r="1" />
-              <circle cx="5" cy="12" r="1" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Content Text */}
-        <div className="mb-4 flex-grow">
-          <div className="text-zinc-300 text-[15px] leading-relaxed space-y-1">
-            {project.description.split("\n").map((line, i) => {
-              if (line.trim().startsWith("✅")) {
-                return (
-                  <div key={i} className="flex gap-2 items-start group/line">
-                    <Sparkle className="w-3.5 h-3.5 mt-1 text-white/50 shrink-0 group-hover/line:text-white/80 transition-colors" />
-                    <span>{line.replace("✅", "").trim()}</span>
-                  </div>
-                );
-              }
-              return (
-                <p key={i} className={line.trim() === "" ? "h-2" : ""}>
-                  {line}
-                </p>
-              );
-            })}
-          </div>
-          {project.link && (
-            <Link
-              href={project.link}
-              target="_blank"
-              className="inline-flex items-center gap-1 mt-2 text-blue-400 hover:text-blue-300 text-sm font-medium hover:underline"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              {project.link.replace("https://", "")}
-            </Link>
-          )}
-        </div>
-
-        {/* Main Image Carousel on Card */}
-        <div
-          className="relative rounded-2xl overflow-hidden bg-[#1a1a1a] border border-white/5 mb-4 aspect-video cursor-zoom-in group/img"
-          onClick={() => onImageClick()}
-        >
-          <div key={cardImageIndex} className="absolute inset-0">
-            <Image
-              src={project.images[cardImageIndex]}
-              alt={project.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </div>
-
-          {/* Card Arrows (Always visible) */}
-          {project.images.length > 1 && (
-            <>
-              <button
-                onClick={prevCardImage}
-                className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 text-white transition-all hover:bg-black/60 backdrop-blur-sm border border-white/10 z-10"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={nextCardImage}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 text-white transition-all hover:bg-black/60 backdrop-blur-sm border border-white/10 z-10"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </>
-          )}
-
-          <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover/img:opacity-100 pointer-events-none">
-            <div className="flex flex-col items-center gap-2">
-              <span className="bg-white/10 backdrop-blur-md text-white text-[10px] font-medium px-2.5 py-1 rounded-full border border-white/10">
-                Expandir
-              </span>
-              {project.images.length > 1 && (
-                <div className="flex gap-1">
-                  {project.images.map((_, idx) => (
-                    <div
-                      key={idx}
-                      className={`w-1 h-1 rounded-full transition-all ${idx === cardImageIndex ? "bg-white w-2" : "bg-white/30"}`}
-                    />
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Action Bar */}
-        <div className="flex items-center justify-between pt-2 border-t border-white/5 mt-auto">
-          <button
-            onClick={() => setLiked(!liked)}
-            className={`flex items-center gap-2 text-sm group transition-colors ${liked ? "text-pink-500" : "text-zinc-500 hover:text-pink-500"}`}
-          >
-            <div
-              className={`p-2 rounded-full group-hover:bg-pink-500/10 transition-colors ${liked ? "bg-pink-500/10" : ""}`}
-            >
-              <Heart className={`w-5 h-5 ${liked ? "fill-current" : ""}`} />
-            </div>
-            <span className="text-xs font-medium">
-              {project.likes + (liked ? 1 : 0)}
-            </span>
-          </button>
-
-          <button className="flex items-center gap-2 text-sm text-zinc-500 hover:text-blue-400 group transition-colors">
-            <div className="p-2 rounded-full group-hover:bg-blue-400/10 transition-colors">
-              <MessageCircle className="w-5 h-5" />
-            </div>
-            <span className="text-xs font-medium">{project.comments}</span>
-          </button>
-
-          <button className="flex items-center gap-2 text-sm text-zinc-500 hover:text-green-400 group transition-colors">
-            <div className="p-2 rounded-full group-hover:bg-green-400/10 transition-colors">
-              <Repeat2 className="w-5 h-5" />
-            </div>
-            <span className="text-xs font-medium">{project.shares}</span>
-          </button>
-
-          <button
-            onClick={() => setSaved(!saved)}
-            className={`flex items-center gap-2 text-sm group transition-colors ${saved ? "text-blue-500" : "text-zinc-500 hover:text-blue-500"}`}
-          >
-            <div
-              className={`p-2 rounded-full group-hover:bg-blue-500/10 transition-colors ${saved ? "bg-blue-500/10" : ""}`}
-            >
-              {saved ? (
-                <Bookmark className="w-5 h-5 fill-current" />
-              ) : (
-                <Bookmark className="w-5 h-5" />
-              )}
-            </div>
-          </button>
-        </div>
-      </motion.div>
-    </div>
-  );
-}

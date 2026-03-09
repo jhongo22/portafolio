@@ -24,9 +24,9 @@ export default function SectionHeader({ title, description, subtitle }: SectionH
             <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase"
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 0.1, duration: 0.5 }}
+                className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase will-change-transform"
             >
                 {title.split('\n').map((line, i) => (
                     <span key={i}>
@@ -39,8 +39,8 @@ export default function SectionHeader({ title, description, subtitle }: SectionH
                 initial={{ opacity: 0, scaleX: 0 }}
                 whileInView={{ opacity: 1, scaleX: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-                className="w-24 h-1 bg-red-600 rounded-full mt-2 origin-center"
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="w-24 h-1 bg-red-600 rounded-full mt-2 origin-center will-change-transform"
             />
             {description && (
                 <motion.p

@@ -14,7 +14,8 @@ export default function Background() {
 
         let w: number, h: number;
         let p: Pt[] = [];
-        const cnt = window.innerWidth < 768 ? 30 : 60;
+        // Reduced particle count for performance
+        const cnt = window.innerWidth < 768 ? 15 : 30; // Reduced from 30/60
         const cols = ['#ef4444', '#f87171', '#333'];
         let mouse = { x: null as number | null, y: null as number | null };
 
@@ -25,10 +26,16 @@ export default function Background() {
 
         window.addEventListener('resize', resize, { passive: true });
         resize();
-
+        
+        // Throttled mouse move
+        let mouseTimeout: NodeJS.Timeout;
         const handleMouseMove = (e: MouseEvent) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
+             if (mouseTimeout) return;
+             mouseTimeout = setTimeout(() => {
+                 mouse.x = e.clientX;
+                 mouse.y = e.clientY;
+                 mouseTimeout = undefined as any;
+             }, 10);
         };
 
         window.addEventListener('mousemove', handleMouseMove, { passive: true });
@@ -47,8 +54,9 @@ export default function Background() {
             reset() {
                 this.x = Math.random() * w;
                 this.y = Math.random() * h;
-                this.vx = (Math.random() - .5) * .4;
-                this.vy = (Math.random() - .5) * .4;
+                // Slower movement for smoother feel and less visual chaos
+                this.vx = (Math.random() - .5) * .2;
+                this.vy = (Math.random() - .5) * .2;
                 this.c = cols[Math.floor(Math.random() * 3)];
             }
 
@@ -57,11 +65,15 @@ export default function Background() {
                 this.y += this.vy;
                 if (this.x < 0 || this.x > w) this.vx *= -1;
                 if (this.y < 0 || this.y > h) this.vy *= -1;
+                // Simplified interaction check
                 if (mouse.x !== null && mouse.y !== null) {
-                    let dx = mouse.x - this.x, dy = mouse.y - this.y, d = Math.sqrt(dx * dx + dy * dy);
-                    if (d < 150) {
-                        this.x -= dx / d;
-                        this.y -= dy / d;
+                    let dx = mouse.x - this.x, dy = mouse.y - this.y;
+                    if (Math.abs(dx) < 150 && Math.abs(dy) < 150) { // Quick bounding box check first
+                        let d = Math.sqrt(dx * dx + dy * dy);
+                         if (d < 150) {
+                            this.x -= dx / d;
+                            this.y -= dy / d;
+                        }
                     }
                 }
             }

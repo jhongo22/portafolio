@@ -23,9 +23,8 @@ export default function FeaturedWork() {
         <section id="sobre-mi" className="w-full bg-transparent text-zinc-300 py-24 relative z-10">
             <div className="container mx-auto px-4 md:px-8 lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
                 <SectionHeader
-                    subtitle="Conóceme"
                     title="Sobre Mí"
-                    description="Apasionado por los detalles y la excelencia técnica. Mi objetivo es crear productos digitales que dejen huella."
+                    description="Apasionado por la tecnología y la innovación. Soy una persona autodidacta, proactiva y con gran capacidad de aprendizaje."
                 />
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
